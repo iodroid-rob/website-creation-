@@ -38,6 +38,7 @@ sequenceDiagram
 3. Name your database `nexus_leads_db` and click create.
 4. Go to the **Console** tab of your new database and run this SQL query to initialize the table:
    ```sql
+   -- 1. Create the Leads storage table
    CREATE TABLE IF NOT EXISTS leads (
      id INTEGER PRIMARY KEY AUTOINCREMENT,
      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -47,6 +48,13 @@ sequenceDiagram
      need TEXT,
      budget TEXT,
      details TEXT
+   );
+
+   -- 2. Create the Login security lockout table
+   CREATE TABLE IF NOT EXISTS login_attempts (
+     id INTEGER PRIMARY KEY AUTOINCREMENT,
+     ip TEXT NOT NULL,
+     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
    );
    ```
 

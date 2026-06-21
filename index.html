@@ -194,6 +194,8 @@
             <div class="flex items-center gap-3">
                 <a
                     href="#"
+                    id="nexus-logo"
+                    onclick="handleLogoClick(event)"
                     class="px-4 py-2 bg-brutal-orange text-brutal-black font-display font-black text-xs uppercase tracking-wider border-[2px] border-white brutal-shadow-white hover:bg-white transition-colors"
                 >
                     NEXUS AGENCY
@@ -1143,11 +1145,94 @@
             </div>
         </div>
 
+        <!-- Secret Lock Trigger (revealed only after 10 clicks of NEXUS AGENCY logo) -->
+        <button
+            id="secret-lock-btn"
+            onclick="openLoginModal()"
+            style="opacity: 0.01"
+            class="fixed bottom-3 left-3 text-[10px] text-neutral-800 font-mono hover:text-brutal-orange uppercase tracking-widest hidden transition-opacity z-50 duration-500"
+        >
+            [ SECURE GATE ]
+        </button>
+
+        <!-- Secure Custom Login Modal -->
+        <div
+            id="login-modal"
+            class="fixed inset-0 bg-black/90 backdrop-blur-md hidden z-50 flex items-center justify-center p-4"
+        >
+            <div
+                class="w-full max-w-sm border-[3px] border-white bg-brutal-black p-6 sm:p-8 brutal-shadow-orange relative"
+            >
+                <button
+                    onclick="closeLoginModal()"
+                    class="absolute top-4 right-4 text-white hover:text-brutal-orange transition-colors text-lg"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div class="border-b-[2px] border-brutal-orange pb-3 mb-6">
+                    <h2
+                        class="font-display font-black text-lg uppercase tracking-wider text-white"
+                    >
+                        ADMINISTRATOR AUTH
+                    </h2>
+                </div>
+
+                <form
+                    id="login-form"
+                    onsubmit="submitAdminLogin(event)"
+                    class="space-y-4 text-xs font-mono"
+                >
+                    <div>
+                        <label
+                            class="block text-[9px] uppercase font-bold tracking-widest text-neutral-400 mb-1"
+                            >USERNAME</label
+                        >
+                        <input
+                            type="text"
+                            id="login-user"
+                            required
+                            class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-white focus:outline-none focus:border-brutal-orange transition-colors font-mono"
+                            placeholder="00000000"
+                        />
+                    </div>
+                    <div>
+                        <label
+                            class="block text-[9px] uppercase font-bold tracking-widest text-neutral-400 mb-1"
+                            >PASSWORD</label
+                        >
+                        <input
+                            type="password"
+                            id="login-pass"
+                            required
+                            class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-white focus:outline-none focus:border-brutal-orange transition-colors font-mono"
+                            placeholder="••••••••"
+                        />
+                    </div>
+
+                    <div
+                        id="login-error"
+                        class="text-[10px] text-brutal-orange uppercase font-bold hidden border border-brutal-orange p-2 bg-brutal-orange/10 font-mono"
+                    >
+                        INVALID CREDENTIALS.
+                    </div>
+
+                    <button
+                        type="submit"
+                        id="login-submit-btn"
+                        class="w-full py-3 mt-4 bg-brutal-orange text-brutal-black hover:bg-white font-display font-bold uppercase tracking-widest text-xs border-[2px] border-white brutal-shadow-white transition-colors"
+                    >
+                        AUTHORIZE <i class="fa-solid fa-key ml-1"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
         <script>
             // =========================================================================
             // CLOUDFLARE BACKEND CONFIGURATION
-            // Paste your deployed Cloudflare Worker / Pages API URL here!
-            const BACKEND_API_URL = "";
+            // =========================================================================
+            const BACKEND_API_URL = "/api/submit";
             // =========================================================================
 
             // 3-State Theme Matrix Switcher
@@ -1232,7 +1317,7 @@
                     .getElementById("form-details")
                     .value.trim();
 
-                // If the URL is not set, run local simulation mode with helpful console instructions
+                // Run local simulation mode if the backend URL is set to a simulation placeholder or empty
                 if (
                     !BACKEND_API_URL ||
                     BACKEND_API_URL === "YOUR_CLOUDFLARE_API_URL"
@@ -1253,7 +1338,7 @@
                         details,
                     });
                     console.info(
-                        "%c💡 Link your secure Cloudflare Backend API URL to BACKEND_API_URL to make this form active.",
+                        "%c💡 Set BACKEND_API_URL to '/api/submit' to push lead data to your Cloudflare database.",
                         "color: #3B82F6; font-style: italic;",
                     );
                     form.reset();
@@ -1295,6 +1380,109 @@
                     showUINotification(`ERROR: TRANSMISSION FAULT. TRY AGAIN.`);
                 } finally {
                     // Restore button state
+                    submitBtn.disabled = false;
+                    submitBtn.style.cursor = "pointer";
+                    submitBtn.innerHTML = originalBtnContent;
+                }
+            }
+
+            // =========================================================================
+            // 🛡️ SECRET ADMIN GATING & AUTHENTICATION
+            // =========================================================================
+            let logoClickCount = 0;
+            function handleLogoClick(event) {
+                event.preventDefault();
+                logoClickCount++;
+                if (logoClickCount === 10) {
+                    const secretBtn =
+                        document.getElementById("secret-lock-btn");
+                    if (secretBtn) {
+                        secretBtn.classList.remove("hidden");
+                        setTimeout(() => {
+                            secretBtn.style.opacity = "1";
+                        }, 50);
+                        showUINotification(
+                            "ADMIN GATEWAY DISCOVERED. CHECK BOTTOM-LEFT.",
+                        );
+                    }
+                }
+            }
+
+            function openLoginModal() {
+                document
+                    .getElementById("login-modal")
+                    .classList.remove("hidden");
+                document.getElementById("login-error").classList.add("hidden");
+                document.getElementById("login-form").reset();
+            }
+
+            function closeLoginModal() {
+                document.getElementById("login-modal").classList.add("hidden");
+            }
+
+            async function submitAdminLogin(event) {
+                event.preventDefault();
+                const username = document
+                    .getElementById("login-user")
+                    .value.trim();
+                const password = document
+                    .getElementById("login-pass")
+                    .value.trim();
+                const errorDiv = document.getElementById("login-error");
+                const submitBtn = document.getElementById("login-submit-btn");
+                const originalBtnContent = submitBtn.innerHTML;
+
+                // 💡 LOCALHOST DEV FALLBACK: Bypass uncompiled serverless API and validate locally
+                if (
+                    window.location.hostname === "localhost" ||
+                    window.location.hostname === "127.0.0.1"
+                ) {
+                    if (username === "06112006" && password === "priyam06@") {
+                        showUINotification("DEV MODE: AUTHORIZATION APPROVED.");
+                        sessionStorage.setItem("dev_admin_session", "true");
+                        setTimeout(() => {
+                            window.location.href = "/admin/";
+                        }, 1000);
+                    } else {
+                        errorDiv.innerText = "INVALID CREDENTIALS (DEV MODE).";
+                        errorDiv.classList.remove("hidden");
+                    }
+                    return;
+                }
+
+                try {
+                    submitBtn.disabled = true;
+                    submitBtn.style.cursor = "not-allowed";
+                    submitBtn.innerHTML = `AUTHORIZING... <i class="fa-solid fa-spinner animate-spin"></i>`;
+                    errorDiv.classList.add("hidden");
+
+                    const response = await fetch("/api/login", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ username, password }),
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok && result.result === "success") {
+                        showUINotification(
+                            "AUTHENTICATION APPROVED. ACCESS GRANTED.",
+                        );
+                        setTimeout(() => {
+                            window.location.href = "/admin/";
+                        }, 1200);
+                    } else {
+                        throw new Error(
+                            result.error || "Authentication failed.",
+                        );
+                    }
+                } catch (error) {
+                    console.error("Login failure:", error);
+                    errorDiv.innerText = error.message.toUpperCase();
+                    errorDiv.classList.remove("hidden");
+                } finally {
                     submitBtn.disabled = false;
                     submitBtn.style.cursor = "pointer";
                     submitBtn.innerHTML = originalBtnContent;
