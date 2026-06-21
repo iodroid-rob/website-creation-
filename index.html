@@ -1,647 +1,1305 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sovereign Web Engineering | Enterprise B2B Portfolio</title>
-    
-    <!-- Tailwind CSS & Icon Libraries -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Space Grotesk for high-performance headers, Inter for supreme reading legibility -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sovereign Web Engineering | Enterprise B2B Portfolio</title>
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brutal: {
-                            black: '#0A0A0A',
-                            darkGrey: '#111111',
-                            white: '#FAFAFA',
-                            orange: '#FF5E3A',
-                            green: '#10B981',
-                            blue: '#3B82F6',
-                            grey: '#262626'
-                        }
+        <!-- Tailwind CSS & Icon Libraries -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <!-- Space Grotesk for high-performance headers, Inter for supreme reading legibility -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700;900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+
+        <script>
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            brutal: {
+                                black: "#0A0A0A",
+                                darkGrey: "#111111",
+                                white: "#FAFAFA",
+                                orange: "#FF5E3A",
+                                green: "#10B981",
+                                blue: "#3B82F6",
+                                grey: "#262626",
+                            },
+                        },
+                        fontFamily: {
+                            display: ["Space Grotesk", "sans-serif"],
+                            sans: ["Inter", "sans-serif"],
+                        },
                     },
-                    fontFamily: {
-                        display: ['Space Grotesk', 'sans-serif'],
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
+                },
+            };
+        </script>
+
+        <style>
+            /* 3-State CSS Custom Theme Properties */
+            :root {
+                --bg-color: #0a0a0a;
+                --text-color: #fafafa;
+                --border-color: #fafafa;
+                --accent-color: #ff5e3a;
+                --shadow-color: #fafafa;
+                --dot-color: rgba(255, 255, 255, 0.05);
+                --card-bg: #111111;
+                --neutral-muted: #a3a3a3;
+                --form-input-bg: #0a0a0a;
             }
-        }
-    </script>
 
-    <style>
-        /* 3-State CSS Custom Theme Properties */
-        :root {
-            --bg-color: #0A0A0A;
-            --text-color: #FAFAFA;
-            --border-color: #FAFAFA;
-            --accent-color: #FF5E3A;
-            --shadow-color: #FAFAFA;
-            --dot-color: rgba(255, 255, 255, 0.05);
-            --card-bg: #111111;
-            --neutral-muted: #A3A3A3;
-            --form-input-bg: #0A0A0A;
-        }
+            body.theme-light {
+                --bg-color: #fafafa;
+                --text-color: #0a0a0a;
+                --border-color: #0a0a0a;
+                --accent-color: #ff5e3a;
+                --shadow-color: #0a0a0a;
+                --dot-color: rgba(10, 10, 10, 0.06);
+                --card-bg: #ffffff;
+                --neutral-muted: #525252;
+                --form-input-bg: #fafafa;
+            }
 
-        body.theme-light {
-            --bg-color: #FAFAFA;
-            --text-color: #0A0A0A;
-            --border-color: #0A0A0A;
-            --accent-color: #FF5E3A;
-            --shadow-color: #0A0A0A;
-            --dot-color: rgba(10, 10, 10, 0.06);
-            --card-bg: #FFFFFF;
-            --neutral-muted: #525252;
-            --form-input-bg: #FAFAFA;
-        }
+            body.theme-comfort {
+                --bg-color: #f4efe6; /* Cozy Warm Sepia Paper */
+                --text-color: #2d241e; /* Rich Espresso Cocoa text */
+                --border-color: #2d241e;
+                --accent-color: #b45138; /* Soft terracotta rust */
+                --shadow-color: #2d241e;
+                --dot-color: rgba(45, 36, 30, 0.08);
+                --card-bg: #eae3d5; /* Darker paper stock */
+                --neutral-muted: #736054;
+                --form-input-bg: #f4efe6;
+            }
 
-        body.theme-comfort {
-            --bg-color: #F4EFE6; /* Cozy Warm Sepia Paper */
-            --text-color: #2D241E; /* Rich Espresso Cocoa text */
-            --border-color: #2D241E;
-            --accent-color: #B45138; /* Soft terracotta rust */
-            --shadow-color: #2D241E;
-            --dot-color: rgba(45, 36, 30, 0.08);
-            --card-bg: #EAE3D5; /* Darker paper stock */
-            --neutral-muted: #736054;
-            --form-input-bg: #F4EFE6;
-        }
+            /* Fluid layout-wide transition timings */
+            body,
+            header,
+            section,
+            footer,
+            div,
+            select,
+            option,
+            input,
+            textarea,
+            button,
+            a,
+            span {
+                transition:
+                    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                    border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            }
 
-        /* Fluid layout-wide transition timings */
-        body, header, section, footer, div, select, option, input, textarea, button, a, span {
-            transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-                        color 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-                        border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-                        box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+            body {
+                background-color: var(--bg-color);
+                color: var(--text-color);
+            }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
-        
-        /* Premium custom scroll bar matching active themes */
-        ::-webkit-scrollbar {
-            width: 8px;
-            background: var(--bg-color);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-color);
-            border-radius: 4px;
-        }
+            /* Premium custom scroll bar matching active themes */
+            ::-webkit-scrollbar {
+                width: 8px;
+                background: var(--bg-color);
+            }
+            ::-webkit-scrollbar-thumb {
+                background: var(--accent-color);
+                border-radius: 4px;
+            }
 
-        /* Solid Brutalist Theme-Linked Shadow Offsets */
-        .brutal-shadow-white {
-            box-shadow: 6px 6px 0px 0px var(--shadow-color) !important;
-        }
-        .brutal-shadow-orange {
-            box-shadow: 6px 6px 0px 0px var(--accent-color) !important;
-        }
-        .brutal-shadow-black {
-            box-shadow: 6px 6px 0px 0px var(--bg-color) !important;
-        }
+            /* Solid Brutalist Theme-Linked Shadow Offsets */
+            .brutal-shadow-white {
+                box-shadow: 6px 6px 0px 0px var(--shadow-color) !important;
+            }
+            .brutal-shadow-orange {
+                box-shadow: 6px 6px 0px 0px var(--accent-color) !important;
+            }
+            .brutal-shadow-black {
+                box-shadow: 6px 6px 0px 0px var(--bg-color) !important;
+            }
 
-        /* Dotted Grid Background System */
-        .bg-grid-dots {
-            background-size: 24px 24px;
-            background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px) !important;
-        }
+            /* Dotted Grid Background System */
+            .bg-grid-dots {
+                background-size: 24px 24px;
+                background-image: radial-gradient(
+                    circle,
+                    var(--dot-color) 1px,
+                    transparent 1px
+                ) !important;
+            }
 
-        /* Direct CSS Theme Overrides for Tailwind Utilities */
-        .bg-brutal-black { background-color: var(--bg-color) !important; }
-        .text-brutal-white { color: var(--text-color) !important; }
-        .border-white { border-color: var(--border-color) !important; }
-        .bg-brutal-darkGrey, .bg-neutral-900 { background-color: var(--card-bg) !important; }
-        .text-neutral-400 { color: var(--neutral-muted) !important; }
-        .border-neutral-700, .border-neutral-800 { border-color: var(--border-color) !important; }
-        .bg-brutal-orange { background-color: var(--accent-color) !important; }
-        .text-brutal-orange { color: var(--accent-color) !important; }
-        .border-brutal-orange { border-color: var(--accent-color) !important; }
-        
-        input, textarea, select {
-            background-color: var(--form-input-bg) !important;
-            color: var(--text-color) !important;
-            border-color: var(--border-color) !important;
-        }
-    </style>
-</head>
-<body class="font-sans antialiased text-brutal-white bg-brutal-black selection:bg-brutal-orange selection:text-white relative">
+            /* Direct CSS Theme Overrides for Tailwind Utilities */
+            .bg-brutal-black {
+                background-color: var(--bg-color) !important;
+            }
+            .text-brutal-white {
+                color: var(--text-color) !important;
+            }
+            .border-white {
+                border-color: var(--border-color) !important;
+            }
+            .bg-brutal-darkGrey,
+            .bg-neutral-900 {
+                background-color: var(--card-bg) !important;
+            }
+            .text-neutral-400 {
+                color: var(--neutral-muted) !important;
+            }
+            .border-neutral-700,
+            .border-neutral-800 {
+                border-color: var(--border-color) !important;
+            }
+            .bg-brutal-orange {
+                background-color: var(--accent-color) !important;
+            }
+            .text-brutal-orange {
+                color: var(--accent-color) !important;
+            }
+            .border-brutal-orange {
+                border-color: var(--accent-color) !important;
+            }
 
-    <!-- Aesthetic Background Dotted Grid -->
-    <div id="grid-bg-container" class="fixed inset-0 bg-grid-dots pointer-events-none z-0"></div>
+            input,
+            textarea,
+            select {
+                background-color: var(--form-input-bg) !important;
+                color: var(--text-color) !important;
+                border-color: var(--border-color) !important;
+            }
+        </style>
+    </head>
+    <body
+        class="font-sans antialiased text-brutal-white bg-brutal-black selection:bg-brutal-orange selection:text-white relative"
+    >
+        <!-- Aesthetic Background Dotted Grid -->
+        <div
+            id="grid-bg-container"
+            class="fixed inset-0 bg-grid-dots pointer-events-none z-0"
+        ></div>
 
-    <!-- Top Navigation Bar (Aligned perfectly with Screenshots) -->
-    <header class="w-full border-b-[2px] border-white bg-brutal-black/95 backdrop-blur-md sticky top-0 z-50 py-4 px-6 md:px-12 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-            <a href="#" class="px-4 py-2 bg-brutal-orange text-brutal-black font-display font-black text-xs uppercase tracking-wider border-[2px] border-white brutal-shadow-white hover:bg-white transition-colors">
-                NEXUS AGENCY
-            </a>
-        </div>
-
-        <!-- Navigation Controls & Status Matrix -->
-        <div class="flex items-center gap-4">
-            <a href="#project-form" class="hidden lg:inline-block px-4 py-2 border-[2px] border-white bg-brutal-black hover:bg-white hover:text-brutal-black text-xs font-display font-bold uppercase tracking-wider transition-colors">
-                GET A QUOTE
-            </a>
-            <a href="#engineering-stack" class="hidden md:inline-block px-4 py-2 border-[2px] border-white bg-brutal-orange text-brutal-black hover:bg-white text-xs font-display font-bold uppercase tracking-wider transition-colors">
-                PORTFOLIO & STACK
-            </a>
-            
-            <div class="hidden sm:flex items-center gap-2 border-l border-neutral-700 pl-4">
-                <span class="h-2.5 w-2.5 rounded-full bg-brutal-orange animate-ping"></span>
-                <span class="font-mono text-[10px] tracking-widest text-neutral-400 uppercase font-bold">ACCEPTING CLIENTS</span>
+        <!-- Top Navigation Bar (Aligned perfectly with Screenshots) -->
+        <header
+            class="w-full border-b-[2px] border-white bg-brutal-black/95 backdrop-blur-md sticky top-0 z-50 py-4 px-6 md:px-12 flex justify-between items-center"
+        >
+            <div class="flex items-center gap-3">
+                <a
+                    href="#"
+                    class="px-4 py-2 bg-brutal-orange text-brutal-black font-display font-black text-xs uppercase tracking-wider border-[2px] border-white brutal-shadow-white hover:bg-white transition-colors"
+                >
+                    NEXUS AGENCY
+                </a>
             </div>
 
-            <!-- Dynamic Theme Mode Indicator Trigger Button -->
-            <button onclick="toggleThemeVisual()" class="px-4 py-2 bg-brutal-black border-[2px] border-white text-xs font-display font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors flex items-center gap-2">
-                <i id="theme-icon" class="fa-solid fa-moon"></i> <span id="theme-label">DARK</span>
-            </button>
-        </div>
-    </header>
+            <!-- Navigation Controls & Status Matrix -->
+            <div class="flex items-center gap-4">
+                <a
+                    href="#project-form"
+                    class="hidden lg:inline-block px-4 py-2 border-[2px] border-white bg-brutal-black hover:bg-white hover:text-brutal-black text-xs font-display font-bold uppercase tracking-wider transition-colors"
+                >
+                    GET A QUOTE
+                </a>
+                <a
+                    href="#engineering-stack"
+                    class="hidden md:inline-block px-4 py-2 border-[2px] border-white bg-brutal-orange text-brutal-black hover:bg-white text-xs font-display font-bold uppercase tracking-wider transition-colors"
+                >
+                    PORTFOLIO & STACK
+                </a>
 
-    <!-- Hero Block Split Layout -->
-    <section class="relative w-full flex flex-col lg:flex-row items-stretch border-b-[2px] border-white z-10">
-        
-        <!-- Left Side: Core Value Proposition -->
-        <div class="w-full lg:w-[55%] p-6 sm:p-12 lg:p-16 flex flex-col justify-center border-b-[2px] lg:border-b-0 lg:border-r-[2px] border-white relative overflow-hidden">
-            <div class="relative z-10 w-full max-w-full">
-                <!-- Large title perfectly sizing responsively without clipping -->
-                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[2.65rem] xl:text-[3.5rem] 2xl:text-7xl font-black uppercase leading-[0.95] tracking-tight mb-6 text-brutal-white break-words">
-                    HIGH-<br>PERFORMANCE<br>WEB<br>ARCHITECTURE.
-                </h1>
-                
-                <p class="text-base sm:text-lg font-normal leading-relaxed mb-8 text-neutral-400 max-w-lg border-l-[3px] border-brutal-orange pl-4">
-                    We engineer enterprise-grade web applications and high-conversion business sites. Built for speed, scale, and uncompromising reliability.
+                <div
+                    class="hidden sm:flex items-center gap-2 border-l border-neutral-700 pl-4"
+                >
+                    <span
+                        class="h-2.5 w-2.5 rounded-full bg-brutal-orange animate-ping"
+                    ></span>
+                    <span
+                        class="font-mono text-[10px] tracking-widest text-neutral-400 uppercase font-bold"
+                        >ACCEPTING CLIENTS</span
+                    >
+                </div>
+
+                <!-- Dynamic Theme Mode Indicator Trigger Button -->
+                <button
+                    onclick="toggleThemeVisual()"
+                    class="px-4 py-2 bg-brutal-black border-[2px] border-white text-xs font-display font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors flex items-center gap-2"
+                >
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                    <span id="theme-label">DARK</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Hero Block Split Layout -->
+        <section
+            class="relative w-full flex flex-col lg:flex-row items-stretch border-b-[2px] border-white z-10"
+        >
+            <!-- Left Side: Core Value Proposition -->
+            <div
+                class="w-full lg:w-[55%] p-6 sm:p-12 lg:p-16 flex flex-col justify-center border-b-[2px] lg:border-b-0 lg:border-r-[2px] border-white relative overflow-hidden"
+            >
+                <div class="relative z-10 w-full max-w-full">
+                    <!-- Large title perfectly sizing responsively without clipping -->
+                    <h1
+                        class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[2.65rem] xl:text-[3.5rem] 2xl:text-7xl font-black uppercase leading-[0.95] tracking-tight mb-6 text-brutal-white break-words"
+                    >
+                        HIGH-<br />PERFORMANCE<br />WEB<br />ARCHITECTURE.
+                    </h1>
+
+                    <p
+                        class="text-base sm:text-lg font-normal leading-relaxed mb-8 text-neutral-400 max-w-lg border-l-[3px] border-brutal-orange pl-4"
+                    >
+                        We engineer enterprise-grade web applications and
+                        high-conversion business sites. Built for speed, scale,
+                        and uncompromising reliability.
+                    </p>
+
+                    <!-- Quick Metric Badges matching design layout in screenshots -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md">
+                        <div
+                            class="p-4 border-[2px] border-white bg-brutal-black brutal-shadow-white flex items-center gap-3"
+                        >
+                            <div class="text-brutal-orange text-xl">
+                                <i class="fa-solid fa-gauge-high"></i>
+                            </div>
+                            <div>
+                                <span
+                                    class="block text-[11px] font-mono tracking-wider text-neutral-400 uppercase font-bold"
+                                    >Performance Rate</span
+                                >
+                                <span
+                                    class="block font-display font-black text-xs uppercase text-white"
+                                    >SUB-SECOND LOAD</span
+                                >
+                            </div>
+                        </div>
+                        <div
+                            class="p-4 border-[2px] border-white bg-brutal-black brutal-shadow-white flex items-center gap-3"
+                        >
+                            <div class="text-brutal-orange text-xl">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <span
+                                    class="block text-[11px] font-mono tracking-wider text-neutral-400 uppercase font-bold"
+                                    >Standard Framework</span
+                                >
+                                <span
+                                    class="block font-display font-black text-xs uppercase text-white"
+                                    >ENTERPRISE SECURITY</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Brutalist Project Inquiry Form matching Screenshots -->
+            <div
+                class="w-full lg:w-[45%] bg-brutal-black flex items-center justify-center p-6 sm:p-12 relative overflow-hidden"
+            >
+                <div
+                    class="w-full max-w-md border-[2px] border-white bg-brutal-black p-6 sm:p-8 brutal-shadow-white relative z-10"
+                >
+                    <div class="border-b-[2px] border-brutal-orange pb-3 mb-6">
+                        <h2
+                            class="font-display font-black text-xl uppercase tracking-wider text-white"
+                        >
+                            PROJECT INQUIRY
+                        </h2>
+                    </div>
+
+                    <form
+                        id="project-form"
+                        onsubmit="submitProjectProposal(event)"
+                        class="space-y-4"
+                    >
+                        <div>
+                            <label
+                                class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1"
+                                >FULL NAME</label
+                            >
+                            <input
+                                type="text"
+                                id="form-name"
+                                required
+                                class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors"
+                                placeholder="John Doe"
+                            />
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label
+                                    class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1"
+                                    >WORK EMAIL</label
+                                >
+                                <input
+                                    type="email"
+                                    id="form-email"
+                                    required
+                                    class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors"
+                                    placeholder="john@company.com"
+                                />
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1"
+                                    >COMPANY</label
+                                >
+                                <input
+                                    type="text"
+                                    id="form-company"
+                                    required
+                                    class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors"
+                                    placeholder="Acme Corp"
+                                />
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label
+                                    class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1"
+                                    >NEED</label
+                                >
+                                <select
+                                    id="form-need"
+                                    class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors font-mono"
+                                >
+                                    <option value="b2b-web">
+                                        B2B Core Architecture
+                                    </option>
+                                    <option value="saas">SaaS Platform</option>
+                                    <option value="pos">
+                                        Hospitality POS Engine
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1"
+                                    >BUDGET</label
+                                >
+                                <select
+                                    id="form-budget"
+                                    class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors font-mono"
+                                >
+                                    <option value="scale-1">$10k - $25k</option>
+                                    <option value="scale-2" selected>
+                                        $25k - $50k
+                                    </option>
+                                    <option value="scale-3">$50k+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1"
+                                >PROJECT DETAILS</label
+                            >
+                            <textarea
+                                id="form-details"
+                                required
+                                rows="3"
+                                class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors resize-none"
+                                placeholder="Briefly describe your objectives..."
+                            ></textarea>
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="w-full py-4 bg-brutal-orange text-brutal-black hover:bg-white transition-colors font-display font-bold uppercase tracking-widest text-xs border-[2px] border-white brutal-shadow-white flex items-center justify-center gap-2"
+                        >
+                            GET A PROPOSAL
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Columns Row -->
+        <section
+            class="w-full grid grid-cols-1 lg:grid-cols-3 border-b-[2px] border-white z-10 bg-brutal-black divide-y lg:divide-y-0 lg:divide-x-[2px] divide-white"
+        >
+            <div class="p-6 sm:p-8 flex items-start gap-4">
+                <div class="text-brutal-orange text-xl mt-1">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div>
+                    <h3
+                        class="font-display font-black text-sm uppercase tracking-wider text-white"
+                    >
+                        STRICTLY CONFIDENTIAL
+                    </h3>
+                    <p class="text-xs text-neutral-400 mt-2 leading-relaxed">
+                        Your project details and intellectual property are kept
+                        completely private.
+                    </p>
+                </div>
+            </div>
+            <div class="p-6 sm:p-8 flex items-start gap-4">
+                <div class="text-brutal-orange text-xl mt-1">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div>
+                    <h3
+                        class="font-display font-black text-sm uppercase tracking-wider text-white"
+                    >
+                        24-HOUR RESPONSE
+                    </h3>
+                    <p class="text-xs text-neutral-400 mt-2 leading-relaxed">
+                        We guarantee a direct human response to all inquiries
+                        within one business day.
+                    </p>
+                </div>
+            </div>
+            <div class="p-6 sm:p-8 flex items-start gap-4">
+                <div class="text-brutal-orange text-xl mt-1">
+                    <i class="fa-solid fa-handshake"></i>
+                </div>
+                <div>
+                    <h3
+                        class="font-display font-black text-sm uppercase tracking-wider text-white"
+                    >
+                        FREE CONSULTATION
+                    </h3>
+                    <p class="text-xs text-neutral-400 mt-2 leading-relaxed">
+                        Your initial architectural roadmap and project quote are
+                        provided at no cost.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Engineering Stack Section -->
+        <section
+            id="engineering-stack"
+            class="py-20 px-6 md:px-12 max-w-7xl mx-auto z-10 relative"
+        >
+            <div class="mb-12 border-l-[4px] border-brutal-orange pl-6">
+                <span
+                    class="text-brutal-orange font-mono text-xs uppercase tracking-[0.3em] font-bold block"
+                    >TECHNICAL CAPABILITY</span
+                >
+                <h2
+                    class="font-display text-3xl sm:text-4xl md:text-5xl font-black uppercase mt-2"
+                >
+                    ENGINEERING <span class="text-brutal-orange">STACK</span>
+                </h2>
+                <p class="text-neutral-400 text-sm mt-3 max-w-xl">
+                    Enterprise-grade architecture built for scalability and
+                    speed. We leverage modern frameworks to deliver
+                    high-performance, bespoke web applications tailored
+                    specifically to B2B infrastructure needs.
                 </p>
-                
-                <!-- Quick Metric Badges matching design layout in screenshots -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md">
-                    <div class="p-4 border-[2px] border-white bg-brutal-black brutal-shadow-white flex items-center gap-3">
-                        <div class="text-brutal-orange text-xl"><i class="fa-solid fa-gauge-high"></i></div>
-                        <div>
-                            <span class="block text-[11px] font-mono tracking-wider text-neutral-400 uppercase font-bold">Performance Rate</span>
-                            <span class="block font-display font-black text-xs uppercase text-white">SUB-SECOND LOAD</span>
-                        </div>
-                    </div>
-                    <div class="p-4 border-[2px] border-white bg-brutal-black brutal-shadow-white flex items-center gap-3">
-                        <div class="text-brutal-orange text-xl"><i class="fa-solid fa-shield-halved"></i></div>
-                        <div>
-                            <span class="block text-[11px] font-mono tracking-wider text-neutral-400 uppercase font-bold">Standard Framework</span>
-                            <span class="block font-display font-black text-xs uppercase text-white">ENTERPRISE SECURITY</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right Side: Brutalist Project Inquiry Form matching Screenshots -->
-        <div class="w-full lg:w-[45%] bg-brutal-black flex items-center justify-center p-6 sm:p-12 relative overflow-hidden">
-            <div class="w-full max-w-md border-[2px] border-white bg-brutal-black p-6 sm:p-8 brutal-shadow-white relative z-10">
-                <div class="border-b-[2px] border-brutal-orange pb-3 mb-6">
-                    <h2 class="font-display font-black text-xl uppercase tracking-wider text-white">PROJECT INQUIRY</h2>
-                </div>
-
-                <form id="project-form" onsubmit="submitProjectProposal(event)" class="space-y-4">
-                    <div>
-                        <label class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">FULL NAME</label>
-                        <input type="text" id="form-name" required class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors" placeholder="John Doe">
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">WORK EMAIL</label>
-                            <input type="email" id="form-email" required class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors" placeholder="john@company.com">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">COMPANY</label>
-                            <input type="text" id="form-company" required class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors" placeholder="Acme Corp">
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">NEED</label>
-                            <select id="form-need" class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors font-mono">
-                                <option value="b2b-web">B2B Core Architecture</option>
-                                <option value="saas">SaaS Platform</option>
-                                <option value="pos">Hospitality POS Engine</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">BUDGET</label>
-                            <select id="form-budget" class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors font-mono">
-                                <option value="scale-1">$10k - $25k</option>
-                                <option value="scale-2" selected>$25k - $50k</option>
-                                <option value="scale-3">$50k+</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">PROJECT DETAILS</label>
-                        <textarea id="form-details" required rows="3" class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors resize-none" placeholder="Briefly describe your objectives..."></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full py-4 bg-brutal-orange text-brutal-black hover:bg-white transition-colors font-display font-bold uppercase tracking-widest text-xs border-[2px] border-white brutal-shadow-white flex items-center justify-center gap-2">
-                        GET A PROPOSAL <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trust Columns Row -->
-    <section class="w-full grid grid-cols-1 lg:grid-cols-3 border-b-[2px] border-white z-10 bg-brutal-black divide-y lg:divide-y-0 lg:divide-x-[2px] divide-white">
-        <div class="p-6 sm:p-8 flex items-start gap-4">
-            <div class="text-brutal-orange text-xl mt-1"><i class="fa-solid fa-lock"></i></div>
-            <div>
-                <h3 class="font-display font-black text-sm uppercase tracking-wider text-white">STRICTLY CONFIDENTIAL</h3>
-                <p class="text-xs text-neutral-400 mt-2 leading-relaxed">Your project details and intellectual property are kept completely private.</p>
-            </div>
-        </div>
-        <div class="p-6 sm:p-8 flex items-start gap-4">
-            <div class="text-brutal-orange text-xl mt-1"><i class="fa-solid fa-bolt"></i></div>
-            <div>
-                <h3 class="font-display font-black text-sm uppercase tracking-wider text-white">24-HOUR RESPONSE</h3>
-                <p class="text-xs text-neutral-400 mt-2 leading-relaxed">We guarantee a direct human response to all inquiries within one business day.</p>
-            </div>
-        </div>
-        <div class="p-6 sm:p-8 flex items-start gap-4">
-            <div class="text-brutal-orange text-xl mt-1"><i class="fa-solid fa-handshake"></i></div>
-            <div>
-                <h3 class="font-display font-black text-sm uppercase tracking-wider text-white">FREE CONSULTATION</h3>
-                <p class="text-xs text-neutral-400 mt-2 leading-relaxed">Your initial architectural roadmap and project quote are provided at no cost.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Engineering Stack Section -->
-    <section id="engineering-stack" class="py-20 px-6 md:px-12 max-w-7xl mx-auto z-10 relative">
-        <div class="mb-12 border-l-[4px] border-brutal-orange pl-6">
-            <span class="text-brutal-orange font-mono text-xs uppercase tracking-[0.3em] font-bold block">TECHNICAL CAPABILITY</span>
-            <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-black uppercase mt-2">ENGINEERING <span class="text-brutal-orange">STACK</span></h2>
-            <p class="text-neutral-400 text-sm mt-3 max-w-xl">
-                Enterprise-grade architecture built for scalability and speed. We leverage modern frameworks to deliver high-performance, bespoke web applications tailored specifically to B2B infrastructure needs.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Front-End Card -->
-            <div class="border-[2px] border-white bg-brutal-black p-6 brutal-shadow-white">
-                <div class="flex items-center gap-3 border-b-[2px] border-white pb-3 mb-6">
-                    <div class="text-brutal-orange text-xl"><i class="fa-brands fa-react"></i></div>
-                    <h3 class="font-display font-black text-sm uppercase tracking-wider">FRONTEND</h3>
-                </div>
-                <ul class="space-y-4 text-xs font-mono font-bold">
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> REACT.JS / NEXT.JS</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> TYPESCRIPT</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> TAILWIND CSS</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> FRAMER MOTION</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> ZUSTAND / REDUX</li>
-                </ul>
-            </div>
-
-            <!-- Back-End Card -->
-            <div class="border-[2px] border-white bg-brutal-black p-6 brutal-shadow-white">
-                <div class="flex items-center gap-3 border-b-[2px] border-white pb-3 mb-6">
-                    <div class="text-brutal-orange text-xl"><i class="fa-solid fa-server"></i></div>
-                    <h3 class="font-display font-black text-sm uppercase tracking-wider">BACKEND</h3>
-                </div>
-                <ul class="space-y-4 text-xs font-mono font-bold">
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> NODE.JS / EXPRESS</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> RESTFUL APIS</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> POSTGRESQL</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> PRISMA ORM</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> AWS & DOCKER</li>
-                </ul>
-            </div>
-
-            <!-- Design & Ops Card -->
-            <div class="border-[2px] border-white bg-brutal-black p-6 brutal-shadow-white">
-                <div class="flex items-center gap-3 border-b-[2px] border-white pb-3 mb-6">
-                    <div class="text-brutal-orange text-xl"><i class="fa-solid fa-compass-drafting"></i></div>
-                    <h3 class="font-display font-black text-sm uppercase tracking-wider">DESIGN & OPS</h3>
-                </div>
-                <ul class="space-y-4 text-xs font-mono font-bold">
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> FIGMA UI/UX</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> WIREFRAMING</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> GIT / CI/CD</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> VERCEL DEPLOYMENTS</li>
-                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> WEB VITALS AUDIT</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Divider Line -->
-    <div class="w-full h-[2px] bg-white"></div>
-
-    <!-- Live App Engines Section -->
-    <section id="live-engines" class="py-20 px-6 md:px-12 max-w-7xl mx-auto z-10 relative">
-        <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-6 mb-12">
-            <div>
-                <span class="px-2.5 py-1 bg-brutal-orange text-brutal-black text-[9px] font-mono uppercase font-bold tracking-wider">PRODUCTION-READY SUITE</span>
-                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-black uppercase mt-4">LIVE APP <span class="text-brutal-orange">ENGINES</span></h2>
-            </div>
-            <span class="px-4 py-2 border border-dashed border-neutral-700 text-[10px] font-mono text-neutral-400 uppercase tracking-widest">INTERACTIVE ARCHITECTURES</span>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- ERP Card -->
-            <div class="border-[2px] border-white bg-brutal-black p-5 flex flex-col justify-between brutal-shadow-white">
-                <div>
-                    <div class="flex justify-between items-start mb-6">
-                        <span class="px-2.5 py-1 bg-brutal-green/20 text-brutal-green text-[9px] font-mono uppercase font-bold border border-brutal-green">LIVE PRODUCTION</span>
-                    </div>
-                    <div class="h-28 bg-neutral-900 border border-neutral-800 rounded mb-4 flex items-center justify-center font-mono text-xs text-brutal-orange font-bold">
-                        Enterprise ERP Dashboard
-                    </div>
-                    <h3 class="font-display font-black text-lg uppercase">ENTERPRISE ERP</h3>
-                    <p class="text-xs text-neutral-400 mt-2 font-normal leading-relaxed">
-                        Core operations platform with mock auth, local storage state persistence, and beautiful interactive task automation workflows.
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-neutral-800">
-                    <div class="flex gap-2 flex-wrap mb-4">
-                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">STATE ENGINE</span>
-                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">LOCALDB</span>
-                    </div>
-                    <a href="https://erp-5dq.pages.dev/" target="_blank" rel="noopener noreferrer" class="block w-full py-2.5 bg-white hover:bg-brutal-orange hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-wider text-center text-xs border-[2px] border-white brutal-shadow-orange transition-colors">
-                        OPEN LIVE APP <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Scraper Card -->
-            <div class="border-[2px] border-white bg-brutal-black p-5 flex flex-col justify-between brutal-shadow-white">
-                <div>
-                    <div class="flex justify-between items-start mb-6">
-                        <span class="px-2.5 py-1 bg-brutal-green/20 text-brutal-green text-[9px] font-mono uppercase font-bold border border-brutal-green">LIVE PRODUCTION</span>
-                    </div>
-                    <div class="h-28 bg-neutral-900 border border-neutral-800 rounded mb-4 flex items-center justify-center font-mono text-xs text-blue-400 font-bold">
-                        Market Predictor Engine
-                    </div>
-                    <h3 class="font-display font-black text-lg uppercase">MARKET SCRAPER</h3>
-                    <p class="text-xs text-neutral-400 mt-2 font-normal leading-relaxed">
-                        Real-time finance parser scraping active market ticks, organizing trends, and deploying predictive data visualizations.
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-neutral-800">
-                    <div class="flex gap-2 flex-wrap mb-4">
-                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">SCRAPING THREADS</span>
-                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">DATA VIZ</span>
-                    </div>
-                    <a href="https://predictor-dbw.pages.dev/" target="_blank" rel="noopener noreferrer" class="block w-full py-2.5 bg-white hover:bg-brutal-orange hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-wider text-center text-xs border-[2px] border-white brutal-shadow-orange transition-colors">
-                        OPEN LIVE APP <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- F1 Telemetry Card -->
-            <div class="border-[2px] border-white bg-brutal-black p-5 flex flex-col justify-between brutal-shadow-white">
-                <div>
-                    <div class="flex justify-between items-start mb-6">
-                        <span class="px-2.5 py-1 bg-brutal-green/20 text-brutal-green text-[9px] font-mono uppercase font-bold border border-brutal-green">LIVE PRODUCTION</span>
-                    </div>
-                    <div class="h-28 bg-neutral-900 border border-neutral-800 rounded mb-4 flex items-center justify-center font-mono text-xs text-neutral-400 font-bold">
-                        ApexGP F1 Telemetry
-                    </div>
-                    <h3 class="font-display font-black text-lg uppercase">APEXGP // F1</h3>
-                    <p class="text-xs text-neutral-400 mt-2 font-normal leading-relaxed">
-                        Race director simulation monitoring live tires degradation, fuel burns, and weather loops for split-second calls.
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-neutral-800">
-                    <div class="flex gap-2 flex-wrap mb-4">
-                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">TELEMETRY</span>
-                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">GAME LOOP</span>
-                    </div>
-                    <a href="https://monza-8eq.pages.dev/" target="_blank" rel="noopener noreferrer" class="block w-full py-2.5 bg-white hover:bg-brutal-orange hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-wider text-center text-xs border-[2px] border-white brutal-shadow-orange transition-colors">
-                        OPEN LIVE APP <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Hacker Terminal Card -->
-            <div class="border-[2px] border-white bg-brutal-black p-5 flex flex-col justify-between brutal-shadow-white">
-                <div>
-                    <div class="flex justify-between items-start mb-6">
-                        <span class="px-2.5 py-1 bg-brutal-green/20 text-brutal-green text-[9px] font-mono uppercase font-bold border border-brutal-green">LIVE PRODUCTION</span>
-                    </div>
-                    <div class="h-28 bg-neutral-900 border border-neutral-800 rounded mb-4 flex items-center justify-center font-mono text-xs text-brutal-green font-bold">
-                        Hacker Terminal CLI
-                    </div>
-                    <h3 class="font-display font-black text-lg uppercase">HACKER TERMINAL</h3>
-                    <p class="text-xs text-neutral-400 mt-2 font-normal leading-relaxed">
-                        Retro-futuristic command-line portfolio. Features custom parsers, hidden commands, interactive system prompts, and playful secrets.
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-neutral-800">
-                    <div class="flex gap-2 flex-wrap mb-4">
-                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">CLI PARSER</span>
-                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">EASTER EGGS</span>
-                    </div>
-                    <a href="https://my-hacker-terminal.pages.dev/" target="_blank" rel="noopener noreferrer" class="block w-full py-2.5 bg-white hover:bg-brutal-orange hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-wider text-center text-xs border-[2px] border-white brutal-shadow-orange transition-colors">
-                        OPEN LIVE APP <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Selected B2B Templates Section -->
-    <section id="b2b-templates" class="py-20 bg-brutal-black border-t-[2px] border-white z-10 relative">
-        <div class="max-w-7xl mx-auto px-6 md:px-12">
-            <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-6 mb-12">
-                <div>
-                    <span class="px-2.5 py-1 bg-white text-brutal-black text-[9px] font-mono uppercase font-bold tracking-wider">HIGH CONVERSION</span>
-                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-black uppercase mt-4">SELECTED <span class="text-brutal-orange">B2B TEMPLATES</span></h2>
-                </div>
-                <span class="px-4 py-2 border border-dashed border-neutral-700 text-[10px] font-mono text-neutral-400 uppercase tracking-widest">INTERACTIVE BRAND SITES</span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Template 1: Lumina Cafe & Botanica -->
-                <div class="border-[2px] border-white bg-brutal-black p-5 brutal-shadow-white flex flex-col justify-between">
-                    <div>
-                        <div class="relative w-full h-48 bg-neutral-900 border border-neutral-800 overflow-hidden mb-6">
-                            <span class="absolute top-3 right-3 px-2.5 py-1 bg-white text-brutal-black text-[9px] font-mono uppercase font-bold z-10">LIVE MOCKUP</span>
-                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80" alt="Lumina Cafe" class="w-full h-full object-cover opacity-70">
+                <!-- Front-End Card -->
+                <div
+                    class="border-[2px] border-white bg-brutal-black p-6 brutal-shadow-white"
+                >
+                    <div
+                        class="flex items-center gap-3 border-b-[2px] border-white pb-3 mb-6"
+                    >
+                        <div class="text-brutal-orange text-xl">
+                            <i class="fa-brands fa-react"></i>
                         </div>
-                        <h3 class="font-display font-black text-xl uppercase tracking-wider">LUMINA CAFÉ & BOTANICA</h3>
-                        
-                        <div class="mt-3 flex">
-                            <span class="px-2.5 py-1 border border-neutral-700 text-[9px] font-mono uppercase font-bold text-neutral-400">PISTACHIO & CREAM THEME</span>
-                        </div>
+                        <h3
+                            class="font-display font-black text-sm uppercase tracking-wider"
+                        >
+                            FRONTEND
+                        </h3>
+                    </div>
+                    <ul class="space-y-4 text-xs font-mono font-bold">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brutal-orange"></i>
+                            REACT.JS / NEXT.JS
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brutal-orange"></i>
+                            TYPESCRIPT
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brutal-orange"></i>
+                            TAILWIND CSS
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brutal-orange"></i>
+                            FRAMER MOTION
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brutal-orange"></i>
+                            ZUSTAND / REDUX
+                        </li>
+                    </ul>
+                </div>
 
-                        <p class="text-xs text-neutral-400 mt-4 leading-relaxed font-normal">
-                            A gorgeous, conversion-focused layout featuring a custom **"Order at Table" geolocation verification simulator** built to showcase workflow depth to prospective hospitality clients.
+                <!-- Back-End Card -->
+                <div
+                    class="border-[2px] border-white bg-brutal-black p-6 brutal-shadow-white"
+                >
+                    <div
+                        class="flex items-center gap-3 border-b-[2px] border-white pb-3 mb-6"
+                    >
+                        <div class="text-brutal-orange text-xl">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <h3
+                            class="font-display font-black text-sm uppercase tracking-wider"
+                        >
+                            BACKEND
+                        </h3>
+                    </div>
+                    <ul class="space-y-4 text-xs font-mono font-bold">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brutal-orange"></i>
+                            NODE.JS / EXPRESS
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brutal-orange"></i>
+                            RESTFUL APIS
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brutal-orange"></i>
+                            POSTGRESQL
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brutal-orange"></i>
+                            PRISMA ORM
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brutal-orange"></i>
+                            AWS & DOCKER
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Design & Ops Card -->
+                <div
+                    class="border-[2px] border-white bg-brutal-black p-6 brutal-shadow-white"
+                >
+                    <div
+                        class="flex items-center gap-3 border-b-[2px] border-white pb-3 mb-6"
+                    >
+                        <div class="text-brutal-orange text-xl">
+                            <i class="fa-solid fa-compass-drafting"></i>
+                        </div>
+                        <h3
+                            class="font-display font-black text-sm uppercase tracking-wider"
+                        >
+                            DESIGN & OPS
+                        </h3>
+                    </div>
+                    <ul class="space-y-4 text-xs font-mono font-bold">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brutal-orange"></i>
+                            FIGMA UI/UX
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brutal-orange"></i>
+                            WIREFRAMING
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brutal-orange"></i>
+                            GIT / CI/CD
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brutal-orange"></i>
+                            VERCEL DEPLOYMENTS
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brutal-orange"></i>
+                            WEB VITALS AUDIT
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider Line -->
+        <div class="w-full h-[2px] bg-white"></div>
+
+        <!-- Live App Engines Section -->
+        <section
+            id="live-engines"
+            class="py-20 px-6 md:px-12 max-w-7xl mx-auto z-10 relative"
+        >
+            <div
+                class="flex flex-col md:flex-row md:justify-between md:items-end gap-6 mb-12"
+            >
+                <div>
+                    <span
+                        class="px-2.5 py-1 bg-brutal-orange text-brutal-black text-[9px] font-mono uppercase font-bold tracking-wider"
+                        >PRODUCTION-READY SUITE</span
+                    >
+                    <h2
+                        class="font-display text-3xl sm:text-4xl md:text-5xl font-black uppercase mt-4"
+                    >
+                        LIVE APP <span class="text-brutal-orange">ENGINES</span>
+                    </h2>
+                </div>
+                <span
+                    class="px-4 py-2 border border-dashed border-neutral-700 text-[10px] font-mono text-neutral-400 uppercase tracking-widest"
+                    >INTERACTIVE ARCHITECTURES</span
+                >
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- ERP Card -->
+                <div
+                    class="border-[2px] border-white bg-brutal-black p-5 flex flex-col justify-between brutal-shadow-white"
+                >
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span
+                                class="px-2.5 py-1 bg-brutal-green/20 text-brutal-green text-[9px] font-mono uppercase font-bold border border-brutal-green"
+                                >LIVE PRODUCTION</span
+                            >
+                        </div>
+                        <div
+                            class="h-28 bg-neutral-900 border border-neutral-800 rounded mb-4 flex items-center justify-center font-mono text-xs text-brutal-orange font-bold"
+                        >
+                            Enterprise ERP Dashboard
+                        </div>
+                        <h3 class="font-display font-black text-lg uppercase">
+                            ENTERPRISE ERP
+                        </h3>
+                        <p
+                            class="text-xs text-neutral-400 mt-2 font-normal leading-relaxed"
+                        >
+                            Core operations platform with mock auth, local
+                            storage state persistence, and beautiful interactive
+                            task automation workflows.
                         </p>
                     </div>
-
                     <div class="mt-6 pt-4 border-t border-neutral-800">
-                        <div class="space-y-2 mb-6">
-                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">CUSTOM GEOLOCATION SIMULATOR</span>
-                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">CORMORANT GARAMOND TYPOGRAPHY</span>
-                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">LIQUID UI INTERACTIONS</span>
+                        <div class="flex gap-2 flex-wrap mb-4">
+                            <span
+                                class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase"
+                                >STATE ENGINE</span
+                            >
+                            <span
+                                class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase"
+                                >LOCALDB</span
+                            >
                         </div>
-
-                        <a href="https://iodroid-rob.github.io/cafe/" target="_blank" rel="noopener noreferrer" class="block w-full py-3 bg-brutal-orange hover:bg-white hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-widest text-center text-xs border-[2px] border-white brutal-shadow-white transition-colors">
-                            PREVIEW LIVE SITE <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                        <a
+                            href="https://erp-5dq.pages.dev/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="block w-full py-2.5 bg-white hover:bg-brutal-orange hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-wider text-center text-xs border-[2px] border-white brutal-shadow-orange transition-colors"
+                        >
+                            OPEN LIVE APP
+                            <i
+                                class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"
+                            ></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Template 2: Vanguard Academy -->
-                <div class="border-[2px] border-white bg-brutal-black p-5 brutal-shadow-white flex flex-col justify-between">
+                <!-- Scraper Card -->
+                <div
+                    class="border-[2px] border-white bg-brutal-black p-5 flex flex-col justify-between brutal-shadow-white"
+                >
                     <div>
-                        <div class="relative w-full h-48 bg-neutral-900 border border-neutral-800 overflow-hidden mb-6">
-                            <span class="absolute top-3 right-3 px-2.5 py-1 bg-white text-brutal-black text-[9px] font-mono uppercase font-bold z-10">LIVE MOCKUP</span>
-                            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80" alt="Vanguard Prep" class="w-full h-full object-cover opacity-70">
+                        <div class="flex justify-between items-start mb-6">
+                            <span
+                                class="px-2.5 py-1 bg-brutal-green/20 text-brutal-green text-[9px] font-mono uppercase font-bold border border-brutal-green"
+                                >LIVE PRODUCTION</span
+                            >
                         </div>
-                        <h3 class="font-display font-black text-xl uppercase tracking-wider">VANGUARD PREP ACADEMY</h3>
-                        
-                        <div class="mt-3 flex">
-                            <span class="px-2.5 py-1 border border-neutral-700 text-[9px] font-mono uppercase font-bold text-neutral-400">CLASSIC IVY GOLD THEME</span>
+                        <div
+                            class="h-28 bg-neutral-900 border border-neutral-800 rounded mb-4 flex items-center justify-center font-mono text-xs text-blue-400 font-bold"
+                        >
+                            Market Predictor Engine
                         </div>
-
-                        <p class="text-xs text-neutral-400 mt-4 leading-relaxed font-normal">
-                            An elite educational showcase featuring a customizable 5-Day class scheduler matrix and an interactive Admissions Appraiser producing certificate wax seals.
+                        <h3 class="font-display font-black text-lg uppercase">
+                            MARKET SCRAPER
+                        </h3>
+                        <p
+                            class="text-xs text-neutral-400 mt-2 font-normal leading-relaxed"
+                        >
+                            Real-time finance parser scraping active market
+                            ticks, organizing trends, and deploying predictive
+                            data visualizations.
                         </p>
                     </div>
-
                     <div class="mt-6 pt-4 border-t border-neutral-800">
-                        <div class="space-y-2 mb-6">
-                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">5-DAY CLASS SCHEDULE ENGINE</span>
-                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">WAX SEAL ADMISSIONS PORTAL</span>
-                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">3D PARALLAX DEPTHTILT</span>
+                        <div class="flex gap-2 flex-wrap mb-4">
+                            <span
+                                class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase"
+                                >SCRAPING THREADS</span
+                            >
+                            <span
+                                class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase"
+                                >DATA VIZ</span
+                            >
                         </div>
-
-                        <a href="https://iodroid-rob.github.io/uni/" target="_blank" rel="noopener noreferrer" class="block w-full py-3 bg-brutal-orange hover:bg-white hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-widest text-center text-xs border-[2px] border-white brutal-shadow-white transition-colors">
-                            PREVIEW LIVE SITE <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                        <a
+                            href="https://predictor-dbw.pages.dev/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="block w-full py-2.5 bg-white hover:bg-brutal-orange hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-wider text-center text-xs border-[2px] border-white brutal-shadow-orange transition-colors"
+                        >
+                            OPEN LIVE APP
+                            <i
+                                class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"
+                            ></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Template 3: Aurelia Residences -->
-                <div class="border-[2px] border-white bg-brutal-black p-5 brutal-shadow-white flex flex-col justify-between">
+                <!-- F1 Telemetry Card -->
+                <div
+                    class="border-[2px] border-white bg-brutal-black p-5 flex flex-col justify-between brutal-shadow-white"
+                >
                     <div>
-                        <div class="relative w-full h-48 bg-neutral-900 border border-neutral-800 overflow-hidden mb-6">
-                            <span class="absolute top-3 right-3 px-2.5 py-1 bg-white text-brutal-black text-[9px] font-mono uppercase font-bold z-10">LIVE MOCKUP</span>
-                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Aurelia Residences" class="w-full h-full object-cover opacity-70">
+                        <div class="flex justify-between items-start mb-6">
+                            <span
+                                class="px-2.5 py-1 bg-brutal-green/20 text-brutal-green text-[9px] font-mono uppercase font-bold border border-brutal-green"
+                                >LIVE PRODUCTION</span
+                            >
                         </div>
-                        <h3 class="font-display font-black text-xl uppercase tracking-wider">AURELIA RESIDENCES</h3>
-                        
-                        <div class="mt-3 flex">
-                            <span class="px-2.5 py-1 border border-neutral-700 text-[9px] font-mono uppercase font-bold text-neutral-400">AVANT-GARDE EDITORIAL</span>
+                        <div
+                            class="h-28 bg-neutral-900 border border-neutral-800 rounded mb-4 flex items-center justify-center font-mono text-xs text-neutral-400 font-bold"
+                        >
+                            ApexGP F1 Telemetry
                         </div>
-
-                        <p class="text-xs text-neutral-400 mt-4 leading-relaxed font-normal">
-                            High-end Swiss minimalist design incorporating a dynamic sunlight & shadow casting simulator that shifts canvas illumination relative to coordinates and hour trackers.
+                        <h3 class="font-display font-black text-lg uppercase">
+                            APEXGP // F1
+                        </h3>
+                        <p
+                            class="text-xs text-neutral-400 mt-2 font-normal leading-relaxed"
+                        >
+                            Race director simulation monitoring live tires
+                            degradation, fuel burns, and weather loops for
+                            split-second calls.
                         </p>
                     </div>
-
                     <div class="mt-6 pt-4 border-t border-neutral-800">
-                        <div class="space-y-2 mb-6">
-                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">DAYLIGHT PATHWAY SHADOW CAST</span>
-                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">3D AZIMUTH BLUEPRINT SELECTOR</span>
-                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">FINANCIAL ASSET INVESTMENT LEDGER</span>
+                        <div class="flex gap-2 flex-wrap mb-4">
+                            <span
+                                class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase"
+                                >TELEMETRY</span
+                            >
+                            <span
+                                class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase"
+                                >GAME LOOP</span
+                            >
                         </div>
+                        <a
+                            href="https://monza-8eq.pages.dev/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="block w-full py-2.5 bg-white hover:bg-brutal-orange hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-wider text-center text-xs border-[2px] border-white brutal-shadow-orange transition-colors"
+                        >
+                            OPEN LIVE APP
+                            <i
+                                class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"
+                            ></i>
+                        </a>
+                    </div>
+                </div>
 
-                        <a href="https://iodroid-rob.github.io/something-/" target="_blank" rel="noopener noreferrer" class="block w-full py-3 bg-brutal-orange hover:bg-white hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-widest text-center text-xs border-[2px] border-white brutal-shadow-white transition-colors">
-                            PREVIEW LIVE SITE <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                <!-- Hacker Terminal Card -->
+                <div
+                    class="border-[2px] border-white bg-brutal-black p-5 flex flex-col justify-between brutal-shadow-white"
+                >
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span
+                                class="px-2.5 py-1 bg-brutal-green/20 text-brutal-green text-[9px] font-mono uppercase font-bold border border-brutal-green"
+                                >LIVE PRODUCTION</span
+                            >
+                        </div>
+                        <div
+                            class="h-28 bg-neutral-900 border border-neutral-800 rounded mb-4 flex items-center justify-center font-mono text-xs text-brutal-green font-bold"
+                        >
+                            Hacker Terminal CLI
+                        </div>
+                        <h3 class="font-display font-black text-lg uppercase">
+                            HACKER TERMINAL
+                        </h3>
+                        <p
+                            class="text-xs text-neutral-400 mt-2 font-normal leading-relaxed"
+                        >
+                            Retro-futuristic command-line portfolio. Features
+                            custom parsers, hidden commands, interactive system
+                            prompts, and playful secrets.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-neutral-800">
+                        <div class="flex gap-2 flex-wrap mb-4">
+                            <span
+                                class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase"
+                                >CLI PARSER</span
+                            >
+                            <span
+                                class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase"
+                                >EASTER EGGS</span
+                            >
+                        </div>
+                        <a
+                            href="https://my-hacker-terminal.pages.dev/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="block w-full py-2.5 bg-white hover:bg-brutal-orange hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-wider text-center text-xs border-[2px] border-white brutal-shadow-orange transition-colors"
+                        >
+                            OPEN LIVE APP
+                            <i
+                                class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"
+                            ></i>
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer Section -->
-    <footer class="w-full border-t-[2px] border-white bg-brutal-black py-8 relative z-10">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-mono uppercase tracking-widest font-bold">
-            <span class="text-neutral-400">&copy; 2026 NEXUS AGENCY // ALL RIGHTS RESERVED</span>
-            <div class="flex gap-6 text-brutal-orange">
-                <a href="#" class="hover:text-white transition-colors">PRIVACY POLICY</a>
-                <a href="#" class="hover:text-white transition-colors">TERMS OF SERVICE</a>
+        <!-- Selected B2B Templates Section -->
+        <section
+            id="b2b-templates"
+            class="py-20 bg-brutal-black border-t-[2px] border-white z-10 relative"
+        >
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div
+                    class="flex flex-col md:flex-row md:justify-between md:items-end gap-6 mb-12"
+                >
+                    <div>
+                        <span
+                            class="px-2.5 py-1 bg-white text-brutal-black text-[9px] font-mono uppercase font-bold tracking-wider"
+                            >HIGH CONVERSION</span
+                        >
+                        <h2
+                            class="font-display text-3xl sm:text-4xl md:text-5xl font-black uppercase mt-4"
+                        >
+                            SELECTED
+                            <span class="text-brutal-orange"
+                                >B2B TEMPLATES</span
+                            >
+                        </h2>
+                    </div>
+                    <span
+                        class="px-4 py-2 border border-dashed border-neutral-700 text-[10px] font-mono text-neutral-400 uppercase tracking-widest"
+                        >INTERACTIVE BRAND SITES</span
+                    >
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Template 1: Lumina Cafe & Botanica -->
+                    <div
+                        class="border-[2px] border-white bg-brutal-black p-5 brutal-shadow-white flex flex-col justify-between"
+                    >
+                        <div>
+                            <div
+                                class="relative w-full h-48 bg-neutral-900 border border-neutral-800 overflow-hidden mb-6"
+                            >
+                                <span
+                                    class="absolute top-3 right-3 px-2.5 py-1 bg-white text-brutal-black text-[9px] font-mono uppercase font-bold z-10"
+                                    >LIVE MOCKUP</span
+                                >
+                                <img
+                                    src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80"
+                                    alt="Lumina Cafe"
+                                    class="w-full h-full object-cover opacity-70"
+                                />
+                            </div>
+                            <h3
+                                class="font-display font-black text-xl uppercase tracking-wider"
+                            >
+                                LUMINA CAFÉ & BOTANICA
+                            </h3>
+
+                            <div class="mt-3 flex">
+                                <span
+                                    class="px-2.5 py-1 border border-neutral-700 text-[9px] font-mono uppercase font-bold text-neutral-400"
+                                    >PISTACHIO & CREAM THEME</span
+                                >
+                            </div>
+
+                            <p
+                                class="text-xs text-neutral-400 mt-4 leading-relaxed font-normal"
+                            >
+                                A gorgeous, conversion-focused layout featuring
+                                a custom **"Order at Table" geolocation
+                                verification simulator** built to showcase
+                                workflow depth to prospective hospitality
+                                clients.
+                            </p>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-neutral-800">
+                            <div class="space-y-2 mb-6">
+                                <span
+                                    class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center"
+                                    >CUSTOM GEOLOCATION SIMULATOR</span
+                                >
+                                <span
+                                    class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center"
+                                    >CORMORANT GARAMOND TYPOGRAPHY</span
+                                >
+                                <span
+                                    class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center"
+                                    >LIQUID UI INTERACTIONS</span
+                                >
+                            </div>
+
+                            <a
+                                href="https://iodroid-rob.github.io/cafe/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="block w-full py-3 bg-brutal-orange hover:bg-white hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-widest text-center text-xs border-[2px] border-white brutal-shadow-white transition-colors"
+                            >
+                                PREVIEW LIVE SITE
+                                <i
+                                    class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"
+                                ></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Template 2: Vanguard Academy -->
+                    <div
+                        class="border-[2px] border-white bg-brutal-black p-5 brutal-shadow-white flex flex-col justify-between"
+                    >
+                        <div>
+                            <div
+                                class="relative w-full h-48 bg-neutral-900 border border-neutral-800 overflow-hidden mb-6"
+                            >
+                                <span
+                                    class="absolute top-3 right-3 px-2.5 py-1 bg-white text-brutal-black text-[9px] font-mono uppercase font-bold z-10"
+                                    >LIVE MOCKUP</span
+                                >
+                                <img
+                                    src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80"
+                                    alt="Vanguard Prep"
+                                    class="w-full h-full object-cover opacity-70"
+                                />
+                            </div>
+                            <h3
+                                class="font-display font-black text-xl uppercase tracking-wider"
+                            >
+                                VANGUARD PREP ACADEMY
+                            </h3>
+
+                            <div class="mt-3 flex">
+                                <span
+                                    class="px-2.5 py-1 border border-neutral-700 text-[9px] font-mono uppercase font-bold text-neutral-400"
+                                    >CLASSIC IVY GOLD THEME</span
+                                >
+                            </div>
+
+                            <p
+                                class="text-xs text-neutral-400 mt-4 leading-relaxed font-normal"
+                            >
+                                An elite educational showcase featuring a
+                                customizable 5-Day class scheduler matrix and an
+                                interactive Admissions Appraiser producing
+                                certificate wax seals.
+                            </p>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-neutral-800">
+                            <div class="space-y-2 mb-6">
+                                <span
+                                    class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center"
+                                    >5-DAY CLASS SCHEDULE ENGINE</span
+                                >
+                                <span
+                                    class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center"
+                                    >WAX SEAL ADMISSIONS PORTAL</span
+                                >
+                                <span
+                                    class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center"
+                                    >3D PARALLAX DEPTHTILT</span
+                                >
+                            </div>
+
+                            <a
+                                href="https://iodroid-rob.github.io/uni/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="block w-full py-3 bg-brutal-orange hover:bg-white hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-widest text-center text-xs border-[2px] border-white brutal-shadow-white transition-colors"
+                            >
+                                PREVIEW LIVE SITE
+                                <i
+                                    class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"
+                                ></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Template 3: Aurelia Residences -->
+                    <div
+                        class="border-[2px] border-white bg-brutal-black p-5 brutal-shadow-white flex flex-col justify-between"
+                    >
+                        <div>
+                            <div
+                                class="relative w-full h-48 bg-neutral-900 border border-neutral-800 overflow-hidden mb-6"
+                            >
+                                <span
+                                    class="absolute top-3 right-3 px-2.5 py-1 bg-white text-brutal-black text-[9px] font-mono uppercase font-bold z-10"
+                                    >LIVE MOCKUP</span
+                                >
+                                <img
+                                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80"
+                                    alt="Aurelia Residences"
+                                    class="w-full h-full object-cover opacity-70"
+                                />
+                            </div>
+                            <h3
+                                class="font-display font-black text-xl uppercase tracking-wider"
+                            >
+                                AURELIA RESIDENCES
+                            </h3>
+
+                            <div class="mt-3 flex">
+                                <span
+                                    class="px-2.5 py-1 border border-neutral-700 text-[9px] font-mono uppercase font-bold text-neutral-400"
+                                    >AVANT-GARDE EDITORIAL</span
+                                >
+                            </div>
+
+                            <p
+                                class="text-xs text-neutral-400 mt-4 leading-relaxed font-normal"
+                            >
+                                High-end Swiss minimalist design incorporating a
+                                dynamic sunlight & shadow casting simulator that
+                                shifts canvas illumination relative to
+                                coordinates and hour trackers.
+                            </p>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-neutral-800">
+                            <div class="space-y-2 mb-6">
+                                <span
+                                    class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center"
+                                    >DAYLIGHT PATHWAY SHADOW CAST</span
+                                >
+                                <span
+                                    class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center"
+                                    >3D AZIMUTH BLUEPRINT SELECTOR</span
+                                >
+                                <span
+                                    class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center"
+                                    >FINANCIAL ASSET INVESTMENT LEDGER</span
+                                >
+                            </div>
+
+                            <a
+                                href="https://iodroid-rob.github.io/something-/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="block w-full py-3 bg-brutal-orange hover:bg-white hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-widest text-center text-xs border-[2px] border-white brutal-shadow-white transition-colors"
+                            >
+                                PREVIEW LIVE SITE
+                                <i
+                                    class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"
+                                ></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer
+            class="w-full border-t-[2px] border-white bg-brutal-black py-8 relative z-10"
+        >
+            <div
+                class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-mono uppercase tracking-widest font-bold"
+            >
+                <span class="text-neutral-400"
+                    >&copy; 2026 NEXUS AGENCY // ALL RIGHTS RESERVED</span
+                >
+                <div class="flex gap-6 text-brutal-orange">
+                    <a href="#" class="hover:text-white transition-colors"
+                        >PRIVACY POLICY</a
+                    >
+                    <a href="#" class="hover:text-white transition-colors"
+                        >TERMS OF SERVICE</a
+                    >
+                </div>
+            </div>
+        </footer>
+
+        <!-- Safe UI Message Box replacing Window Alerts -->
+        <div
+            id="proposal-toast"
+            class="fixed bottom-6 right-6 p-4 border-[2px] border-white bg-brutal-black brutal-shadow-orange text-xs font-mono font-bold uppercase tracking-wider hidden z-50"
+        >
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-circle-check text-brutal-green"></i>
+                <span id="toast-text">PROPOSAL SUCCESSFULLY INGESTED.</span>
             </div>
         </div>
-    </footer>
 
-    <!-- Safe UI Message Box replacing Window Alerts -->
-    <div id="proposal-toast" class="fixed bottom-6 right-6 p-4 border-[2px] border-white bg-brutal-black brutal-shadow-orange text-xs font-mono font-bold uppercase tracking-wider hidden z-50">
-        <div class="flex items-center gap-3">
-            <i class="fa-solid fa-circle-check text-brutal-green"></i>
-            <span id="toast-text">PROPOSAL SUCCESSFULLY INGESTED.</span>
-        </div>
-    </div>
+        <script>
+            // =========================================================================
+            // CLOUDFLARE BACKEND CONFIGURATION
+            // Paste your deployed Cloudflare Worker / Pages API URL here!
+            const BACKEND_API_URL = "";
+            // =========================================================================
 
-    <script>
-        // 3-State Theme Matrix Switcher
-        let currentThemeIndex = 0; // 0: Dark, 1: Light, 2: Eye Comfort
-        const themes = ['dark', 'light', 'comfort'];
-        const themeLabels = {
-            'dark': 'DARK',
-            'light': 'LIGHT',
-            'comfort': 'EYE COMFORT'
-        };
-        const themeIcons = {
-            'dark': 'fa-moon',
-            'light': 'fa-sun',
-            'comfort': 'fa-eye'
-        };
+            // 3-State Theme Matrix Switcher
+            let currentThemeIndex = 0; // 0: Dark, 1: Light, 2: Eye Comfort
+            const themes = ["dark", "light", "comfort"];
+            const themeLabels = {
+                dark: "DARK",
+                light: "LIGHT",
+                comfort: "EYE COMFORT",
+            };
+            const themeIcons = {
+                dark: "fa-moon",
+                light: "fa-sun",
+                comfort: "fa-eye",
+            };
 
-        function toggleThemeVisual() {
-            const body = document.body;
-            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-            const selectedTheme = themes[currentThemeIndex];
-            
-            // Wipe clean old classes
-            body.classList.remove('theme-light', 'theme-comfort');
-            
-            // Bind active class overrides
-            if (selectedTheme === 'light') {
-                body.classList.add('theme-light');
-            } else if (selectedTheme === 'comfort') {
-                body.classList.add('theme-comfort');
+            function toggleThemeVisual() {
+                const body = document.body;
+                currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+                const selectedTheme = themes[currentThemeIndex];
+
+                // Wipe clean old classes
+                body.classList.remove("theme-light", "theme-comfort");
+
+                // Bind active class overrides
+                if (selectedTheme === "light") {
+                    body.classList.add("theme-light");
+                } else if (selectedTheme === "comfort") {
+                    body.classList.add("theme-comfort");
+                }
+
+                // Sync toggle text labels dynamically
+                const themeLabel = document.getElementById("theme-label");
+                const themeIcon = document.getElementById("theme-icon");
+                if (themeLabel)
+                    themeLabel.innerText = themeLabels[selectedTheme];
+                if (themeIcon) {
+                    themeIcon.className = `fa-solid ${themeIcons[selectedTheme]}`;
+                }
+
+                // Deliver non-intrusive safe status logs
+                showUINotification(
+                    `THEME SWITCHED TO ${themeLabels[selectedTheme]} MODE.`,
+                );
             }
-            
-            // Sync toggle text labels dynamically
-            const themeLabel = document.getElementById('theme-label');
-            const themeIcon = document.getElementById('theme-icon');
-            if (themeLabel) themeLabel.innerText = themeLabels[selectedTheme];
-            if (themeIcon) {
-                themeIcon.className = `fa-solid ${themeIcons[selectedTheme]}`;
+
+            // Custom Safe Toast notifications
+            function showUINotification(message) {
+                const toast = document.getElementById("proposal-toast");
+                document.getElementById("toast-text").innerText = message;
+                toast.classList.remove("hidden");
+                setTimeout(() => {
+                    toast.classList.add("hidden");
+                }, 3000);
             }
-            
-            // Deliver non-intrusive safe status logs
-            showUINotification(`THEME SWITCHED TO ${themeLabels[selectedTheme]} MODE.`);
-        }
 
-        // Custom Safe Toast notifications
-        function showUINotification(message) {
-            const toast = document.getElementById('proposal-toast');
-            document.getElementById('toast-text').innerText = message;
-            toast.classList.remove('hidden');
-            setTimeout(() => {
-                toast.classList.add('hidden');
-            }, 3000);
-        }
+            // Project Form Submission with Google Sheets Integration
+            async function submitProjectProposal(event) {
+                event.preventDefault();
 
-        // Project Form Submission simulation
-        function submitProjectProposal(event) {
-            event.preventDefault();
-            const name = document.getElementById('form-name').value;
-            const company = document.getElementById('form-company').value;
-            showUINotification(`SALUTATIONS, ${name.toUpperCase()} FROM ${company.toUpperCase()}. DETAILS CAPTURED.`);
-            document.getElementById('project-form').reset();
-        }
-    </script>
-</body>
+                const form = document.getElementById("project-form");
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalBtnContent = submitBtn.innerHTML;
+
+                // Extract and clean values
+                const name = document.getElementById("form-name").value.trim();
+                const email = document
+                    .getElementById("form-email")
+                    .value.trim();
+                const company = document
+                    .getElementById("form-company")
+                    .value.trim();
+
+                const needSelect = document.getElementById("form-need");
+                const need = needSelect.options[needSelect.selectedIndex].text;
+
+                const budgetSelect = document.getElementById("form-budget");
+                const budget =
+                    budgetSelect.options[budgetSelect.selectedIndex].text;
+
+                const details = document
+                    .getElementById("form-details")
+                    .value.trim();
+
+                // If the URL is not set, run local simulation mode with helpful console instructions
+                if (
+                    !BACKEND_API_URL ||
+                    BACKEND_API_URL === "YOUR_CLOUDFLARE_API_URL"
+                ) {
+                    showUINotification(
+                        `DEMO: SALUTATIONS, ${name.toUpperCase()}. DATA CAPTURED LOCALLY.`,
+                    );
+                    console.log(
+                        "%c📋 Form Data Captured (Simulation Mode):",
+                        "color: #FF5E3A; font-weight: bold; font-size: 14px;",
+                    );
+                    console.log({
+                        name,
+                        email,
+                        company,
+                        need,
+                        budget,
+                        details,
+                    });
+                    console.info(
+                        "%c💡 Link your secure Cloudflare Backend API URL to BACKEND_API_URL to make this form active.",
+                        "color: #3B82F6; font-style: italic;",
+                    );
+                    form.reset();
+                    return;
+                }
+
+                try {
+                    // Set Brutalist Loading State
+                    submitBtn.disabled = true;
+                    submitBtn.style.cursor = "not-allowed";
+                    submitBtn.innerHTML = `TRANSMITTING... <i class="fa-solid fa-spinner animate-spin"></i>`;
+
+                    // Submit as JSON to our secure Cloudflare API
+                    const response = await fetch(BACKEND_API_URL, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            name,
+                            email,
+                            company,
+                            need,
+                            budget,
+                            details,
+                        }),
+                    });
+
+                    if (response.ok) {
+                        showUINotification(
+                            `SUCCESS: PROPOSAL INGESTED FOR ${name.toUpperCase()}.`,
+                        );
+                        form.reset();
+                    } else {
+                        throw new Error(`HTTP status ${response.status}`);
+                    }
+                } catch (error) {
+                    console.error("Submission failed:", error);
+                    showUINotification(`ERROR: TRANSMISSION FAULT. TRY AGAIN.`);
+                } finally {
+                    // Restore button state
+                    submitBtn.disabled = false;
+                    submitBtn.style.cursor = "pointer";
+                    submitBtn.innerHTML = originalBtnContent;
+                }
+            }
+        </script>
+    </body>
 </html>
