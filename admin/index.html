@@ -1,367 +1,569 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Agency | Secure Lead Management Portal</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Nexus Agency | Secure Lead Management Portal</title>
 
-    <!-- Tailwind CSS & Icon Libraries -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Space Grotesk for brutal headers, Inter for supreme reading legibility -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- Tailwind CSS & Icon Libraries -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <!-- Space Grotesk for brutal headers, Inter for supreme reading legibility -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700;900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brutal: {
-                            black: '#0A0A0A',
-                            darkGrey: '#111111',
-                            white: '#FAFAFA',
-                            orange: '#FF5E3A',
-                            green: '#10B981',
-                            blue: '#3B82F6',
-                            grey: '#262626'
-                        }
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            brutal: {
+                                black: "#0A0A0A",
+                                darkGrey: "#111111",
+                                white: "#FAFAFA",
+                                orange: "#FF5E3A",
+                                green: "#10B981",
+                                blue: "#3B82F6",
+                                grey: "#262626",
+                            },
+                        },
+                        fontFamily: {
+                            display: ["Space Grotesk", "sans-serif"],
+                            sans: ["Inter", "sans-serif"],
+                        },
                     },
-                    fontFamily: {
-                        display: ['Space Grotesk', 'sans-serif'],
-                        sans: ['Inter', 'sans-serif'],
+                },
+            };
+        </script>
+
+        <style>
+            body {
+                background-color: #0a0a0a;
+                color: #fafafa;
+            }
+            /* Custom scroll bar matching dark brutalist aesthetics */
+            ::-webkit-scrollbar {
+                width: 8px;
+                background: #0a0a0a;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #ff5e3a;
+                border-radius: 4px;
+            }
+            .brutal-shadow-white {
+                box-shadow: 4px 4px 0px 0px #fafafa !important;
+            }
+            .brutal-shadow-orange {
+                box-shadow: 5px 5px 0px 0px #ff5e3a !important;
+            }
+            .brutal-shadow-black {
+                box-shadow: 4px 4px 0px 0px #0a0a0a !important;
+            }
+            /* Dotted Grid Background System */
+            .bg-grid-dots {
+                background-size: 24px 24px;
+                background-image: radial-gradient(
+                    circle,
+                    rgba(255, 255, 255, 0.04) 1px,
+                    transparent 1px
+                ) !important;
+            }
+        </style>
+    </head>
+    <body
+        class="font-sans antialiased text-brutal-white bg-brutal-black selection:bg-brutal-orange selection:text-white relative min-h-screen flex flex-col justify-between"
+    >
+        <!-- Aesthetic Background Dotted Grid -->
+        <div class="fixed inset-0 bg-grid-dots pointer-events-none z-0"></div>
+
+        <!-- Top Admin Header -->
+        <header
+            class="w-full border-b-[2px] border-white bg-brutal-black/95 backdrop-blur-md sticky top-0 z-40 py-4 px-6 md:px-12 flex justify-between items-center"
+        >
+            <div class="flex items-center gap-3">
+                <span
+                    class="px-4 py-2 bg-brutal-black text-white font-display font-black text-xs uppercase tracking-wider border-[2px] border-white brutal-shadow-orange"
+                >
+                    NEXUS // ADMIN CONTROL
+                </span>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a
+                    href="/"
+                    class="px-4 py-2 border-[2px] border-white bg-brutal-black hover:bg-white hover:text-brutal-black text-xs font-display font-bold uppercase tracking-wider transition-colors"
+                >
+                    <i class="fa-solid fa-arrow-left mr-1"></i> PUBLIC SIGHT
+                </a>
+
+                <div
+                    class="hidden md:flex items-center gap-2 border-l border-neutral-800 pl-4"
+                >
+                    <span
+                        class="h-2.5 w-2.5 rounded-full bg-brutal-green"
+                    ></span>
+                    <span
+                        class="font-mono text-[9px] tracking-widest text-neutral-400 uppercase font-bold"
+                        >DATABASE SECURE</span
+                    >
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Workspace -->
+        <main
+            class="w-full max-w-7xl mx-auto px-6 md:px-12 py-10 z-10 relative flex-grow"
+        >
+            <!-- Welcome & Metrics Row -->
+            <div
+                class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10"
+            >
+                <div>
+                    <span
+                        class="text-brutal-orange font-mono text-xs uppercase tracking-[0.3em] font-bold block"
+                        >INQUIRY METRICS</span
+                    >
+                    <h1
+                        class="font-display text-3xl sm:text-4xl font-black uppercase mt-2"
+                    >
+                        LEAD MANAGEMENT
+                    </h1>
+                </div>
+
+                <!-- Metrics Box -->
+                <div class="flex gap-4">
+                    <div
+                        class="p-4 border-[2px] border-white bg-brutal-black brutal-shadow-white flex items-center gap-4"
+                    >
+                        <div class="text-brutal-orange text-2xl">
+                            <i class="fa-solid fa-users-viewfinder"></i>
+                        </div>
+                        <div>
+                            <span
+                                class="block text-[10px] font-mono tracking-wider text-neutral-400 uppercase font-bold"
+                                >Total Ingested</span
+                            >
+                            <span
+                                id="lead-count"
+                                class="block font-display font-black text-lg text-white"
+                                >00</span
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls Console Row -->
+            <div
+                class="w-full border-[2px] border-white bg-brutal-black p-4 sm:p-6 mb-8 brutal-shadow-white flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center"
+            >
+                <!-- Left: Search Box -->
+                <div class="relative flex-grow max-w-lg">
+                    <div
+                        class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-neutral-400"
+                    >
+                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                    </div>
+                    <input
+                        type="text"
+                        id="search-bar"
+                        oninput="filterLeads()"
+                        class="w-full bg-brutal-black border-[2px] border-white pl-10 pr-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-brutal-orange transition-colors font-mono uppercase"
+                        placeholder="SEARCH LEADS BY NAME, EMAIL, OR COMPANY..."
+                    />
+                </div>
+
+                <!-- Right: Action Buttons -->
+                <div class="flex gap-4 items-stretch">
+                    <button
+                        onclick="fetchLeads()"
+                        class="px-5 py-2.5 bg-brutal-black hover:bg-neutral-800 border-[2px] border-white text-xs font-display font-bold uppercase tracking-widest transition-colors flex items-center gap-2"
+                    >
+                        REFRESH
+                        <i class="fa-solid fa-rotate text-brutal-orange"></i>
+                    </button>
+                    <button
+                        onclick="exportCSV()"
+                        class="px-5 py-2.5 bg-brutal-orange text-brutal-black hover:bg-white border-[2px] border-white brutal-shadow-black text-xs font-display font-bold uppercase tracking-widest transition-colors flex items-center gap-2"
+                    >
+                        EXPORT CSV <i class="fa-solid fa-file-csv"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Leads Table Section (Hidden on Mobile, Visible on Desktop) -->
+            <div
+                class="hidden md:block w-full border-[2px] border-white bg-brutal-black brutal-shadow-white overflow-hidden"
+            >
+                <div class="overflow-x-auto">
+                    <table
+                        class="w-full text-left border-collapse font-mono text-xs"
+                    >
+                        <thead>
+                            <tr
+                                class="border-b-[2px] border-white bg-neutral-900 text-neutral-400 uppercase font-bold tracking-wider"
+                            >
+                                <th
+                                    class="p-4 border-r-[2px] border-white w-32"
+                                >
+                                    TIMESTAMP
+                                </th>
+                                <th
+                                    class="p-4 border-r-[2px] border-white w-48"
+                                >
+                                    LEAD SENDER
+                                </th>
+                                <th
+                                    class="p-4 border-r-[2px] border-white w-56"
+                                >
+                                    WORK EMAIL
+                                </th>
+                                <th
+                                    class="p-4 border-r-[2px] border-white w-40"
+                                >
+                                    INTENDED NEED
+                                </th>
+                                <th
+                                    class="p-4 border-r-[2px] border-white w-32"
+                                >
+                                    BUDGET SCALE
+                                </th>
+                                <th class="p-4">PROPOSAL DETAILS</th>
+                            </tr>
+                        </thead>
+                        <tbody
+                            id="leads-table-body"
+                            class="divide-y-[2px] divide-white"
+                        >
+                            <!-- Loading State placeholder -->
+                            <tr>
+                                <td
+                                    colspan="6"
+                                    class="p-12 text-center text-neutral-500 font-mono tracking-widest uppercase"
+                                >
+                                    <i
+                                        class="fa-solid fa-spinner animate-spin text-brutal-orange text-2xl mb-4 block mx-auto"
+                                    ></i>
+                                    ESTABLISHING SECURE CONNECTION & QUERYING
+                                    LEADS...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Leads Card Section (Visible only on Mobile, Stacked Vertically) -->
+            <div id="leads-cards-container" class="md:hidden space-y-6">
+                <!-- Loading State placeholder for mobile -->
+                <div
+                    class="p-8 border-[2px] border-white bg-brutal-black text-center text-neutral-500 font-mono tracking-widest uppercase"
+                >
+                    <i
+                        class="fa-solid fa-spinner animate-spin text-brutal-orange text-2xl mb-4 block mx-auto"
+                    ></i>
+                    ESTABLISHING SECURE CONNECTION & QUERYING LEADS...
+                </div>
+            </div>
+        </main>
+
+        <!-- Custom Modal for viewing Full Lead Details (Brutalist style) -->
+        <div
+            id="details-modal"
+            class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4"
+        >
+            <div
+                class="w-full max-w-xl border-[3px] border-white bg-brutal-black p-6 sm:p-8 brutal-shadow-orange relative"
+            >
+                <button
+                    onclick="closeDetailsModal()"
+                    class="absolute top-4 right-4 text-white hover:text-brutal-orange transition-colors text-lg"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <div class="border-b-[2px] border-brutal-orange pb-3 mb-6">
+                    <h2
+                        class="font-display font-black text-xl uppercase tracking-wider text-white"
+                    >
+                        PROPOSAL SPECIFICATION
+                    </h2>
+                </div>
+
+                <div class="space-y-4 text-xs font-mono">
+                    <div>
+                        <span
+                            class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500 mb-1"
+                            >DATE RECEIVED</span
+                        >
+                        <span
+                            id="modal-timestamp"
+                            class="text-white text-sm"
+                        ></span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <span
+                                class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500 mb-1"
+                                >FULL NAME</span
+                            >
+                            <span
+                                id="modal-name"
+                                class="text-white text-sm font-bold"
+                            ></span>
+                        </div>
+                        <div>
+                            <span
+                                class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500 mb-1"
+                                >COMPANY</span
+                            >
+                            <span
+                                id="modal-company"
+                                class="text-white text-sm font-bold"
+                            ></span>
+                        </div>
+                    </div>
+                    <div>
+                        <span
+                            class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500 mb-1"
+                            >WORK EMAIL</span
+                        >
+                        <span
+                            id="modal-email"
+                            class="text-brutal-orange text-sm font-bold select-all"
+                        ></span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <span
+                                class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500 mb-1"
+                                >NEED</span
+                            >
+                            <span
+                                id="modal-need"
+                                class="text-white text-sm"
+                            ></span>
+                        </div>
+                        <div>
+                            <span
+                                class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500 mb-1"
+                                >BUDGET RANGE</span
+                            >
+                            <span
+                                id="modal-budget"
+                                class="text-white text-sm"
+                            ></span>
+                        </div>
+                    </div>
+                    <div>
+                        <span
+                            class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500 mb-1"
+                            >PROJECT DETAILS</span
+                        >
+                        <div
+                            id="modal-details"
+                            class="w-full bg-neutral-900 border-[2px] border-white p-3 text-white overflow-y-auto max-h-40 whitespace-pre-wrap leading-relaxed"
+                        ></div>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <button
+                        onclick="closeDetailsModal()"
+                        class="w-full py-3 bg-white text-brutal-black hover:bg-brutal-orange font-display font-bold uppercase tracking-widest text-xs border-[2px] border-white transition-colors"
+                    >
+                        CLOSE SPECIFICATION
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footnote -->
+        <footer
+            class="w-full border-t-[2px] border-white bg-brutal-black py-6 relative z-10"
+        >
+            <div
+                class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] font-mono uppercase tracking-widest font-bold text-neutral-500"
+            >
+                <span
+                    >&copy; 2026 NEXUS AGENCY // SECURED SERVERLESS
+                    BACKEND</span
+                >
+                <span>SYSTEM VERSION v1.2 // POWERED BY CLOUDFLARE D1</span>
+            </div>
+        </footer>
+
+        <!-- Safe Notification Toast -->
+        <div
+            id="admin-toast"
+            class="fixed bottom-6 right-6 p-4 border-[2px] border-white bg-brutal-black brutal-shadow-orange text-xs font-mono font-bold uppercase tracking-wider hidden z-50"
+        >
+            <div class="flex items-center gap-3">
+                <i
+                    class="fa-solid fa-circle-check text-brutal-green"
+                    id="toast-icon"
+                ></i>
+                <span id="toast-text">SYSTEM READY.</span>
+            </div>
+        </div>
+
+        <script>
+            // Store all leads globally once fetched for live search/filtering
+            let globalLeadsList = [];
+
+            // Custom UI Toast Alert
+            function showNotification(message, isSuccess = true) {
+                const toast = document.getElementById("admin-toast");
+                const icon = document.getElementById("toast-icon");
+                const text = document.getElementById("toast-text");
+
+                text.innerText = message;
+                if (isSuccess) {
+                    icon.className =
+                        "fa-solid fa-circle-check text-brutal-green";
+                } else {
+                    icon.className =
+                        "fa-solid fa-triangle-exclamation text-brutal-orange";
+                }
+
+                toast.classList.remove("hidden");
+                setTimeout(() => {
+                    toast.classList.add("hidden");
+                }, 3000);
+            }
+
+            // Fetch Leads from the secure Cloudflare API Serverless endpoint
+            async function fetchLeads() {
+                const tbody = document.getElementById("leads-table-body");
+                const counter = document.getElementById("lead-count");
+
+                try {
+                    // Query same-origin API endpoint auto-routed by Cloudflare Functions
+                    const response = await fetch("/api/leads");
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP Error Status ${response.status}`);
+                    }
+
+                    const data = await response.json();
+
+                    // Save locally
+                    globalLeadsList = Array.isArray(data) ? data : [];
+
+                    // Render
+                    renderLeads(globalLeadsList);
+                    showNotification("LEADS REFREShed.");
+                } catch (error) {
+                    console.error("Fetch failure:", error);
+
+                    // If we are developing locally, generate simulated leads so the portal retains visual layout
+                    if (
+                        window.location.hostname === "localhost" ||
+                        window.location.hostname === "127.0.0.1"
+                    ) {
+                        console.info(
+                            "⚡ Localhost detected. Populating portal with simulated D1 records.",
+                        );
+                        globalLeadsList = [
+                            {
+                                id: 1,
+                                timestamp: new Date().toISOString(),
+                                name: "Marcus Aurelius",
+                                email: "marcus@rome.org",
+                                company: "Roman Empire",
+                                need: "B2B Core Architecture",
+                                budget: "$50k+",
+                                details:
+                                    "Need a high-performance system to log legions distributions across borders. Must support offline operations and absolute cryptographic verification tags. Sub-second load times required for military planning screens.",
+                            },
+                            {
+                                id: 2,
+                                timestamp: new Date(
+                                    Date.now() - 3600000,
+                                ).toISOString(),
+                                name: "Ada Lovelace",
+                                email: "ada@analytical.io",
+                                company: "Babbage Computations",
+                                need: "SaaS Platform",
+                                budget: "$25k - $50k",
+                                details:
+                                    "Building the first platform for generating Bernoulli numbers dynamically. Require custom plotting UI and fully responsive table indices to display computed polynomial coefficients.",
+                            },
+                        ];
+                        renderLeads(globalLeadsList);
+                        showNotification(
+                            "DEV MODE: MOCK DATA POPULATED.",
+                            false,
+                        );
+                    } else {
+                        const errMsg = `
+                        <div class="p-12 text-center text-brutal-orange font-mono tracking-widest uppercase border-[2px] border-white bg-brutal-black brutal-shadow-white">
+                            <i class="fa-solid fa-triangle-exclamation text-2xl mb-4 block mx-auto text-brutal-orange"></i>
+                            SYSTEM ERROR: UNABLE TO ESTABLISH CONNECTION WITH DATABASE.
+                            <span class="block text-[10px] text-neutral-500 mt-2">Error Details: ${error.message.toUpperCase()}</span>
+                        </div>
+                    `;
+                        tbody.innerHTML = `<tr><td colspan="6">${errMsg}</td></tr>`;
+                        document.getElementById(
+                            "leads-cards-container",
+                        ).innerHTML = errMsg;
+                        counter.innerText = "00";
                     }
                 }
             }
-        }
-    </script>
 
-    <style>
-        body {
-            background-color: #0A0A0A;
-            color: #FAFAFA;
-        }
-        /* Custom scroll bar matching dark brutalist aesthetics */
-        ::-webkit-scrollbar {
-            width: 8px;
-            background: #0A0A0A;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #FF5E3A;
-            border-radius: 4px;
-        }
-        .brutal-shadow-white {
-            box-shadow: 4px 4px 0px 0px #FAFAFA !important;
-        }
-        .brutal-shadow-orange {
-            box-shadow: 5px 5px 0px 0px #FF5E3A !important;
-        }
-        .brutal-shadow-black {
-            box-shadow: 4px 4px 0px 0px #0A0A0A !important;
-        }
-        /* Dotted Grid Background System */
-        .bg-grid-dots {
-            background-size: 24px 24px;
-            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px) !important;
-        }
-    </style>
-</head>
-<body class="font-sans antialiased text-brutal-white bg-brutal-black selection:bg-brutal-orange selection:text-white relative min-h-screen flex flex-col justify-between">
+            // Render Leads Array into Table and Mobile Cards
+            function renderLeads(leads) {
+                const tbody = document.getElementById("leads-table-body");
+                const cardsContainer = document.getElementById(
+                    "leads-cards-container",
+                );
+                const counter = document.getElementById("lead-count");
 
-    <!-- Aesthetic Background Dotted Grid -->
-    <div class="fixed inset-0 bg-grid-dots pointer-events-none z-0"></div>
+                // Format counter
+                counter.innerText = leads.length.toString().padStart(2, "0");
 
-    <!-- Top Admin Header -->
-    <header class="w-full border-b-[2px] border-white bg-brutal-black/95 backdrop-blur-md sticky top-0 z-40 py-4 px-6 md:px-12 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-            <span class="px-4 py-2 bg-brutal-black text-white font-display font-black text-xs uppercase tracking-wider border-[2px] border-white brutal-shadow-orange">
-                NEXUS // ADMIN CONTROL
-            </span>
-        </div>
-
-        <div class="flex items-center gap-4">
-            <a href="/" class="px-4 py-2 border-[2px] border-white bg-brutal-black hover:bg-white hover:text-brutal-black text-xs font-display font-bold uppercase tracking-wider transition-colors">
-                <i class="fa-solid fa-arrow-left mr-1"></i> PUBLIC SIGHT
-            </a>
-
-            <div class="hidden md:flex items-center gap-2 border-l border-neutral-800 pl-4">
-                <span class="h-2.5 w-2.5 rounded-full bg-brutal-green"></span>
-                <span class="font-mono text-[9px] tracking-widest text-neutral-400 uppercase font-bold">DATABASE SECURE</span>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Dashboard Workspace -->
-    <main class="w-full max-w-7xl mx-auto px-6 md:px-12 py-10 z-10 relative flex-grow">
-
-        <!-- Welcome & Metrics Row -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
-            <div>
-                <span class="text-brutal-orange font-mono text-xs uppercase tracking-[0.3em] font-bold block">INQUIRY METRICS</span>
-                <h1 class="font-display text-3xl sm:text-4xl font-black uppercase mt-2">LEAD MANAGEMENT</h1>
-            </div>
-
-            <!-- Metrics Box -->
-            <div class="flex gap-4">
-                <div class="p-4 border-[2px] border-white bg-brutal-black brutal-shadow-white flex items-center gap-4">
-                    <div class="text-brutal-orange text-2xl">
-                        <i class="fa-solid fa-users-viewfinder"></i>
-                    </div>
-                    <div>
-                        <span class="block text-[10px] font-mono tracking-wider text-neutral-400 uppercase font-bold">Total Ingested</span>
-                        <span id="lead-count" class="block font-display font-black text-lg text-white">00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Controls Console Row -->
-        <div class="w-full border-[2px] border-white bg-brutal-black p-4 sm:p-6 mb-8 brutal-shadow-white flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center">
-
-            <!-- Left: Search Box -->
-            <div class="relative flex-grow max-w-lg">
-                <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-neutral-400">
-                    <i class="fa-solid fa-magnifying-glass text-xs"></i>
-                </div>
-                <input type="text" id="search-bar" oninput="filterLeads()" class="w-full bg-brutal-black border-[2px] border-white pl-10 pr-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-brutal-orange transition-colors font-mono uppercase" placeholder="SEARCH LEADS BY NAME, EMAIL, OR COMPANY...">
-            </div>
-
-            <!-- Right: Action Buttons -->
-            <div class="flex gap-4 items-stretch">
-                <button onclick="fetchLeads()" class="px-5 py-2.5 bg-brutal-black hover:bg-neutral-800 border-[2px] border-white text-xs font-display font-bold uppercase tracking-widest transition-colors flex items-center gap-2">
-                    REFRESH <i class="fa-solid fa-rotate text-brutal-orange"></i>
-                </button>
-                <button onclick="exportCSV()" class="px-5 py-2.5 bg-brutal-orange text-brutal-black hover:bg-white border-[2px] border-white brutal-shadow-black text-xs font-display font-bold uppercase tracking-widest transition-colors flex items-center gap-2">
-                    EXPORT CSV <i class="fa-solid fa-file-csv"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Leads Table Section -->
-        <div class="w-full border-[2px] border-white bg-brutal-black brutal-shadow-white overflow-hidden">
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse font-mono text-xs">
-                    <thead>
-                        <tr class="border-b-[2px] border-white bg-neutral-900 text-neutral-400 uppercase font-bold tracking-wider">
-                            <th class="p-4 border-r-[2px] border-white w-32">TIMESTAMP</th>
-                            <th class="p-4 border-r-[2px] border-white w-48">LEAD SENDER</th>
-                            <th class="p-4 border-r-[2px] border-white w-56">WORK EMAIL</th>
-                            <th class="p-4 border-r-[2px] border-white w-40">INTENDED NEED</th>
-                            <th class="p-4 border-r-[2px] border-white w-32">BUDGET SCALE</th>
-                            <th class="p-4">PROPOSAL DETAILS</th>
-                        </tr>
-                    </thead>
-                    <tbody id="leads-table-body" class="divide-y-[2px] divide-white">
-                        <!-- Loading State placeholder -->
-                        <tr>
-                            <td colspan="6" class="p-12 text-center text-neutral-500 font-mono tracking-widest uppercase">
-                                <i class="fa-solid fa-spinner animate-spin text-brutal-orange text-2xl mb-4 block mx-auto"></i>
-                                ESTABLISHING SECURE CONNECTION & QUERYING LEADS...
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Custom Modal for viewing Full Lead Details (Brutalist style) -->
-    <div id="details-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
-        <div class="w-full max-w-xl border-[3px] border-white bg-brutal-black p-6 sm:p-8 brutal-shadow-orange relative">
-
-            <button onclick="closeDetailsModal()" class="absolute top-4 right-4 text-white hover:text-brutal-orange transition-colors text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <div class="border-b-[2px] border-brutal-orange pb-3 mb-6">
-                <h2 class="font-display font-black text-xl uppercase tracking-wider text-white">PROPOSAL SPECIFICATION</h2>
-            </div>
-
-            <div class="space-y-4 text-xs font-mono">
-                <div>
-                    <span class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500 mb-1">DATE RECEIVED</span>
-                    <span id="modal-timestamp" class="text-white text-sm"></span>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <span class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500 mb-1">FULL NAME</span>
-                        <span id="modal-name" class="text-white text-sm font-bold"></span>
-                    </div>
-                    <div>
-                        <span class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500 mb-1">COMPANY</span>
-                        <span id="modal-company" class="text-white text-sm font-bold"></span>
-                    </div>
-                </div>
-                <div>
-                    <span class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500 mb-1">WORK EMAIL</span>
-                    <span id="modal-email" class="text-brutal-orange text-sm font-bold select-all"></span>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <span class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500 mb-1">NEED</span>
-                        <span id="modal-need" class="text-white text-sm"></span>
-                    </div>
-                    <div>
-                        <span class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500 mb-1">BUDGET RANGE</span>
-                        <span id="modal-budget" class="text-white text-sm"></span>
-                    </div>
-                </div>
-                <div>
-                    <span class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500 mb-1">PROJECT DETAILS</span>
-                    <div id="modal-details" class="w-full bg-neutral-900 border-[2px] border-white p-3 text-white overflow-y-auto max-h-40 whitespace-pre-wrap leading-relaxed"></div>
-                </div>
-            </div>
-
-            <div class="mt-8">
-                <button onclick="closeDetailsModal()" class="w-full py-3 bg-white text-brutal-black hover:bg-brutal-orange font-display font-bold uppercase tracking-widest text-xs border-[2px] border-white transition-colors">
-                    CLOSE SPECIFICATION
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footnote -->
-    <footer class="w-full border-t-[2px] border-white bg-brutal-black py-6 relative z-10">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] font-mono uppercase tracking-widest font-bold text-neutral-500">
-            <span>&copy; 2026 NEXUS AGENCY // SECURED SERVERLESS BACKEND</span>
-            <span>SYSTEM VERSION v1.2 // POWERED BY CLOUDFLARE D1</span>
-        </div>
-    </footer>
-
-    <!-- Safe Notification Toast -->
-    <div id="admin-toast" class="fixed bottom-6 right-6 p-4 border-[2px] border-white bg-brutal-black brutal-shadow-orange text-xs font-mono font-bold uppercase tracking-wider hidden z-50">
-        <div class="flex items-center gap-3">
-            <i class="fa-solid fa-circle-check text-brutal-green" id="toast-icon"></i>
-            <span id="toast-text">SYSTEM READY.</span>
-        </div>
-    </div>
-
-    <script>
-        // Store all leads globally once fetched for live search/filtering
-        let globalLeadsList = [];
-
-        // Custom UI Toast Alert
-        function showNotification(message, isSuccess = true) {
-            const toast = document.getElementById('admin-toast');
-            const icon = document.getElementById('toast-icon');
-            const text = document.getElementById('toast-text');
-
-            text.innerText = message;
-            if (isSuccess) {
-                icon.className = "fa-solid fa-circle-check text-brutal-green";
-            } else {
-                icon.className = "fa-solid fa-triangle-exclamation text-brutal-orange";
-            }
-
-            toast.classList.remove('hidden');
-            setTimeout(() => {
-                toast.classList.add('hidden');
-            }, 3000);
-        }
-
-        // Fetch Leads from the secure Cloudflare API Serverless endpoint
-        async function fetchLeads() {
-            const tbody = document.getElementById('leads-table-body');
-            const counter = document.getElementById('lead-count');
-
-            try {
-                // Query same-origin API endpoint auto-routed by Cloudflare Functions
-                const response = await fetch('/api/leads');
-
-                if (!response.ok) {
-                    throw new Error(`HTTP Error Status ${response.status}`);
-                }
-
-                const data = await response.json();
-
-                // Save locally
-                globalLeadsList = Array.isArray(data) ? data : [];
-
-                // Render
-                renderLeads(globalLeadsList);
-                showNotification("LEADS REFREShed.");
-
-            } catch (error) {
-                console.error("Fetch failure:", error);
-
-                // If we are developing locally, generate simulated leads so the portal retains visual layout
-                if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                    console.info("⚡ Localhost detected. Populating portal with simulated D1 records.");
-                    globalLeadsList = [
-                        {
-                            id: 1,
-                            timestamp: new Date().toISOString(),
-                            name: "Marcus Aurelius",
-                            email: "marcus@rome.org",
-                            company: "Roman Empire",
-                            need: "B2B Core Architecture",
-                            budget: "$50k+",
-                            details: "Need a high-performance system to log legions distributions across borders. Must support offline operations and absolute cryptographic verification tags. Sub-second load times required for military planning screens."
-                        },
-                        {
-                            id: 2,
-                            timestamp: new Date(Date.now() - 3600000).toISOString(),
-                            name: "Ada Lovelace",
-                            email: "ada@analytical.io",
-                            company: "Babbage Computations",
-                            need: "SaaS Platform",
-                            budget: "$25k - $50k",
-                            details: "Building the first platform for generating Bernoulli numbers dynamically. Require custom plotting UI and fully responsive table indices to display computed polynomial coefficients."
-                        }
-                    ];
-                    renderLeads(globalLeadsList);
-                    showNotification("DEV MODE: MOCK DATA POPULATED.", false);
-                } else {
+                if (leads.length === 0) {
+                    const emptyMsg = `NO ACTIVE LEADS FOUND IN DATABASE RECORD.`;
                     tbody.innerHTML = `
-                        <tr>
-                            <td colspan="6" class="p-12 text-center text-brutal-orange font-mono tracking-widest uppercase">
-                                <i class="fa-solid fa-triangle-exclamation text-2xl mb-4 block mx-auto text-brutal-orange"></i>
-                                SYSTEM ERROR: UNABLE TO ESTABLISH CONNECTION WITH DATABASE.
-                                <span class="block text-[10px] text-neutral-500 mt-2">Error Details: ${error.message.toUpperCase()}</span>
-                            </td>
-                        </tr>
-                    `;
-                    counter.innerText = "00";
-                }
-            }
-        }
-
-        // Render Leads Array into Table
-        function renderLeads(leads) {
-            const tbody = document.getElementById('leads-table-body');
-            const counter = document.getElementById('lead-count');
-
-            // Format counter
-            counter.innerText = leads.length.toString().padStart(2, '0');
-
-            if (leads.length === 0) {
-                tbody.innerHTML = `
                     <tr>
                         <td colspan="6" class="p-12 text-center text-neutral-500 font-mono tracking-widest uppercase">
-                            NO ACTIVE LEADS FOUND IN DATABASE RECORD.
+                            ${emptyMsg}
                         </td>
                     </tr>
                 `;
-                return;
-            }
+                    cardsContainer.innerHTML = `
+                    <div class="p-8 border-[2px] border-white bg-brutal-black text-center text-neutral-500 font-mono tracking-widest uppercase">
+                        ${emptyMsg}
+                    </div>
+                `;
+                    return;
+                }
 
-            tbody.innerHTML = leads.map((lead, idx) => {
-                const date = new Date(lead.timestamp).toLocaleString();
-                const safeName = escapeHTML(lead.name);
-                const safeEmail = escapeHTML(lead.email);
-                const safeCompany = escapeHTML(lead.company || "N/A");
-                const safeNeed = escapeHTML(lead.need);
-                const safeBudget = escapeHTML(lead.budget);
-                const safeDetails = escapeHTML(lead.details);
+                // Render Desktop Table Rows
+                tbody.innerHTML = leads
+                    .map((lead, idx) => {
+                        const date = new Date(lead.timestamp).toLocaleString();
+                        const safeName = escapeHTML(lead.name);
+                        const safeEmail = escapeHTML(lead.email);
+                        const safeCompany = escapeHTML(lead.company || "N/A");
+                        const safeNeed = escapeHTML(lead.need);
+                        const safeBudget = escapeHTML(lead.budget);
+                        const safeDetails = escapeHTML(lead.details);
 
-                // Limit details length in the table preview
-                const detailsPreview = safeDetails.length > 50
-                    ? safeDetails.substring(0, 48) + "..."
-                    : safeDetails;
+                        const detailsPreview =
+                            safeDetails.length > 50
+                                ? safeDetails.substring(0, 48) + "..."
+                                : safeDetails;
 
-                return `
+                        return `
                     <tr class="hover:bg-neutral-900 border-white transition-colors cursor-pointer" onclick="openDetailsModal(${idx})">
                         <td class="p-4 border-r-[2px] border-white text-[10px] whitespace-nowrap text-neutral-400">${date}</td>
                         <td class="p-4 border-r-[2px] border-white font-bold">
@@ -381,100 +583,174 @@
                         </td>
                     </tr>
                 `;
-            }).join('');
-        }
+                    })
+                    .join("");
 
-        // Live Client-Side Search Filter
-        function filterLeads() {
-            const query = document.getElementById('search-bar').value.toLowerCase().trim();
+                // Render Mobile Stacked Cards
+                cardsContainer.innerHTML = leads
+                    .map((lead, idx) => {
+                        const date = new Date(lead.timestamp).toLocaleString();
+                        const safeName = escapeHTML(lead.name);
+                        const safeEmail = escapeHTML(lead.email);
+                        const safeCompany = escapeHTML(lead.company || "N/A");
+                        const safeNeed = escapeHTML(lead.need);
+                        const safeBudget = escapeHTML(lead.budget);
+                        const safeDetails = escapeHTML(lead.details);
 
-            if (!query) {
-                renderLeads(globalLeadsList);
-                return;
+                        const detailsPreview =
+                            safeDetails.length > 100
+                                ? safeDetails.substring(0, 98) + "..."
+                                : safeDetails;
+
+                        return `
+                    <div class="border-[2px] border-white bg-brutal-black p-5 brutal-shadow-white space-y-4 font-mono text-xs cursor-pointer hover:bg-neutral-900 transition-colors" onclick="openDetailsModal(${idx})">
+                        <div class="flex justify-between items-start border-b border-neutral-800 pb-2">
+                            <span class="text-[9px] text-neutral-400">${date}</span>
+                            <span class="px-2 py-0.5 bg-brutal-orange/20 text-brutal-orange text-[9px] font-bold border border-brutal-orange uppercase">${safeBudget}</span>
+                        </div>
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500">LEAD SENDER</span>
+                            <span class="text-sm font-bold text-white">${safeName}</span>
+                            <span class="block text-[10px] text-neutral-400 uppercase mt-0.5">${safeCompany}</span>
+                        </div>
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500">INTENDED NEED</span>
+                            <span class="text-brutal-orange font-bold text-xs">${safeNeed}</span>
+                        </div>
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500">WORK EMAIL</span>
+                            <span class="text-neutral-300 font-bold break-all select-all">${safeEmail}</span>
+                        </div>
+                        <div>
+                            <span class="block text-[9px] uppercase font-bold tracking-widest text-neutral-500">SPECIFICATION</span>
+                            <p class="text-neutral-400 leading-relaxed text-[11px] mt-1">${detailsPreview}</p>
+                        </div>
+                        <button onclick="event.stopPropagation(); openDetailsModal(${idx})" class="w-full py-3 bg-white text-brutal-black hover:bg-brutal-orange font-display font-bold uppercase tracking-widest text-[10px] border-[2px] border-white transition-colors">
+                            OPEN PROPOSAL <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                `;
+                    })
+                    .join("");
             }
 
-            const filtered = globalLeadsList.filter(lead => {
-                return (
-                    lead.name.toLowerCase().includes(query) ||
-                    lead.email.toLowerCase().includes(query) ||
-                    (lead.company && lead.company.toLowerCase().includes(query)) ||
-                    lead.need.toLowerCase().includes(query)
-                );
-            });
+            // Live Client-Side Search Filter
+            function filterLeads() {
+                const query = document
+                    .getElementById("search-bar")
+                    .value.toLowerCase()
+                    .trim();
 
-            renderLeads(filtered);
-        }
+                if (!query) {
+                    renderLeads(globalLeadsList);
+                    return;
+                }
 
-        // Export data safely to a .CSV spreadsheet download file
-        function exportCSV() {
-            if (globalLeadsList.length === 0) {
-                showNotification("NO DATA AVAILABLE TO EXPORT.", false);
-                return;
+                const filtered = globalLeadsList.filter((lead) => {
+                    return (
+                        lead.name.toLowerCase().includes(query) ||
+                        lead.email.toLowerCase().includes(query) ||
+                        (lead.company &&
+                            lead.company.toLowerCase().includes(query)) ||
+                        lead.need.toLowerCase().includes(query)
+                    );
+                });
+
+                renderLeads(filtered);
             }
 
-            // Build CSV rows
-            const headers = ["ID", "Timestamp", "Name", "Email", "Company", "Need", "Budget", "Details"];
-            const csvRows = [headers.join(",")];
+            // Export data safely to a .CSV spreadsheet download file
+            function exportCSV() {
+                if (globalLeadsList.length === 0) {
+                    showNotification("NO DATA AVAILABLE TO EXPORT.", false);
+                    return;
+                }
 
-            for (const lead of globalLeadsList) {
-                const values = [
-                    lead.id || "",
-                    lead.timestamp || "",
-                    `"${(lead.name || "").replace(/"/g, '""')}"`,
-                    `"${(lead.email || "").replace(/"/g, '""')}"`,
-                    `"${(lead.company || "").replace(/"/g, '""')}"`,
-                    `"${(lead.need || "").replace(/"/g, '""')}"`,
-                    `"${(lead.budget || "").replace(/"/g, '""')}"`,
-                    `"${(lead.details || "").replace(/"/g, '""')}"`
+                // Build CSV rows
+                const headers = [
+                    "ID",
+                    "Timestamp",
+                    "Name",
+                    "Email",
+                    "Company",
+                    "Need",
+                    "Budget",
+                    "Details",
                 ];
-                csvRows.push(values.join(","));
+                const csvRows = [headers.join(",")];
+
+                for (const lead of globalLeadsList) {
+                    const values = [
+                        lead.id || "",
+                        lead.timestamp || "",
+                        `"${(lead.name || "").replace(/"/g, '""')}"`,
+                        `"${(lead.email || "").replace(/"/g, '""')}"`,
+                        `"${(lead.company || "").replace(/"/g, '""')}"`,
+                        `"${(lead.need || "").replace(/"/g, '""')}"`,
+                        `"${(lead.budget || "").replace(/"/g, '""')}"`,
+                        `"${(lead.details || "").replace(/"/g, '""')}"`,
+                    ];
+                    csvRows.push(values.join(","));
+                }
+
+                const csvContent =
+                    "data:text/csv;charset=utf-8," + csvRows.join("\n");
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+
+                link.setAttribute("href", encodedUri);
+                link.setAttribute(
+                    "download",
+                    `nexus_leads_${new Date().toISOString().split("T")[0]}.csv`,
+                );
+                document.body.appendChild(link);
+
+                link.click();
+                document.body.removeChild(link);
+                showNotification("CSV EXPORT DOWNLOAD STARTED.");
             }
 
-            const csvContent = "data:text/csv;charset=utf-8," + csvRows.join("\n");
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
+            // Details Modal Manager
+            function openDetailsModal(index) {
+                const lead = globalLeadsList[index];
+                if (!lead) return;
 
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `nexus_leads_${new Date().toISOString().split('T')[0]}.csv`);
-            document.body.appendChild(link);
+                document.getElementById("modal-timestamp").innerText = new Date(
+                    lead.timestamp,
+                ).toLocaleString();
+                document.getElementById("modal-name").innerText = lead.name;
+                document.getElementById("modal-company").innerText =
+                    lead.company || "N/A";
+                document.getElementById("modal-email").innerText = lead.email;
+                document.getElementById("modal-need").innerText = lead.need;
+                document.getElementById("modal-budget").innerText = lead.budget;
+                document.getElementById("modal-details").innerText =
+                    lead.details;
 
-            link.click();
-            document.body.removeChild(link);
-            showNotification("CSV EXPORT DOWNLOAD STARTED.");
-        }
+                document
+                    .getElementById("details-modal")
+                    .classList.remove("hidden");
+            }
 
-        // Details Modal Manager
-        function openDetailsModal(index) {
-            const lead = globalLeadsList[index];
-            if (!lead) return;
+            function closeDetailsModal() {
+                document
+                    .getElementById("details-modal")
+                    .classList.add("hidden");
+            }
 
-            document.getElementById('modal-timestamp').innerText = new Date(lead.timestamp).toLocaleString();
-            document.getElementById('modal-name').innerText = lead.name;
-            document.getElementById('modal-company').innerText = lead.company || "N/A";
-            document.getElementById('modal-email').innerText = lead.email;
-            document.getElementById('modal-need').innerText = lead.need;
-            document.getElementById('modal-budget').innerText = lead.budget;
-            document.getElementById('modal-details').innerText = lead.details;
+            // Safe HTML injection escape utility
+            function escapeHTML(str) {
+                if (!str) return "";
+                return str
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
 
-            document.getElementById('details-modal').classList.remove('hidden');
-        }
-
-        function closeDetailsModal() {
-            document.getElementById('details-modal').classList.add('hidden');
-        }
-
-        // Safe HTML injection escape utility
-        function escapeHTML(str) {
-            if (!str) return '';
-            return str.replace(/&/g, "&amp;")
-                      .replace(/</g, "&lt;")
-                      .replace(/>/g, "&gt;")
-                      .replace(/"/g, "&quot;")
-                      .replace(/'/g, "&#039;");
-        }
-
-        // Initial fetch on viewport ready
-        window.addEventListener('DOMContentLoaded', fetchLeads);
-    </script>
-</body>
+            // Initial fetch on viewport ready
+            window.addEventListener("DOMContentLoaded", fetchLeads);
+        </script>
+    </body>
 </html>
