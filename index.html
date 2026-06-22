@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Agency // B2B Web Design</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Space Grotesk for bold headings, Inter for highly readable B2B body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brutal: {
+                            orange: '#FF3B00',
+                            black: '#0A0A0A',
+                            white: '#FAFAFA',
+                            gray: '#222222',
+                            lightgray: '#E0E0E0'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'hard-black': '8px 8px 0px 0px rgba(10,10,10,1)',
+                        'hard-white': '8px 8px 0px 0px rgba(250,250,250,1)',
+                        'hard-orange': '8px 8px 0px 0px rgba(255,59,0,1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 12px;
+            background: var(--bg-color, #FAFAFA);
+            border-left: 2px solid var(--border-color, #0A0A0A);
+        }
+        html.dark ::-webkit-scrollbar {
+            background: #0A0A0A;
+            border-left: 2px solid #FAFAFA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FF3B00;
+            border: 2px solid var(--border-color, #0A0A0A);
+        }
+        html.dark ::-webkit-scrollbar-thumb {
+            border: 2px solid #FAFAFA;
+        }
+
+        * {
+            transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, box-shadow 0.1s ease;
+        }
+
+        .bg-pattern {
+            background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .bg-pattern-light {
+            --dot-color: rgba(10, 10, 10, 0.1);
+        }
+        html.dark .bg-pattern {
+            --dot-color: rgba(250, 250, 250, 0.1);
+        }
+
+        .brutal-input {
+            appearance: none;
+            border-radius: 0;
+            transition: all 0.2s ease;
+        }
+        .brutal-input:focus {
+            outline: none;
+            background-color: rgba(255, 59, 0, 0.05);
+            box-shadow: 4px 4px 0px 0px #FF3B00;
+        }
+        html.dark .brutal-input:focus {
+            background-color: rgba(255, 59, 0, 0.1);
+        }
+    </style>
+
+    <script>
+        // Check for saved theme preference or system preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+
+<body class="bg-brutal-white dark:bg-brutal-black text-brutal-black dark:text-brutal-white font-sans min-h-screen flex flex-col relative bg-pattern bg-pattern-light selection:bg-brutal-orange selection:text-black">
+
+    <!-- Decorative Screen Border -->
+    <div class="fixed inset-0 border-[6px] border-brutal-black dark:border-brutal-white pointer-events-none z-50"></div>
+
+    <header class="relative w-full border-b-[4px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black z-40 px-4 sm:px-8 py-4 sm:py-5 flex flex-col lg:flex-row justify-between items-center gap-4">
+        <div class="flex items-center justify-between w-full lg:w-auto">
+            <div class="bg-brutal-orange text-black font-display font-bold px-4 py-1.5 border-2 border-black uppercase tracking-widest text-sm shadow-[2px_2px_0px_0px_#0A0A0A]">
+                NEXUS AGENCY
+            </div>
+            
+            <!-- Mobile Theme Toggle -->
+            <button id="theme-toggle-mobile" class="lg:hidden border-2 border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-2 px-3 hover:bg-brutal-orange dark:hover:bg-brutal-orange hover:text-black transition-colors focus:outline-none flex items-center justify-center cursor-pointer shadow-[2px_2px_0px_0px_#0A0A0A] dark:shadow-[2px_2px_0px_0px_#FAFAFA] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
+                <i id="theme-icon-mobile" class="fa-solid fa-moon text-sm"></i>
+            </button>
+        </div>
+        
+        <!-- Navigation Tabs -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full lg:w-auto justify-center lg:justify-end">
+            <nav class="flex w-full sm:w-auto gap-2">
+                <button onclick="switchTab('home')" id="btn-home" class="flex-1 sm:flex-none bg-brutal-orange text-black border-2 border-brutal-black dark:border-brutal-white px-4 py-2 font-bold uppercase text-xs sm:text-sm tracking-widest shadow-[2px_2px_0px_0px_#0A0A0A] dark:shadow-[2px_2px_0px_0px_#FAFAFA] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_#0A0A0A] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer">
+                    Get a Quote
+                </button>
+                <button onclick="switchTab('portfolio')" id="btn-portfolio" class="flex-1 sm:flex-none bg-brutal-white dark:bg-brutal-black text-brutal-black dark:text-brutal-white hover:bg-brutal-lightgray dark:hover:bg-[#222] border-2 border-brutal-black dark:border-brutal-white px-4 py-2 font-bold uppercase text-xs sm:text-sm tracking-widest shadow-[2px_2px_0px_0px_#0A0A0A] dark:shadow-[2px_2px_0px_0px_#FAFAFA] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_#0A0A0A] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer">
+                    Portfolio & Stack
+                </button>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-2 border-l-2 border-brutal-black dark:border-brutal-white pl-6">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brutal-orange opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-brutal-orange"></span>
+                </span>
+                <span class="text-xs font-bold uppercase tracking-wide">Accepting Clients</span>
+            </div>
+            
+            <!-- Desktop Theme Toggle Button -->
+            <button id="theme-toggle-desktop" class="hidden lg:flex border-2 border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-2 px-4 hover:bg-brutal-orange dark:hover:bg-brutal-orange hover:text-black transition-colors focus:outline-none items-center justify-center gap-2 cursor-pointer shadow-[2px_2px_0px_0px_#0A0A0A] dark:shadow-[2px_2px_0px_0px_#FAFAFA] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
+                <i id="theme-icon-desktop" class="fa-solid fa-moon text-sm"></i>
+                <span class="text-xs font-bold uppercase tracking-widest">Theme</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col w-full max-w-7xl mx-auto z-10">
+        
+        <div id="view-home" class="flex flex-col lg:flex-row w-full flex-grow">
+            <!-- Left Column: Value Proposition -->
+            <div class="w-full lg:w-1/2 p-6 sm:p-12 lg:p-16 flex flex-col justify-center border-b-[4px] lg:border-b-0 lg:border-r-[4px] border-brutal-black dark:border-brutal-white bg-brutal-orange dark:bg-[#111] relative overflow-hidden">
+                <div class="relative z-10">
+                    <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-black uppercase leading-[0.9] tracking-tighter mb-6 text-black dark:text-brutal-white drop-shadow-[4px_4px_0px_#FAFAFA] dark:drop-shadow-[4px_4px_0px_#0A0A0A]">
+                        High-Performance Web Architecture.
+                    </h1>
+                    <p class="text-lg sm:text-xl font-bold leading-relaxed mb-8 text-black dark:text-gray-300 max-w-lg border-l-[4px] border-black dark:border-brutal-orange pl-4 bg-brutal-white/50 dark:bg-transparent py-2">
+                        We engineer enterprise-grade web applications and high-conversion business sites. Built for speed, scale, and uncompromising reliability.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="border-[3px] border-black dark:border-brutal-white p-4 flex flex-col bg-brutal-white dark:bg-brutal-black shadow-[4px_4px_0px_0px_#0A0A0A] dark:shadow-[4px_4px_0px_0px_#FAFAFA]">
+                            <i class="fa-solid fa-gauge-high text-brutal-orange text-2xl mb-2"></i>
+                            <span class="font-display font-black uppercase text-sm mt-1">Sub-Second Load</span>
+                        </div>
+                        <div class="border-[3px] border-black dark:border-brutal-white p-4 flex flex-col bg-brutal-white dark:bg-brutal-black shadow-[4px_4px_0px_0px_#0A0A0A] dark:shadow-[4px_4px_0px_0px_#FAFAFA]">
+                            <i class="fa-solid fa-shield-halved text-brutal-orange text-2xl mb-2"></i>
+                            <span class="font-display font-black uppercase text-sm mt-1">Enterprise Security</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Form -->
+            <div class="w-full lg:w-1/2 p-6 sm:p-12 flex items-center justify-center bg-brutal-lightgray dark:bg-[#0a0a0a]">
+                <div id="form-wrapper" class="w-full max-w-lg bg-brutal-white dark:bg-[#111] border-[4px] border-brutal-black dark:border-brutal-white p-6 sm:p-8 shadow-hard-black dark:shadow-hard-white relative transition-all duration-300">
+                    
+                    <!-- Form State -->
+                    <div id="form-state" class="block">
+                        <h2 class="font-display text-2xl font-black uppercase mb-6 tracking-wide border-b-4 border-brutal-orange pb-2 inline-block">Project Inquiry</h2>
+                        
+                        <form id="lead-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                            <div>
+                                <label class="block font-bold text-xs uppercase tracking-widest mb-1" for="fullName">Full Name</label>
+                                <input type="text" id="fullName" required class="brutal-input w-full border-[3px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-3 font-medium text-sm text-brutal-black dark:text-brutal-white placeholder-gray-400 dark:placeholder-gray-600 focus:border-brutal-orange dark:focus:border-brutal-orange" placeholder="John Doe">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block font-bold text-xs uppercase tracking-widest mb-1" for="email">Work Email</label>
+                                    <input type="email" id="email" required class="brutal-input w-full border-[3px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-3 font-medium text-sm text-brutal-black dark:text-brutal-white placeholder-gray-400 dark:placeholder-gray-600 focus:border-brutal-orange dark:focus:border-brutal-orange" placeholder="john@company.com">
+                                </div>
+                                <div>
+                                    <label class="block font-bold text-xs uppercase tracking-widest mb-1" for="company">Company</label>
+                                    <input type="text" id="company" class="brutal-input w-full border-[3px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-3 font-medium text-sm text-brutal-black dark:text-brutal-white placeholder-gray-400 dark:placeholder-gray-600 focus:border-brutal-orange dark:focus:border-brutal-orange" placeholder="Acme Corp">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block font-bold text-xs uppercase tracking-widest mb-1" for="projectType">Need</label>
+                                    <select id="projectType" required class="brutal-input w-full border-[3px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-3 font-medium text-sm text-brutal-black dark:text-brutal-white cursor-pointer focus:border-brutal-orange dark:focus:border-brutal-orange">
+                                        <option value="" disabled selected>Select...</option>
+                                        <option value="webapp">Web Application</option>
+                                        <option value="b2b">B2B Website</option>
+                                        <option value="ecommerce">E-Commerce</option>
+                                        <option value="redesign">System Redesign</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block font-bold text-xs uppercase tracking-widest mb-1" for="budget">Budget</label>
+                                    <select id="budget" required class="brutal-input w-full border-[3px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-3 font-medium text-sm text-brutal-black dark:text-brutal-white cursor-pointer focus:border-brutal-orange dark:focus:border-brutal-orange">
+                                        <option value="" disabled selected>Select...</option>
+                                        <option value="5k">₹40k - ₹1L</option>
+                                        <option value="10k">₹1L - ₹3L</option>
+                                        <option value="25k">₹3L - ₹10L</option>
+                                        <option value="50k+">₹10L+</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block font-bold text-xs uppercase tracking-widest mb-1" for="details">Project Details</label>
+                                <textarea id="details" rows="3" required class="brutal-input w-full border-[3px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-3 font-medium text-sm text-brutal-black dark:text-brutal-white placeholder-gray-400 dark:placeholder-gray-600 focus:border-brutal-orange dark:focus:border-brutal-orange resize-none" placeholder="Briefly describe your objectives..."></textarea>
+                            </div>
+
+                            <button type="submit" id="submit-btn" class="w-full bg-brutal-orange text-black border-[3px] border-black p-4 font-display font-black uppercase text-lg tracking-widest shadow-[4px_4px_0px_0px_#0A0A0A] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#0A0A0A] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all cursor-pointer flex items-center justify-center gap-3 mt-4 group">
+                                <span id="btn-text">Get a Proposal</span>
+                                <i id="btn-icon" class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                <i id="btn-spinner" class="fa-solid fa-circle-notch fa-spin hidden"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Success State -->
+                    <div id="success-state" class="hidden flex-col items-center justify-center text-center py-10 h-full min-h-[400px]">
+                        <div class="w-20 h-20 bg-brutal-orange border-4 border-brutal-black dark:border-brutal-white rounded-full flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#0A0A0A] dark:shadow-[4px_4px_0px_0px_#FAFAFA]">
+                            <i class="fa-solid fa-check text-4xl text-black"></i>
+                        </div>
+                        <h3 class="font-display text-3xl font-black uppercase mb-2">Request Received</h3>
+                        <p class="font-medium text-gray-700 dark:text-gray-300 mb-8 border-t-2 border-brutal-black dark:border-brutal-white pt-4 mt-2">I will review your requirements and reach out within 24 hours.</p>
+                        <button onclick="resetForm()" type="button" class="bg-brutal-white dark:bg-brutal-black text-brutal-black dark:text-brutal-white border-2 border-brutal-black dark:border-brutal-white px-6 py-2 font-bold uppercase text-xs tracking-widest shadow-[2px_2px_0px_0px_#0A0A0A] dark:shadow-[2px_2px_0px_0px_#FAFAFA] hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_#0A0A0A] dark:hover:shadow-[4px_4px_0px_0px_#FAFAFA] transition-all">
+                            Start New Request
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- View: Portfolio & Stack -->
+        <div id="view-portfolio" class="hidden flex-col w-full flex-grow bg-brutal-white dark:bg-brutal-black">
+            
+            <!-- Tech Stack Section -->
+            <div class="p-6 sm:p-12 lg:p-16 border-b-[4px] border-brutal-black dark:border-brutal-white">
+                <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-black uppercase leading-[0.95] tracking-tighter mb-6 text-brutal-black dark:text-brutal-white">
+                    Engineering <span class="text-brutal-orange underline decoration-[6px] underline-offset-8">Stack</span>
+                </h2>
+                <p class="text-base sm:text-lg font-medium leading-relaxed max-w-2xl text-gray-800 dark:text-gray-200 mb-10 border-l-4 border-brutal-orange pl-4">
+                    Enterprise-grade architecture built for scalability and speed. I leverage modern frameworks to deliver high-performance, bespoke web applications tailored specifically to B2B infrastructure needs.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Frontend -->
+                    <div class="border-[3px] border-brutal-black dark:border-brutal-white p-6 bg-brutal-lightgray dark:bg-[#111] shadow-hard-black dark:shadow-hard-white hover:-translate-y-1 transition-transform">
+                        <div class="flex items-center gap-3 mb-6 border-b-2 border-brutal-black dark:border-brutal-white pb-3">
+                            <i class="fa-brands fa-react text-3xl text-brutal-orange"></i>
+                            <h3 class="font-display font-black uppercase text-xl tracking-wide">Frontend</h3>
+                        </div>
+                        <ul class="space-y-3 font-bold text-sm tracking-wide uppercase">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> React.js / Next.js</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> TypeScript</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Tailwind CSS</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Framer Motion</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Zustand / Redux</li>
+                        </ul>
+                    </div>
+
+                    <!-- Backend -->
+                    <div class="border-[3px] border-brutal-black dark:border-brutal-white p-6 bg-brutal-lightgray dark:bg-[#111] shadow-hard-black dark:shadow-hard-white hover:-translate-y-1 transition-transform">
+                        <div class="flex items-center gap-3 mb-6 border-b-2 border-brutal-black dark:border-brutal-white pb-3">
+                            <i class="fa-solid fa-server text-3xl text-brutal-orange"></i>
+                            <h3 class="font-display font-black uppercase text-xl tracking-wide">Backend</h3>
+                        </div>
+                        <ul class="space-y-3 font-bold text-sm tracking-wide uppercase">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Node.js / Express</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> RESTful APIs</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> PostgreSQL</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Prisma ORM</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> AWS & Docker</li>
+                        </ul>
+                    </div>
+
+                    <!-- Design & Ops -->
+                    <div class="border-[3px] border-brutal-black dark:border-brutal-white p-6 bg-brutal-lightgray dark:bg-[#111] shadow-hard-black dark:shadow-hard-white hover:-translate-y-1 transition-transform">
+                        <div class="flex items-center gap-3 mb-6 border-b-2 border-brutal-black dark:border-brutal-white pb-3">
+                            <i class="fa-brands fa-figma text-3xl text-brutal-orange"></i>
+                            <h3 class="font-display font-black uppercase text-xl tracking-wide">Design & Ops</h3>
+                        </div>
+                        <ul class="space-y-3 font-bold text-sm tracking-wide uppercase">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Figma UI/UX</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Wireframing</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Git / CI/CD</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Vercel Deployments</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Web Vitals Audit</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selected Works Section -->
+            <div class="p-6 sm:p-12 lg:p-16 bg-brutal-lightgray dark:bg-[#0a0a0a]">
+                <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-black uppercase leading-[0.95] tracking-tighter mb-10 text-brutal-black dark:text-brutal-white">
+                    Selected <span class="text-brutal-orange">Works</span>
+                </h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <!-- Project 1 -->
+                    <div class="border-[4px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black shadow-hard-black dark:shadow-hard-white flex flex-col group overflow-hidden">
+                        <div class="h-64 sm:h-80 w-full border-b-[4px] border-brutal-black dark:border-brutal-white overflow-hidden relative">
+                            <img src="https://placehold.co/800x600/FF3B00/0A0A0A?text=FinTech+Dashboard" alt="FinTech Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-4 right-4 bg-brutal-black text-brutal-white dark:bg-brutal-white dark:text-brutal-black px-3 py-1 text-xs font-bold uppercase tracking-widest border-2 border-brutal-black dark:border-brutal-white shadow-[2px_2px_0px_#FF3B00]">Live</div>
+                        </div>
+                        <div class="p-6 sm:p-8 flex flex-col flex-grow">
+                            <h3 class="font-display text-2xl font-black uppercase tracking-tight mb-2">Aura Financial Dashboard</h3>
+                            <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-6 flex-grow">
+                                A high-performance analytics dashboard for a B2B FinTech firm. Replaced their legacy spreadsheet system with a secure, real-time data visualization platform.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-1 text-xs font-bold uppercase border border-brutal-black dark:border-brutal-white">React</span>
+                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-1 text-xs font-bold uppercase border border-brutal-black dark:border-brutal-white">TypeScript</span>
+                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-1 text-xs font-bold uppercase border border-brutal-black dark:border-brutal-white">Tailwind</span>
+                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-1 text-xs font-bold uppercase border border-brutal-black dark:border-brutal-white">PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="border-[4px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black shadow-hard-black dark:shadow-hard-white flex flex-col group overflow-hidden">
+                        <div class="h-64 sm:h-80 w-full border-b-[4px] border-brutal-black dark:border-brutal-white overflow-hidden relative">
+                            <img src="https://placehold.co/800x600/0A0A0A/FAFAFA?text=Logistics+Platform" alt="Logistics Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-4 right-4 bg-brutal-black text-brutal-white dark:bg-brutal-white dark:text-brutal-black px-3 py-1 text-xs font-bold uppercase tracking-widest border-2 border-brutal-black dark:border-brutal-white shadow-[2px_2px_0px_#FF3B00]">Deployed</div>
+                        </div>
+                        <div class="p-6 sm:p-8 flex flex-col flex-grow">
+                            <h3 class="font-display text-2xl font-black uppercase tracking-tight mb-2">FreightHub Enterprise</h3>
+                            <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-6 flex-grow">
+                                Custom marketing site and client portal for an international logistics provider. Focused on sub-second load times and a structured brutalist conversion funnel.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-1 text-xs font-bold uppercase border border-brutal-black dark:border-brutal-white">Next.js</span>
+                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-1 text-xs font-bold uppercase border border-brutal-black dark:border-brutal-white">Node.js</span>
+                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-1 text-xs font-bold uppercase border border-brutal-black dark:border-brutal-white">Figma</span>
+                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-1 text-xs font-bold uppercase border border-brutal-black dark:border-brutal-white">AWS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="w-full border-t-[4px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black z-20 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row divide-y-[4px] md:divide-y-0 md:divide-x-[4px] divide-brutal-black dark:divide-brutal-white">
+            
+            <!-- Trust Item 1 -->
+            <div class="flex-1 p-6 sm:p-8 flex items-start gap-5 hover:bg-brutal-lightgray dark:hover:bg-[#1a1a1a] transition-colors">
+                <i class="fa-solid fa-lock text-2xl text-brutal-orange mt-1"></i>
+                <div>
+                    <h3 class="font-display font-black uppercase text-lg tracking-wide">Strictly Confidential</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 font-medium">Your project details and intellectual property are kept completely private.</p>
+                </div>
+            </div>
+
+            <!-- Trust Item 2 -->
+            <div class="flex-1 p-6 sm:p-8 flex items-start gap-5 hover:bg-brutal-lightgray dark:hover:bg-[#1a1a1a] transition-colors">
+                <i class="fa-solid fa-bolt text-2xl text-brutal-orange mt-1"></i>
+                <div>
+                    <h3 class="font-display font-black uppercase text-lg tracking-wide">24-Hour Response</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 font-medium">We guarantee a direct human response to all inquiries within one business day.</p>
+                </div>
+            </div>
+
+            <!-- Trust Item 3 -->
+            <div class="flex-1 p-6 sm:p-8 flex items-start gap-5 hover:bg-brutal-lightgray dark:hover:bg-[#1a1a1a] transition-colors">
+                <i class="fa-solid fa-handshake-angle text-2xl text-brutal-orange mt-1"></i>
+                <div>
+                    <h3 class="font-display font-black uppercase text-lg tracking-wide">Free Consultation</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 font-medium">Your initial architectural roadmap and project quote are provided at no cost.</p>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Bottom Bar -->
+        <div class="border-t-[4px] border-brutal-black dark:border-brutal-white p-5 flex flex-col sm:flex-row justify-between items-center bg-brutal-orange text-black font-bold text-xs sm:text-sm uppercase tracking-widest">
+            <span>&copy; 2026 Nexus Agency // All Rights Reserved</span>
+            <div class="flex gap-6 mt-3 sm:mt-0">
+                <a href="#" class="hover:underline underline-offset-4">Privacy Policy</a>
+                <a href="#" class="hover:underline underline-offset-4">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Theme Toggling Logic ---
+        const themeToggleDesktop = document.getElementById('theme-toggle-desktop');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        const themeIconDesktop = document.getElementById('theme-icon-desktop');
+        const themeIconMobile = document.getElementById('theme-icon-mobile');
+        
+        function updateThemeUI() {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (themeIconDesktop) themeIconDesktop.className = isDark ? "fa-solid fa-sun text-sm" : "fa-solid fa-moon text-sm";
+            if (themeIconMobile) themeIconMobile.className = isDark ? "fa-solid fa-sun text-sm" : "fa-solid fa-moon text-sm";
+        }
+        
+        updateThemeUI();
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+            updateThemeUI();
+        }
+
+        if(themeToggleDesktop) themeToggleDesktop.addEventListener('click', toggleTheme);
+        if(themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
+
+        // --- Tab Switching Logic ---
+        function switchTab(tab) {
+            const viewHome = document.getElementById('view-home');
+            const viewPortfolio = document.getElementById('view-portfolio');
+            const btnHome = document.getElementById('btn-home');
+            const btnPortfolio = document.getElementById('btn-portfolio');
+
+            // Reset buttons to inactive style
+            const inactiveClass = "flex-1 sm:flex-none bg-brutal-white dark:bg-brutal-black text-brutal-black dark:text-brutal-white hover:bg-brutal-lightgray dark:hover:bg-[#222] border-2 border-brutal-black dark:border-brutal-white px-4 py-2 font-bold uppercase text-xs sm:text-sm tracking-widest shadow-[2px_2px_0px_0px_#0A0A0A] dark:shadow-[2px_2px_0px_0px_#FAFAFA] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_#0A0A0A] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer";
+            btnHome.className = inactiveClass;
+            btnPortfolio.className = inactiveClass;
+
+            const activeClass = "flex-1 sm:flex-none bg-brutal-orange text-black border-2 border-brutal-black dark:border-brutal-white px-4 py-2 font-bold uppercase text-xs sm:text-sm tracking-widest shadow-[2px_2px_0px_0px_#0A0A0A] dark:shadow-[2px_2px_0px_0px_#FAFAFA] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_#0A0A0A] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer";
+
+            if (tab === 'home') {
+                viewHome.classList.remove('hidden');
+                viewHome.classList.add('flex');
+                viewPortfolio.classList.add('hidden');
+                viewPortfolio.classList.remove('flex');
+                btnHome.className = activeClass;
+            } else if (tab === 'portfolio') {
+                viewPortfolio.classList.remove('hidden');
+                viewPortfolio.classList.add('flex');
+                viewHome.classList.add('hidden');
+                viewHome.classList.remove('flex');
+                btnPortfolio.className = activeClass;
+            }
+        }
+
+        // --- Form Handling Logic ---
+        const form = document.getElementById('lead-form');
+        const formState = document.getElementById('form-state');
+        const successState = document.getElementById('success-state');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnIcon = document.getElementById('btn-icon');
+        const btnSpinner = document.getElementById('btn-spinner');
+        const formWrapper = document.getElementById('form-wrapper');
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // Disable inputs during submission
+            const inputs = form.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => input.setAttribute('disabled', 'true'));
+            
+            btnText.textContent = "Sending...";
+            btnIcon.classList.add('hidden');
+            btnSpinner.classList.remove('hidden');
+
+            // Simulate network delay (1500ms) for realistic UX
+            setTimeout(() => {
+                formState.classList.add('hidden');
+                successState.classList.remove('hidden');
+                successState.classList.add('flex');
+                
+                // Temporary success highlight on the container border
+                formWrapper.classList.remove('border-brutal-black', 'dark:border-brutal-white');
+                formWrapper.style.borderColor = "#FF3B00"; 
+                
+                setTimeout(() => {
+                    formWrapper.style.borderColor = "";
+                    formWrapper.classList.add('border-brutal-black', 'dark:border-brutal-white');
+                }, 600);
+
+            }, 1500);
+        }
+
+        // --- Reset Logic ---
+        function resetForm() {
+            form.reset();
+            const inputs = form.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => input.removeAttribute('disabled'));
+            
+            btnText.textContent = "Get a Proposal";
+            btnIcon.classList.remove('hidden');
+            btnSpinner.classList.add('hidden');
+            
+            successState.classList.add('hidden');
+            successState.classList.remove('flex');
+            formState.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
