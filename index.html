@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Agency // B2B Web Design</title>
+    <title>Sovereign Web Engineering | Enterprise B2B Portfolio</title>
     
+    <!-- Tailwind CSS & Icon Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Space Grotesk for bold headings, Inter for highly readable B2B body text -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght=700;900&display=swap" rel="stylesheet">
+    <!-- Space Grotesk for high-performance headers, Inter for supreme reading legibility -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -19,21 +20,18 @@
                 extend: {
                     colors: {
                         brutal: {
-                            orange: '#FF3B00',
                             black: '#0A0A0A',
+                            darkGrey: '#111111',
                             white: '#FAFAFA',
-                            gray: '#222222',
-                            lightgray: '#E0E0E0'
+                            orange: '#FF5E3A',
+                            green: '#10B981',
+                            blue: '#3B82F6',
+                            grey: '#262626'
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
                         display: ['Space Grotesk', 'sans-serif'],
-                    },
-                    boxShadow: {
-                        'hard-black': '8px 8px 0px 0px rgba(10,10,10,1)',
-                        'hard-white': '8px 8px 0px 0px rgba(250,250,250,1)',
-                        'hard-orange': '8px 8px 0px 0px rgba(255,59,0,1)',
+                        sans: ['Inter', 'sans-serif'],
                     }
                 }
             }
@@ -41,578 +39,608 @@
     </script>
 
     <style>
-        ::-webkit-scrollbar {
-            width: 12px;
-            background: var(--bg-color, #FAFAFA);
-            border-left: 2px solid var(--border-color, #0A0A0A);
+        /* 3-State CSS Custom Theme Properties */
+        :root {
+            --bg-color: #0A0A0A;
+            --text-color: #FAFAFA;
+            --border-color: #FAFAFA;
+            --accent-color: #FF5E3A;
+            --shadow-color: #FAFAFA;
+            --dot-color: rgba(255, 255, 255, 0.05);
+            --card-bg: #111111;
+            --neutral-muted: #A3A3A3;
+            --form-input-bg: #0A0A0A;
         }
-        html.dark ::-webkit-scrollbar {
-            background: #0A0A0A;
-            border-left: 2px solid #FAFAFA;
+
+        body.theme-light {
+            --bg-color: #FAFAFA;
+            --text-color: #0A0A0A;
+            --border-color: #0A0A0A;
+            --accent-color: #FF5E3A;
+            --shadow-color: #0A0A0A;
+            --dot-color: rgba(10, 10, 10, 0.06);
+            --card-bg: #FFFFFF;
+            --neutral-muted: #525252;
+            --form-input-bg: #FAFAFA;
+        }
+
+        body.theme-comfort {
+            --bg-color: #F4EFE6; /* Cozy Warm Sepia Paper */
+            --text-color: #2D241E; /* Rich Espresso Cocoa text */
+            --border-color: #2D241E;
+            --accent-color: #B45138; /* Soft terracotta rust */
+            --shadow-color: #2D241E;
+            --dot-color: rgba(45, 36, 30, 0.08);
+            --card-bg: #EAE3D5; /* Darker paper stock */
+            --neutral-muted: #736054;
+            --form-input-bg: #F4EFE6;
+        }
+
+        /* Fluid layout-wide transition timings */
+        body, header, section, footer, div, select, option, input, textarea, button, a, span {
+            transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                        color 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                        border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                        box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        /* Premium custom scroll bar matching active themes */
+        ::-webkit-scrollbar {
+            width: 8px;
+            background: var(--bg-color);
         }
         ::-webkit-scrollbar-thumb {
-            background: #FF3B00;
-            border: 2px solid var(--border-color, #0A0A0A);
-        }
-        html.dark ::-webkit-scrollbar-thumb {
-            border: 2px solid #FAFAFA;
+            background: var(--accent-color);
+            border-radius: 4px;
         }
 
-        * {
-            transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, box-shadow 0.1s ease;
+        /* Solid Brutalist Theme-Linked Shadow Offsets */
+        .brutal-shadow-white {
+            box-shadow: 6px 6px 0px 0px var(--shadow-color) !important;
+        }
+        .brutal-shadow-orange {
+            box-shadow: 6px 6px 0px 0px var(--accent-color) !important;
+        }
+        .brutal-shadow-black {
+            box-shadow: 6px 6px 0px 0px var(--bg-color) !important;
         }
 
-        .bg-pattern {
-            background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-        .bg-pattern-light {
-            --dot-color: rgba(10, 10, 10, 0.1);
-        }
-        html.dark .bg-pattern {
-            --dot-color: rgba(250, 250, 250, 0.1);
+        /* Dotted Grid Background System */
+        .bg-grid-dots {
+            background-size: 24px 24px;
+            background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px) !important;
         }
 
-        .brutal-input {
-            appearance: none;
-            border-radius: 0;
-            transition: all 0.2s ease;
-        }
-        .brutal-input:focus {
-            outline: none;
-            background-color: rgba(255, 59, 0, 0.05);
-            box-shadow: 4px 4px 0px 0px #FF3B00;
-        }
-        html.dark .brutal-input:focus {
-            background-color: rgba(255, 59, 0, 0.1);
+        /* Direct CSS Theme Overrides for Tailwind Utilities */
+        .bg-brutal-black { background-color: var(--bg-color) !important; }
+        .text-brutal-white { color: var(--text-color) !important; }
+        .border-white { border-color: var(--border-color) !important; }
+        .bg-brutal-darkGrey, .bg-neutral-900 { background-color: var(--card-bg) !important; }
+        .text-neutral-400 { color: var(--neutral-muted) !important; }
+        .border-neutral-700, .border-neutral-800 { border-color: var(--border-color) !important; }
+        .bg-brutal-orange { background-color: var(--accent-color) !important; }
+        .text-brutal-orange { color: var(--accent-color) !important; }
+        .border-brutal-orange { border-color: var(--accent-color) !important; }
+        
+        input, textarea, select {
+            background-color: var(--form-input-bg) !important;
+            color: var(--text-color) !important;
+            border-color: var(--border-color) !important;
         }
     </style>
-
-    <script>
-        // Check for saved theme preference or system preference
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
 </head>
+<body class="font-sans antialiased text-brutal-white bg-brutal-black selection:bg-brutal-orange selection:text-white relative">
 
-<body class="bg-brutal-white dark:bg-brutal-black text-brutal-black dark:text-brutal-white font-sans min-h-screen flex flex-col relative bg-pattern bg-pattern-light selection:bg-brutal-orange selection:text-black">
+    <!-- Aesthetic Background Dotted Grid -->
+    <div id="grid-bg-container" class="fixed inset-0 bg-grid-dots pointer-events-none z-0"></div>
 
-    <!-- Decorative Screen Border -->
-    <div class="fixed inset-0 border-[6px] border-brutal-black dark:border-brutal-white pointer-events-none z-50"></div>
-
-    <header class="relative w-full border-b-[4px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black z-40 px-4 sm:px-8 py-4 sm:py-5 flex flex-col lg:flex-row justify-between items-center gap-4">
-        <div class="flex items-center justify-between w-full lg:w-auto">
-            <div class="bg-brutal-orange text-black font-display font-bold px-4 py-1.5 border-2 border-black uppercase tracking-widest text-sm shadow-[2px_2px_0px_0px_#0A0A0A]">
+    <!-- Top Navigation Bar (Aligned perfectly with Screenshots) -->
+    <header class="w-full border-b-[2px] border-white bg-brutal-black/95 backdrop-blur-md sticky top-0 z-50 py-4 px-6 md:px-12 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <a href="#" class="px-4 py-2 bg-brutal-orange text-brutal-black font-display font-black text-xs uppercase tracking-wider border-[2px] border-white brutal-shadow-white hover:bg-white transition-colors">
                 NEXUS AGENCY
-            </div>
-            
-            <!-- Mobile Theme Toggle -->
-            <button id="theme-toggle-mobile" class="lg:hidden border-2 border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-2 px-3 hover:bg-brutal-orange dark:hover:bg-brutal-orange hover:text-black transition-colors focus:outline-none flex items-center justify-center cursor-pointer shadow-[2px_2px_0px_0px_#0A0A0A] dark:shadow-[2px_2px_0px_0px_#FAFAFA] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
-                <i id="theme-icon-mobile" class="fa-solid fa-moon text-sm"></i>
-            </button>
+            </a>
         </div>
-        
-        <!-- Navigation Tabs -->
-        <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full lg:w-auto justify-center lg:justify-end">
-            <nav class="flex w-full sm:w-auto gap-2">
-                <button onclick="switchTab('home')" id="btn-home" class="flex-1 sm:flex-none bg-brutal-orange text-black border-2 border-brutal-black dark:border-brutal-white px-4 py-2 font-bold uppercase text-xs sm:text-sm tracking-widest shadow-[2px_2px_0px_0px_#0A0A0A] dark:shadow-[2px_2px_0px_0px_#FAFAFA] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_#0A0A0A] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer">
-                    Get a Quote
-                </button>
-                <button onclick="switchTab('portfolio')" id="btn-portfolio" class="flex-1 sm:flex-none bg-brutal-white dark:bg-brutal-black text-brutal-black dark:text-brutal-white hover:bg-brutal-lightgray dark:hover:bg-[#222] border-2 border-brutal-black dark:border-brutal-white px-4 py-2 font-bold uppercase text-xs sm:text-sm tracking-widest shadow-[2px_2px_0px_0px_#0A0A0A] dark:shadow-[2px_2px_0px_0px_#FAFAFA] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_#0A0A0A] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer">
-                    Portfolio & Stack
-                </button>
-            </nav>
 
-            <div class="hidden md:flex items-center gap-2 border-l-2 border-brutal-black dark:border-brutal-white pl-6">
-                <span class="relative flex h-3 w-3">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brutal-orange opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-3 w-3 bg-brutal-orange"></span>
-                </span>
-                <span class="text-xs font-bold uppercase tracking-wide">Accepting Clients</span>
-            </div>
+        <!-- Navigation Controls & Status Matrix -->
+        <div class="flex items-center gap-4">
+            <a href="#project-form" class="hidden lg:inline-block px-4 py-2 border-[2px] border-white bg-brutal-black hover:bg-white hover:text-brutal-black text-xs font-display font-bold uppercase tracking-wider transition-colors">
+                GET A QUOTE
+            </a>
+            <a href="#engineering-stack" class="hidden md:inline-block px-4 py-2 border-[2px] border-white bg-brutal-orange text-brutal-black hover:bg-white text-xs font-display font-bold uppercase tracking-wider transition-colors">
+                PORTFOLIO & STACK
+            </a>
             
-            <!-- Desktop Theme Toggle Button -->
-            <button id="theme-toggle-desktop" class="hidden lg:flex border-2 border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-2 px-4 hover:bg-brutal-orange dark:hover:bg-brutal-orange hover:text-black transition-colors focus:outline-none items-center justify-center gap-2 cursor-pointer shadow-[2px_2px_0px_0px_#0A0A0A] dark:shadow-[2px_2px_0px_0px_#FAFAFA] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
-                <i id="theme-icon-desktop" class="fa-solid fa-moon text-sm"></i>
-                <span class="text-xs font-bold uppercase tracking-widest">Theme</span>
+            <div class="hidden sm:flex items-center gap-2 border-l border-neutral-700 pl-4">
+                <span class="h-2.5 w-2.5 rounded-full bg-brutal-orange animate-ping"></span>
+                <span class="font-mono text-[10px] tracking-widest text-neutral-400 uppercase font-bold">ACCEPTING CLIENTS</span>
+            </div>
+
+            <!-- Dynamic Theme Mode Indicator Trigger Button -->
+            <button onclick="toggleThemeVisual()" class="px-4 py-2 bg-brutal-black border-[2px] border-white text-xs font-display font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors flex items-center gap-2">
+                <i id="theme-icon" class="fa-solid fa-moon"></i> <span id="theme-label">DARK</span>
             </button>
         </div>
     </header>
 
-    <main class="flex-grow flex flex-col w-full max-w-7xl mx-auto z-10">
+    <!-- Hero Block Split Layout -->
+    <section class="relative w-full flex flex-col lg:flex-row items-stretch border-b-[2px] border-white z-10">
         
-        <div id="view-home" class="flex flex-col lg:flex-row w-full flex-grow">
-            <!-- Left Column: Value Proposition -->
-            <div class="w-full lg:w-1/2 p-6 sm:p-12 lg:p-16 flex flex-col justify-center border-b-[4px] lg:border-b-0 lg:border-r-[4px] border-brutal-black dark:border-brutal-white bg-brutal-orange dark:bg-[#111] relative overflow-hidden">
-                <div class="relative z-10">
-                    <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-black uppercase leading-[0.9] tracking-tighter mb-6 text-black dark:text-brutal-white drop-shadow-[4px_4px_0px_#FAFAFA] dark:drop-shadow-[4px_4px_0px_#0A0A0A]">
-                        High-Performance Web Architecture.
-                    </h1>
-                    <p class="text-lg sm:text-xl font-bold leading-relaxed mb-8 text-black dark:text-gray-300 max-w-lg border-l-[4px] border-black dark:border-brutal-orange pl-4 bg-brutal-white/50 dark:bg-transparent py-2">
-                        We engineer enterprise-grade web applications and high-conversion business sites. Built for speed, scale, and uncompromising reliability.
-                    </p>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="border-[3px] border-black dark:border-brutal-white p-4 flex flex-col bg-brutal-white dark:bg-brutal-black shadow-[4px_4px_0px_0px_#0A0A0A] dark:shadow-[4px_4px_0px_0px_#FAFAFA]">
-                            <i class="fa-solid fa-gauge-high text-brutal-orange text-2xl mb-2"></i>
-                            <span class="font-display font-black uppercase text-sm mt-1">Sub-Second Load</span>
-                        </div>
-                        <div class="border-[3px] border-black dark:border-brutal-white p-4 flex flex-col bg-brutal-white dark:bg-brutal-black shadow-[4px_4px_0px_0px_#0A0A0A] dark:shadow-[4px_4px_0px_0px_#FAFAFA]">
-                            <i class="fa-solid fa-shield-halved text-brutal-orange text-2xl mb-2"></i>
-                            <span class="font-display font-black uppercase text-sm mt-1">Enterprise Security</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Column: Form -->
-            <div class="w-full lg:w-1/2 p-6 sm:p-12 flex items-center justify-center bg-brutal-lightgray dark:bg-[#0a0a0a]">
-                <div id="form-wrapper" class="w-full max-w-lg bg-brutal-white dark:bg-[#111] border-[4px] border-brutal-black dark:border-brutal-white p-6 sm:p-8 shadow-hard-black dark:shadow-hard-white relative transition-all duration-300">
-                    
-                    <!-- Form State -->
-                    <div id="form-state" class="block">
-                        <h2 class="font-display text-2xl font-black uppercase mb-6 tracking-wide border-b-4 border-brutal-orange pb-2 inline-block">Project Inquiry</h2>
-                        
-                        <form id="lead-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
-                            <div>
-                                <label class="block font-bold text-xs uppercase tracking-widest mb-1" for="fullName">Full Name</label>
-                                <input type="text" id="fullName" required class="brutal-input w-full border-[3px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-3 font-medium text-sm text-brutal-black dark:text-brutal-white placeholder-gray-400 dark:placeholder-gray-600 focus:border-brutal-orange dark:focus:border-brutal-orange" placeholder="John Doe">
-                            </div>
-
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                                <div>
-                                    <label class="block font-bold text-xs uppercase tracking-widest mb-1" for="email">Work Email</label>
-                                    <input type="email" id="email" required class="brutal-input w-full border-[3px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-3 font-medium text-sm text-brutal-black dark:text-brutal-white placeholder-gray-400 dark:placeholder-gray-600 focus:border-brutal-orange dark:focus:border-brutal-orange" placeholder="john@company.com">
-                                </div>
-                                <div>
-                                    <label class="block font-bold text-xs uppercase tracking-widest mb-1" for="company">Company</label>
-                                    <input type="text" id="company" class="brutal-input w-full border-[3px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-3 font-medium text-sm text-brutal-black dark:text-brutal-white placeholder-gray-400 dark:placeholder-gray-600 focus:border-brutal-orange dark:focus:border-brutal-orange" placeholder="Acme Corp">
-                                </div>
-                            </div>
-
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                                <div>
-                                    <label class="block font-bold text-xs uppercase tracking-widest mb-1" for="projectType">Need</label>
-                                    <select id="projectType" required class="brutal-input w-full border-[3px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-3 font-medium text-sm text-brutal-black dark:text-brutal-white cursor-pointer focus:border-brutal-orange dark:focus:border-brutal-orange">
-                                        <option value="" disabled selected>Select...</option>
-                                        <option value="webapp">Web Application</option>
-                                        <option value="b2b">B2B Website</option>
-                                        <option value="ecommerce">E-Commerce</option>
-                                        <option value="redesign">System Redesign</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block font-bold text-xs uppercase tracking-widest mb-1" for="budget">Budget</label>
-                                    <select id="budget" required class="brutal-input w-full border-[3px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-3 font-medium text-sm text-brutal-black dark:text-brutal-white cursor-pointer focus:border-brutal-orange dark:focus:border-brutal-orange">
-                                        <option value="" disabled selected>Select...</option>
-                                        <option value="5k">₹40k - ₹1L</option>
-                                        <option value="10k">₹1L - ₹3L</option>
-                                        <option value="25k">₹3L - ₹10L</option>
-                                        <option value="50k+">₹10L+</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block font-bold text-xs uppercase tracking-widest mb-1" for="details">Project Details</label>
-                                <textarea id="details" rows="3" required class="brutal-input w-full border-[3px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black p-3 font-medium text-sm text-brutal-black dark:text-brutal-white placeholder-gray-400 dark:placeholder-gray-600 focus:border-brutal-orange dark:focus:border-brutal-orange resize-none" placeholder="Briefly describe your objectives..."></textarea>
-                            </div>
-
-                            <button type="submit" id="submit-btn" class="w-full bg-brutal-orange text-black border-[3px] border-black p-4 font-display font-black uppercase text-lg tracking-widest shadow-[4px_4px_0px_0px_#0A0A0A] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#0A0A0A] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all cursor-pointer flex items-center justify-center gap-3 mt-4 group">
-                                <span id="btn-text">Get a Proposal</span>
-                                <i id="btn-icon" class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                                <i id="btn-spinner" class="fa-solid fa-circle-notch fa-spin hidden"></i>
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- Success State -->
-                    <div id="success-state" class="hidden flex-col items-center justify-center text-center py-10 h-full min-h-[400px]">
-                        <div class="w-20 h-20 bg-brutal-orange border-4 border-brutal-black dark:border-brutal-white rounded-full flex items-center justify-center mb-6 shadow-[4px_4px_0px_0px_#0A0A0A] dark:shadow-[4px_4px_0px_0px_#FAFAFA]">
-                            <i class="fa-solid fa-check text-4xl text-black"></i>
-                        </div>
-                        <h3 class="font-display text-3xl font-black uppercase mb-2">Request Received</h3>
-                        <p class="font-medium text-gray-700 dark:text-gray-300 mb-8 border-t-2 border-brutal-black dark:border-brutal-white pt-4 mt-2">I will review your requirements and reach out within 24 hours.</p>
-                        <button onclick="resetForm()" type="button" class="bg-brutal-white dark:bg-brutal-black text-brutal-black dark:text-brutal-white border-2 border-brutal-black dark:border-brutal-white px-6 py-2 font-bold uppercase text-xs tracking-widest shadow-[2px_2px_0px_0px_#0A0A0A] dark:shadow-[2px_2px_0px_0px_#FAFAFA] hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_#0A0A0A] dark:hover:shadow-[4px_4px_0px_0px_#FAFAFA] transition-all">
-                            Start New Request
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- View: Portfolio & Stack -->
-        <div id="view-portfolio" class="hidden flex-col w-full flex-grow bg-brutal-white dark:bg-brutal-black">
-            
-            <!-- Tech Stack Section -->
-            <div class="p-6 sm:p-12 lg:p-16 border-b-[4px] border-brutal-black dark:border-brutal-white">
-                <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-black uppercase leading-[0.95] tracking-tighter mb-6 text-brutal-black dark:text-brutal-white">
-                    Engineering <span class="text-brutal-orange underline decoration-[6px] underline-offset-8">Stack</span>
-                </h2>
-                <p class="text-base sm:text-lg font-medium leading-relaxed max-w-2xl text-gray-800 dark:text-gray-200 mb-10 border-l-4 border-brutal-orange pl-4">
-                    Enterprise-grade architecture built for scalability and speed. I leverage modern frameworks to deliver high-performance, bespoke web applications tailored specifically to B2B infrastructure needs.
+        <!-- Left Side: Core Value Proposition -->
+        <div class="w-full lg:w-[55%] p-6 sm:p-12 lg:p-16 flex flex-col justify-center border-b-[2px] lg:border-b-0 lg:border-r-[2px] border-white relative overflow-hidden">
+            <div class="relative z-10 w-full max-w-full">
+                <!-- Large title perfectly sizing responsively without clipping -->
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[2.65rem] xl:text-[3.5rem] 2xl:text-7xl font-black uppercase leading-[0.95] tracking-tight mb-6 text-brutal-white break-words">
+                    HIGH-<br>PERFORMANCE<br>WEB<br>ARCHITECTURE.
+                </h1>
+                
+                <p class="text-base sm:text-lg font-normal leading-relaxed mb-8 text-neutral-400 max-w-lg border-l-[3px] border-brutal-orange pl-4">
+                    We engineer enterprise-grade web applications and high-conversion business sites. Built for speed, scale, and uncompromising reliability.
                 </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Frontend -->
-                    <div class="border-[3px] border-brutal-black dark:border-brutal-white p-6 bg-brutal-lightgray dark:bg-[#111] shadow-hard-black dark:shadow-hard-white hover:-translate-y-1 transition-transform">
-                        <div class="flex items-center gap-3 mb-6 border-b-2 border-brutal-black dark:border-brutal-white pb-3">
-                            <i class="fa-brands fa-react text-3xl text-brutal-orange"></i>
-                            <h3 class="font-display font-black uppercase text-xl tracking-wide">Frontend</h3>
-                        </div>
-                        <ul class="space-y-3 font-bold text-sm tracking-wide uppercase">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> React.js / Next.js</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> TypeScript</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Tailwind CSS</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Framer Motion</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Zustand / Redux</li>
-                        </ul>
-                    </div>
-
-                    <!-- Backend -->
-                    <div class="border-[3px] border-brutal-black dark:border-brutal-white p-6 bg-brutal-lightgray dark:bg-[#111] shadow-hard-black dark:shadow-hard-white hover:-translate-y-1 transition-transform">
-                        <div class="flex items-center gap-3 mb-6 border-b-2 border-brutal-black dark:border-brutal-white pb-3">
-                            <i class="fa-solid fa-server text-3xl text-brutal-orange"></i>
-                            <h3 class="font-display font-black uppercase text-xl tracking-wide">Backend</h3>
-                        </div>
-                        <ul class="space-y-3 font-bold text-sm tracking-wide uppercase">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Node.js / Express</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> RESTful APIs</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> PostgreSQL</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Prisma ORM</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> AWS & Docker</li>
-                        </ul>
-                    </div>
-
-                    <!-- Design & Ops -->
-                    <div class="border-[3px] border-brutal-black dark:border-brutal-white p-6 bg-brutal-lightgray dark:bg-[#111] shadow-hard-black dark:shadow-hard-white hover:-translate-y-1 transition-transform">
-                        <div class="flex items-center gap-3 mb-6 border-b-2 border-brutal-black dark:border-brutal-white pb-3">
-                            <i class="fa-brands fa-figma text-3xl text-brutal-orange"></i>
-                            <h3 class="font-display font-black uppercase text-xl tracking-wide">Design & Ops</h3>
-                        </div>
-                        <ul class="space-y-3 font-bold text-sm tracking-wide uppercase">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Figma UI/UX</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Wireframing</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Git / CI/CD</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Vercel Deployments</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> Web Vitals Audit</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Live Software Simulations Section -->
-            <div class="p-6 sm:p-12 lg:p-16 border-b-[4px] border-brutal-black dark:border-brutal-white">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
-                    <div>
-                        <span class="bg-brutal-orange text-black font-mono text-xs uppercase px-2 py-0.5 font-bold border border-black shadow-[1px_1px_0px_#000] mb-2 inline-block">Production-Ready Suite</span>
-                        <h2 class="font-display text-4xl sm:text-5xl font-black uppercase leading-[0.95] tracking-tighter text-brutal-black dark:text-brutal-white">
-                            Live App <span class="text-brutal-orange">Engines</span>
-                        </h2>
-                    </div>
-                    <span class="text-xs font-mono font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 border border-dashed border-gray-400 dark:border-gray-600 p-2">Interactive Architectures</span>
-                </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Project 1: Enterprise ERP System (Live Link) -->
-                    <div class="border-[4px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black shadow-hard-black dark:shadow-hard-white flex flex-col group overflow-hidden">
-                        <div class="h-44 w-full border-b-[4px] border-brutal-black dark:border-brutal-white overflow-hidden relative bg-[#111]">
-                            <img src="https://placehold.co/800x600/0A0A0A/FF3B00?text=Enterprise+ERP+Dashboard" alt="ERP Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
-                            <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 text-xs font-mono font-bold uppercase tracking-widest border-2 border-black shadow-[2px_2px_0px_#0A0A0A]">Live Production</div>
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow">
-                            <h3 class="font-display text-xl font-black uppercase tracking-tight mb-2">Enterprise ERP</h3>
-                            <p class="text-xs font-medium text-gray-700 dark:text-gray-300 mb-4 flex-grow">
-                                Core operations platform with mock auth, local storage state persistence, and beautiful interactive task automation workflows.
-                            </p>
-                            <div class="flex flex-wrap gap-1 mb-4">
-                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-0.5 text-[10px] font-bold uppercase border border-brutal-black dark:border-brutal-white">State Engine</span>
-                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-0.5 text-[10px] font-bold uppercase border border-brutal-black dark:border-brutal-white">LocalDB</span>
-                            </div>
-                            <a href="https://erp-5dq.pages.dev/" target="_blank" class="text-center bg-black dark:bg-brutal-white text-white dark:text-black font-display font-black uppercase tracking-widest text-xs py-2.5 border-2 border-black dark:border-white hover:bg-brutal-orange dark:hover:bg-brutal-orange dark:hover:text-black hover:text-black transition-colors shadow-[2px_2px_0px_#FF3B00] hover:translate-x-[1px] hover:translate-y-[1px] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
-                                Open Live App <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
-                            </a>
+                <!-- Quick Metric Badges matching design layout in screenshots -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md">
+                    <div class="p-4 border-[2px] border-white bg-brutal-black brutal-shadow-white flex items-center gap-3">
+                        <div class="text-brutal-orange text-xl"><i class="fa-solid fa-gauge-high"></i></div>
+                        <div>
+                            <span class="block text-[11px] font-mono tracking-wider text-neutral-400 uppercase font-bold">Performance Rate</span>
+                            <span class="block font-display font-black text-xs uppercase text-white">SUB-SECOND LOAD</span>
                         </div>
                     </div>
-
-                    <!-- Project 2: Stock Intelligence Scraper (Live Link) -->
-                    <div class="border-[4px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black shadow-hard-black dark:shadow-hard-white flex flex-col group overflow-hidden">
-                        <div class="h-44 w-full border-b-[4px] border-brutal-black dark:border-brutal-white overflow-hidden relative bg-[#111]">
-                            <img src="https://placehold.co/800x600/0A0A0A/3B82F6?text=Market+Predictor+Engine" alt="Market Predictor Scraper" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
-                            <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 text-xs font-mono font-bold uppercase tracking-widest border-2 border-black shadow-[2px_2px_0px_#0A0A0A]">Live Production</div>
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow">
-                            <h3 class="font-display text-xl font-black uppercase tracking-tight mb-2">Market Scraper</h3>
-                            <p class="text-xs font-medium text-gray-700 dark:text-gray-300 mb-4 flex-grow">
-                                Real-time finance parser scraping active market ticks, organizing trends, and deploying predictive data visualizations.
-                            </p>
-                            <div class="flex flex-wrap gap-1 mb-4">
-                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-0.5 text-[10px] font-bold uppercase border border-brutal-black dark:border-brutal-white">Scraping Threads</span>
-                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-0.5 text-[10px] font-bold uppercase border border-brutal-black dark:border-brutal-white">Data Viz</span>
-                            </div>
-                            <a href="https://predictor-dbw.pages.dev/" target="_blank" class="text-center bg-black dark:bg-brutal-white text-white dark:text-black font-display font-black uppercase tracking-widest text-xs py-2.5 border-2 border-black dark:border-white hover:bg-brutal-orange dark:hover:bg-brutal-orange dark:hover:text-black hover:text-black transition-colors shadow-[2px_2px_0px_#FF3B00] hover:translate-x-[1px] hover:translate-y-[1px] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
-                                Open Live App <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Project 3: ApexGP F1 Telemetry Game (Live Link) -->
-                    <div class="border-[4px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black shadow-hard-black dark:shadow-hard-white flex flex-col group overflow-hidden">
-                        <div class="h-44 w-full border-b-[4px] border-brutal-black dark:border-brutal-white overflow-hidden relative bg-[#111]">
-                            <img src="https://placehold.co/800x600/0A0A0A/E0E0E0?text=ApexGP+F1+Telemetry" alt="F1 Strategy Simulator" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
-                            <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 text-xs font-mono font-bold uppercase tracking-widest border-2 border-black shadow-[2px_2px_0px_#0A0A0A]">Live Production</div>
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow">
-                            <h3 class="font-display text-xl font-black uppercase tracking-tight mb-2">ApexGP // F1</h3>
-                            <p class="text-xs font-medium text-gray-700 dark:text-gray-300 mb-4 flex-grow">
-                                Race director simulation monitoring live tires degradation, fuel burns, and weather loops for split-second calls.
-                            </p>
-                            <div class="flex flex-wrap gap-1 mb-4">
-                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-0.5 text-[10px] font-bold uppercase border border-brutal-black dark:border-brutal-white">Telemetry</span>
-                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-0.5 text-[10px] font-bold uppercase border border-brutal-black dark:border-brutal-white">Game Loop</span>
-                            </div>
-                            <a href="https://monza-8eq.pages.dev/" target="_blank" class="text-center bg-black dark:bg-brutal-white text-white dark:text-black font-display font-black uppercase tracking-widest text-xs py-2.5 border-2 border-black dark:border-white hover:bg-brutal-orange dark:hover:bg-brutal-orange dark:hover:text-black hover:text-black transition-colors shadow-[2px_2px_0px_#FF3B00] hover:translate-x-[1px] hover:translate-y-[1px] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
-                                Open Live App <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Project 4: Hacker Terminal Portfolio (Live Link) -->
-                    <div class="border-[4px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black shadow-hard-black dark:shadow-hard-white flex flex-col group overflow-hidden">
-                        <div class="h-44 w-full border-b-[4px] border-brutal-black dark:border-brutal-white overflow-hidden relative bg-[#0F140D]">
-                            <img src="https://placehold.co/800x600/0F140D/10B981?text=Hacker+Terminal+CLI" alt="Hacker Terminal CLI" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
-                            <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 text-xs font-mono font-bold uppercase tracking-widest border-2 border-black shadow-[2px_2px_0px_#0A0A0A]">Live Production</div>
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow">
-                            <h3 class="font-display text-xl font-black uppercase tracking-tight mb-2">Hacker Terminal</h3>
-                            <p class="text-xs font-medium text-gray-700 dark:text-gray-300 mb-4 flex-grow">
-                                Retro-futuristic command-line portfolio. Features custom parsers, hidden commands, interactive system prompts, and playful secrets.
-                            </p>
-                            <div class="flex flex-wrap gap-1 mb-4">
-                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-0.5 text-[10px] font-bold uppercase border border-brutal-black dark:border-brutal-white">CLI Parser</span>
-                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-0.5 text-[10px] font-bold uppercase border border-brutal-black dark:border-brutal-white">Easter Eggs</span>
-                            </div>
-                            <a href="https://my-hacker-terminal.pages.dev/" target="_blank" class="text-center bg-black dark:bg-brutal-white text-white dark:text-black font-display font-black uppercase tracking-widest text-xs py-2.5 border-2 border-black dark:border-white hover:bg-brutal-orange dark:hover:bg-brutal-orange dark:hover:text-black hover:text-black transition-colors shadow-[2px_2px_0px_#FF3B00] hover:translate-x-[1px] hover:translate-y-[1px] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
-                                Open Live App <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Selected Works Section -->
-            <div class="p-6 sm:p-12 lg:p-16 bg-brutal-lightgray dark:bg-[#0a0a0a]">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
-                    <div>
-                        <span class="bg-black dark:bg-brutal-white text-brutal-white dark:text-black font-mono text-xs uppercase px-2 py-0.5 font-bold border border-brutal-black dark:border-brutal-white shadow-[1px_1px_0px_#FF3B00] mb-2 inline-block">High Conversion</span>
-                        <h2 class="font-display text-4xl sm:text-5xl font-black uppercase leading-[0.95] tracking-tighter text-brutal-black dark:text-brutal-white">
-                            Selected <span class="text-brutal-orange">B2B Templates</span>
-                        </h2>
-                    </div>
-                    <span class="text-xs font-mono font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 border border-dashed border-gray-400 dark:border-gray-600 p-2">Interactive Brand Sites</span>
-                </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                    <!-- Project 1 (Your Premium Cafe Mockup!) -->
-                    <div class="border-[4px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black shadow-hard-black dark:shadow-hard-white flex flex-col group overflow-hidden">
-                        <div class="h-64 sm:h-80 w-full border-b-[4px] border-brutal-black dark:border-brutal-white overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lumina Cafe Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <div class="absolute top-4 right-4 bg-brutal-black text-brutal-white dark:bg-brutal-white dark:text-brutal-black px-3 py-1 text-xs font-bold uppercase tracking-widest border-2 border-brutal-black dark:border-brutal-white shadow-[2px_2px_0px_#FF3B00]">Live Mockup</div>
-                        </div>
-                        <div class="p-6 sm:p-8 flex flex-col flex-grow">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-display text-2xl font-black uppercase tracking-tight">Lumina Café & Botanica</h3>
-                                <span class="font-sans text-xs font-bold text-cafe-pistachio-dark bg-[#D4E0CE]/20 dark:bg-[#D4E0CE]/10 px-2 py-0.5 border border-[#A3BA9A] uppercase">Pistachio & Cream Theme</span>
-                            </div>
-                            <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-6 flex-grow">
-                                A gorgeous, conversion-focused layout featuring a custom **"Order at Table" geolocation verification simulator** built to showcase workflow depth to prospective hospitality clients.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-1 text-xs font-bold uppercase border border-brutal-black dark:border-brutal-white">Custom Geolocation Simulator</span>
-                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-1 text-xs font-bold uppercase border border-brutal-black dark:border-brutal-white">Cormorant Garamond Typography</span>
-                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-1 text-xs font-bold uppercase border border-brutal-black dark:border-brutal-white">Liquid UI Interactions</span>
-                            </div>
-                            <a href="https://iodroid-rob.github.io/cafe/" target="_blank" class="text-center bg-brutal-orange text-black font-display font-black uppercase tracking-widest text-sm py-3.5 border-2 border-black hover:bg-black hover:text-white dark:hover:bg-brutal-white dark:hover:text-black transition-colors shadow-[4px_4px_0px_#000] dark:shadow-[4px_4px_0px_#FFF] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#000] dark:hover:shadow-[2px_2px_0px_#FFF] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none">
-                                Preview Live Site <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div class="border-[4px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black shadow-hard-black dark:shadow-hard-white flex flex-col group overflow-hidden">
-                        <div class="h-64 sm:h-80 w-full border-b-[4px] border-brutal-black dark:border-brutal-white overflow-hidden relative">
-                            <img src="https://placehold.co/800x600/0A0A0A/FAFAFA?text=Logistics+Platform" alt="Logistics Project" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <div class="absolute top-4 right-4 bg-brutal-black text-brutal-white dark:bg-brutal-white dark:text-brutal-black px-3 py-1 text-xs font-bold uppercase tracking-widest border-2 border-brutal-black dark:border-brutal-white shadow-[2px_2px_0px_#FF3B00]">Deployed</div>
-                        </div>
-                        <div class="p-6 sm:p-8 flex flex-col flex-grow">
-                            <h3 class="font-display text-2xl font-black uppercase tracking-tight mb-2">FreightHub Enterprise</h3>
-                            <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-6 flex-grow">
-                                Custom marketing site and client portal for an international logistics provider. Focused on sub-second load times and a structured brutalist conversion funnel.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-1 text-xs font-bold uppercase border border-brutal-black dark:border-brutal-white">Next.js</span>
-                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-1 text-xs font-bold uppercase border border-brutal-black dark:border-brutal-white">Node.js</span>
-                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-1 text-xs font-bold uppercase border border-brutal-black dark:border-brutal-white">Figma</span>
-                                <span class="bg-brutal-lightgray dark:bg-[#222] px-2 py-1 text-xs font-bold uppercase border border-brutal-black dark:border-brutal-white">AWS</span>
-                            </div>
+                    <div class="p-4 border-[2px] border-white bg-brutal-black brutal-shadow-white flex items-center gap-3">
+                        <div class="text-brutal-orange text-xl"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div>
+                            <span class="block text-[11px] font-mono tracking-wider text-neutral-400 uppercase font-bold">Standard Framework</span>
+                            <span class="block font-display font-black text-xs uppercase text-white">ENTERPRISE SECURITY</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-    </main>
-
-    <footer class="w-full border-t-[4px] border-brutal-black dark:border-brutal-white bg-brutal-white dark:bg-brutal-black z-20 mt-auto">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row divide-y-[4px] md:divide-y-0 md:divide-x-[4px] divide-brutal-black dark:divide-brutal-white">
-            
-            <!-- Trust Item 1 -->
-            <div class="flex-1 p-6 sm:p-8 flex items-start gap-5 hover:bg-brutal-lightgray dark:hover:bg-[#1a1a1a] transition-colors">
-                <i class="fa-solid fa-lock text-2xl text-brutal-orange mt-1"></i>
-                <div>
-                    <h3 class="font-display font-black uppercase text-lg tracking-wide">Strictly Confidential</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 font-medium">Your project details and intellectual property are kept completely private.</p>
+        <!-- Right Side: Brutalist Project Inquiry Form matching Screenshots -->
+        <div class="w-full lg:w-[45%] bg-brutal-black flex items-center justify-center p-6 sm:p-12 relative overflow-hidden">
+            <div class="w-full max-w-md border-[2px] border-white bg-brutal-black p-6 sm:p-8 brutal-shadow-white relative z-10">
+                <div class="border-b-[2px] border-brutal-orange pb-3 mb-6">
+                    <h2 class="font-display font-black text-xl uppercase tracking-wider text-white">PROJECT INQUIRY</h2>
                 </div>
-            </div>
 
-            <!-- Trust Item 2 -->
-            <div class="flex-1 p-6 sm:p-8 flex items-start gap-5 hover:bg-brutal-lightgray dark:hover:bg-[#1a1a1a] transition-colors">
-                <i class="fa-solid fa-bolt text-2xl text-brutal-orange mt-1"></i>
-                <div>
-                    <h3 class="font-display font-black uppercase text-lg tracking-wide">24-Hour Response</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 font-medium">We guarantee a direct human response to all inquiries within one business day.</p>
-                </div>
-            </div>
+                <form id="project-form" onsubmit="submitProjectProposal(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">FULL NAME</label>
+                        <input type="text" id="form-name" required class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors" placeholder="John Doe">
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">WORK EMAIL</label>
+                            <input type="email" id="form-email" required class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors" placeholder="john@company.com">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">COMPANY</label>
+                            <input type="text" id="form-company" required class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors" placeholder="Acme Corp">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">NEED</label>
+                            <select id="form-need" class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors font-mono">
+                                <option value="b2b-web">B2B Core Architecture</option>
+                                <option value="saas">SaaS Platform</option>
+                                <option value="pos">Hospitality POS Engine</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">BUDGET</label>
+                            <select id="form-budget" class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors font-mono">
+                                <option value="scale-1">$10k - $25k</option>
+                                <option value="scale-2" selected>$25k - $50k</option>
+                                <option value="scale-3">$50k+</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold tracking-widest text-neutral-400 mb-1">PROJECT DETAILS</label>
+                        <textarea id="form-details" required rows="3" class="w-full bg-brutal-black border-[2px] border-white px-3 py-2 text-sm text-white focus:outline-none focus:border-brutal-orange transition-colors resize-none" placeholder="Briefly describe your objectives..."></textarea>
+                    </div>
 
-            <!-- Trust Item 3 -->
-            <div class="flex-1 p-6 sm:p-8 flex items-start gap-5 hover:bg-brutal-lightgray dark:hover:bg-[#1a1a1a] transition-colors">
-                <i class="fa-solid fa-handshake-angle text-2xl text-brutal-orange mt-1"></i>
-                <div>
-                    <h3 class="font-display font-black uppercase text-lg tracking-wide">Free Consultation</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2 font-medium">Your initial architectural roadmap and project quote are provided at no cost.</p>
-                </div>
+                    <button type="submit" class="w-full py-4 bg-brutal-orange text-brutal-black hover:bg-white transition-colors font-display font-bold uppercase tracking-widest text-xs border-[2px] border-white brutal-shadow-white flex items-center justify-center gap-2">
+                        GET A PROPOSAL <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
             </div>
-
         </div>
-        
-        <!-- Bottom Bar -->
-        <div class="border-t-[4px] border-brutal-black dark:border-brutal-white p-5 flex flex-col sm:flex-row justify-between items-center bg-brutal-orange text-black font-bold text-xs sm:text-sm uppercase tracking-widest">
-            <span>&copy; 2026 Nexus Agency // All Rights Reserved</span>
-            <div class="flex gap-6 mt-3 sm:mt-0">
-                <a href="#" class="hover:underline underline-offset-4">Privacy Policy</a>
-                <a href="#" class="hover:underline underline-offset-4">Terms of Service</a>
+    </section>
+
+    <!-- Trust Columns Row -->
+    <section class="w-full grid grid-cols-1 lg:grid-cols-3 border-b-[2px] border-white z-10 bg-brutal-black divide-y lg:divide-y-0 lg:divide-x-[2px] divide-white">
+        <div class="p-6 sm:p-8 flex items-start gap-4">
+            <div class="text-brutal-orange text-xl mt-1"><i class="fa-solid fa-lock"></i></div>
+            <div>
+                <h3 class="font-display font-black text-sm uppercase tracking-wider text-white">STRICTLY CONFIDENTIAL</h3>
+                <p class="text-xs text-neutral-400 mt-2 leading-relaxed">Your project details and intellectual property are kept completely private.</p>
+            </div>
+        </div>
+        <div class="p-6 sm:p-8 flex items-start gap-4">
+            <div class="text-brutal-orange text-xl mt-1"><i class="fa-solid fa-bolt"></i></div>
+            <div>
+                <h3 class="font-display font-black text-sm uppercase tracking-wider text-white">24-HOUR RESPONSE</h3>
+                <p class="text-xs text-neutral-400 mt-2 leading-relaxed">We guarantee a direct human response to all inquiries within one business day.</p>
+            </div>
+        </div>
+        <div class="p-6 sm:p-8 flex items-start gap-4">
+            <div class="text-brutal-orange text-xl mt-1"><i class="fa-solid fa-handshake"></i></div>
+            <div>
+                <h3 class="font-display font-black text-sm uppercase tracking-wider text-white">FREE CONSULTATION</h3>
+                <p class="text-xs text-neutral-400 mt-2 leading-relaxed">Your initial architectural roadmap and project quote are provided at no cost.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Engineering Stack Section -->
+    <section id="engineering-stack" class="py-20 px-6 md:px-12 max-w-7xl mx-auto z-10 relative">
+        <div class="mb-12 border-l-[4px] border-brutal-orange pl-6">
+            <span class="text-brutal-orange font-mono text-xs uppercase tracking-[0.3em] font-bold block">TECHNICAL CAPABILITY</span>
+            <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-black uppercase mt-2">ENGINEERING <span class="text-brutal-orange">STACK</span></h2>
+            <p class="text-neutral-400 text-sm mt-3 max-w-xl">
+                Enterprise-grade architecture built for scalability and speed. We leverage modern frameworks to deliver high-performance, bespoke web applications tailored specifically to B2B infrastructure needs.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Front-End Card -->
+            <div class="border-[2px] border-white bg-brutal-black p-6 brutal-shadow-white">
+                <div class="flex items-center gap-3 border-b-[2px] border-white pb-3 mb-6">
+                    <div class="text-brutal-orange text-xl"><i class="fa-brands fa-react"></i></div>
+                    <h3 class="font-display font-black text-sm uppercase tracking-wider">FRONTEND</h3>
+                </div>
+                <ul class="space-y-4 text-xs font-mono font-bold">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> REACT.JS / NEXT.JS</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> TYPESCRIPT</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> TAILWIND CSS</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> FRAMER MOTION</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> ZUSTAND / REDUX</li>
+                </ul>
+            </div>
+
+            <!-- Back-End Card -->
+            <div class="border-[2px] border-white bg-brutal-black p-6 brutal-shadow-white">
+                <div class="flex items-center gap-3 border-b-[2px] border-white pb-3 mb-6">
+                    <div class="text-brutal-orange text-xl"><i class="fa-solid fa-server"></i></div>
+                    <h3 class="font-display font-black text-sm uppercase tracking-wider">BACKEND</h3>
+                </div>
+                <ul class="space-y-4 text-xs font-mono font-bold">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> NODE.JS / EXPRESS</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> RESTFUL APIS</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> POSTGRESQL</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> PRISMA ORM</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> AWS & DOCKER</li>
+                </ul>
+            </div>
+
+            <!-- Design & Ops Card -->
+            <div class="border-[2px] border-white bg-brutal-black p-6 brutal-shadow-white">
+                <div class="flex items-center gap-3 border-b-[2px] border-white pb-3 mb-6">
+                    <div class="text-brutal-orange text-xl"><i class="fa-solid fa-compass-drafting"></i></div>
+                    <h3 class="font-display font-black text-sm uppercase tracking-wider">DESIGN & OPS</h3>
+                </div>
+                <ul class="space-y-4 text-xs font-mono font-bold">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> FIGMA UI/UX</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> WIREFRAMING</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> GIT / CI/CD</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> VERCEL DEPLOYMENTS</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brutal-orange"></i> WEB VITALS AUDIT</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider Line -->
+    <div class="w-full h-[2px] bg-white"></div>
+
+    <!-- Live App Engines Section -->
+    <section id="live-engines" class="py-20 px-6 md:px-12 max-w-7xl mx-auto z-10 relative">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-6 mb-12">
+            <div>
+                <span class="px-2.5 py-1 bg-brutal-orange text-brutal-black text-[9px] font-mono uppercase font-bold tracking-wider">PRODUCTION-READY SUITE</span>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-black uppercase mt-4">LIVE APP <span class="text-brutal-orange">ENGINES</span></h2>
+            </div>
+            <span class="px-4 py-2 border border-dashed border-neutral-700 text-[10px] font-mono text-neutral-400 uppercase tracking-widest">INTERACTIVE ARCHITECTURES</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- ERP Card -->
+            <div class="border-[2px] border-white bg-brutal-black p-5 flex flex-col justify-between brutal-shadow-white">
+                <div>
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="px-2.5 py-1 bg-brutal-green/20 text-brutal-green text-[9px] font-mono uppercase font-bold border border-brutal-green">LIVE PRODUCTION</span>
+                    </div>
+                    <div class="h-28 bg-neutral-900 border border-neutral-800 rounded mb-4 flex items-center justify-center font-mono text-xs text-brutal-orange font-bold">
+                        Enterprise ERP Dashboard
+                    </div>
+                    <h3 class="font-display font-black text-lg uppercase">ENTERPRISE ERP</h3>
+                    <p class="text-xs text-neutral-400 mt-2 font-normal leading-relaxed">
+                        Core operations platform with mock auth, local storage state persistence, and beautiful interactive task automation workflows.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-neutral-800">
+                    <div class="flex gap-2 flex-wrap mb-4">
+                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">STATE ENGINE</span>
+                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">LOCALDB</span>
+                    </div>
+                    <a href="https://erp-5dq.pages.dev/" target="_blank" rel="noopener noreferrer" class="block w-full py-2.5 bg-white hover:bg-brutal-orange hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-wider text-center text-xs border-[2px] border-white brutal-shadow-orange transition-colors">
+                        OPEN LIVE APP <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Scraper Card -->
+            <div class="border-[2px] border-white bg-brutal-black p-5 flex flex-col justify-between brutal-shadow-white">
+                <div>
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="px-2.5 py-1 bg-brutal-green/20 text-brutal-green text-[9px] font-mono uppercase font-bold border border-brutal-green">LIVE PRODUCTION</span>
+                    </div>
+                    <div class="h-28 bg-neutral-900 border border-neutral-800 rounded mb-4 flex items-center justify-center font-mono text-xs text-blue-400 font-bold">
+                        Market Predictor Engine
+                    </div>
+                    <h3 class="font-display font-black text-lg uppercase">MARKET SCRAPER</h3>
+                    <p class="text-xs text-neutral-400 mt-2 font-normal leading-relaxed">
+                        Real-time finance parser scraping active market ticks, organizing trends, and deploying predictive data visualizations.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-neutral-800">
+                    <div class="flex gap-2 flex-wrap mb-4">
+                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">SCRAPING THREADS</span>
+                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">DATA VIZ</span>
+                    </div>
+                    <a href="https://predictor-dbw.pages.dev/" target="_blank" rel="noopener noreferrer" class="block w-full py-2.5 bg-white hover:bg-brutal-orange hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-wider text-center text-xs border-[2px] border-white brutal-shadow-orange transition-colors">
+                        OPEN LIVE APP <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- F1 Telemetry Card -->
+            <div class="border-[2px] border-white bg-brutal-black p-5 flex flex-col justify-between brutal-shadow-white">
+                <div>
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="px-2.5 py-1 bg-brutal-green/20 text-brutal-green text-[9px] font-mono uppercase font-bold border border-brutal-green">LIVE PRODUCTION</span>
+                    </div>
+                    <div class="h-28 bg-neutral-900 border border-neutral-800 rounded mb-4 flex items-center justify-center font-mono text-xs text-neutral-400 font-bold">
+                        ApexGP F1 Telemetry
+                    </div>
+                    <h3 class="font-display font-black text-lg uppercase">APEXGP // F1</h3>
+                    <p class="text-xs text-neutral-400 mt-2 font-normal leading-relaxed">
+                        Race director simulation monitoring live tires degradation, fuel burns, and weather loops for split-second calls.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-neutral-800">
+                    <div class="flex gap-2 flex-wrap mb-4">
+                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">TELEMETRY</span>
+                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">GAME LOOP</span>
+                    </div>
+                    <a href="https://monza-8eq.pages.dev/" target="_blank" rel="noopener noreferrer" class="block w-full py-2.5 bg-white hover:bg-brutal-orange hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-wider text-center text-xs border-[2px] border-white brutal-shadow-orange transition-colors">
+                        OPEN LIVE APP <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hacker Terminal Card -->
+            <div class="border-[2px] border-white bg-brutal-black p-5 flex flex-col justify-between brutal-shadow-white">
+                <div>
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="px-2.5 py-1 bg-brutal-green/20 text-brutal-green text-[9px] font-mono uppercase font-bold border border-brutal-green">LIVE PRODUCTION</span>
+                    </div>
+                    <div class="h-28 bg-neutral-900 border border-neutral-800 rounded mb-4 flex items-center justify-center font-mono text-xs text-brutal-green font-bold">
+                        Hacker Terminal CLI
+                    </div>
+                    <h3 class="font-display font-black text-lg uppercase">HACKER TERMINAL</h3>
+                    <p class="text-xs text-neutral-400 mt-2 font-normal leading-relaxed">
+                        Retro-futuristic command-line portfolio. Features custom parsers, hidden commands, interactive system prompts, and playful secrets.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-neutral-800">
+                    <div class="flex gap-2 flex-wrap mb-4">
+                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">CLI PARSER</span>
+                        <span class="px-2 py-0.5 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase">EASTER EGGS</span>
+                    </div>
+                    <a href="https://my-hacker-terminal.pages.dev/" target="_blank" rel="noopener noreferrer" class="block w-full py-2.5 bg-white hover:bg-brutal-orange hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-wider text-center text-xs border-[2px] border-white brutal-shadow-orange transition-colors">
+                        OPEN LIVE APP <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Selected B2B Templates Section -->
+    <section id="b2b-templates" class="py-20 bg-brutal-black border-t-[2px] border-white z-10 relative">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-6 mb-12">
+                <div>
+                    <span class="px-2.5 py-1 bg-white text-brutal-black text-[9px] font-mono uppercase font-bold tracking-wider">HIGH CONVERSION</span>
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-black uppercase mt-4">SELECTED <span class="text-brutal-orange">B2B TEMPLATES</span></h2>
+                </div>
+                <span class="px-4 py-2 border border-dashed border-neutral-700 text-[10px] font-mono text-neutral-400 uppercase tracking-widest">INTERACTIVE BRAND SITES</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Template 1: Lumina Cafe & Botanica -->
+                <div class="border-[2px] border-white bg-brutal-black p-5 brutal-shadow-white flex flex-col justify-between">
+                    <div>
+                        <div class="relative w-full h-48 bg-neutral-900 border border-neutral-800 overflow-hidden mb-6">
+                            <span class="absolute top-3 right-3 px-2.5 py-1 bg-white text-brutal-black text-[9px] font-mono uppercase font-bold z-10">LIVE MOCKUP</span>
+                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80" alt="Lumina Cafe" class="w-full h-full object-cover opacity-70">
+                        </div>
+                        <h3 class="font-display font-black text-xl uppercase tracking-wider">LUMINA CAFÉ & BOTANICA</h3>
+                        
+                        <div class="mt-3 flex">
+                            <span class="px-2.5 py-1 border border-neutral-700 text-[9px] font-mono uppercase font-bold text-neutral-400">PISTACHIO & CREAM THEME</span>
+                        </div>
+
+                        <p class="text-xs text-neutral-400 mt-4 leading-relaxed font-normal">
+                            A gorgeous, conversion-focused layout featuring a custom **"Order at Table" geolocation verification simulator** built to showcase workflow depth to prospective hospitality clients.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-neutral-800">
+                        <div class="space-y-2 mb-6">
+                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">CUSTOM GEOLOCATION SIMULATOR</span>
+                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">CORMORANT GARAMOND TYPOGRAPHY</span>
+                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">LIQUID UI INTERACTIONS</span>
+                        </div>
+
+                        <a href="https://iodroid-rob.github.io/cafe/" target="_blank" rel="noopener noreferrer" class="block w-full py-3 bg-brutal-orange hover:bg-white hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-widest text-center text-xs border-[2px] border-white brutal-shadow-white transition-colors">
+                            PREVIEW LIVE SITE <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Template 2: Vanguard Academy -->
+                <div class="border-[2px] border-white bg-brutal-black p-5 brutal-shadow-white flex flex-col justify-between">
+                    <div>
+                        <div class="relative w-full h-48 bg-neutral-900 border border-neutral-800 overflow-hidden mb-6">
+                            <span class="absolute top-3 right-3 px-2.5 py-1 bg-white text-brutal-black text-[9px] font-mono uppercase font-bold z-10">LIVE MOCKUP</span>
+                            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80" alt="Vanguard Prep" class="w-full h-full object-cover opacity-70">
+                        </div>
+                        <h3 class="font-display font-black text-xl uppercase tracking-wider">VANGUARD PREP ACADEMY</h3>
+                        
+                        <div class="mt-3 flex">
+                            <span class="px-2.5 py-1 border border-neutral-700 text-[9px] font-mono uppercase font-bold text-neutral-400">CLASSIC IVY GOLD THEME</span>
+                        </div>
+
+                        <p class="text-xs text-neutral-400 mt-4 leading-relaxed font-normal">
+                            An elite educational showcase featuring a customizable 5-Day class scheduler matrix and an interactive Admissions Appraiser producing certificate wax seals.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-neutral-800">
+                        <div class="space-y-2 mb-6">
+                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">5-DAY CLASS SCHEDULE ENGINE</span>
+                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">WAX SEAL ADMISSIONS PORTAL</span>
+                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">3D PARALLAX DEPTHTILT</span>
+                        </div>
+
+                        <a href="https://iodroid-rob.github.io/uni/" target="_blank" rel="noopener noreferrer" class="block w-full py-3 bg-brutal-orange hover:bg-white hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-widest text-center text-xs border-[2px] border-white brutal-shadow-white transition-colors">
+                            PREVIEW LIVE SITE <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Template 3: Aurelia Residences -->
+                <div class="border-[2px] border-white bg-brutal-black p-5 brutal-shadow-white flex flex-col justify-between">
+                    <div>
+                        <div class="relative w-full h-48 bg-neutral-900 border border-neutral-800 overflow-hidden mb-6">
+                            <span class="absolute top-3 right-3 px-2.5 py-1 bg-white text-brutal-black text-[9px] font-mono uppercase font-bold z-10">LIVE MOCKUP</span>
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Aurelia Residences" class="w-full h-full object-cover opacity-70">
+                        </div>
+                        <h3 class="font-display font-black text-xl uppercase tracking-wider">AURELIA RESIDENCES</h3>
+                        
+                        <div class="mt-3 flex">
+                            <span class="px-2.5 py-1 border border-neutral-700 text-[9px] font-mono uppercase font-bold text-neutral-400">AVANT-GARDE EDITORIAL</span>
+                        </div>
+
+                        <p class="text-xs text-neutral-400 mt-4 leading-relaxed font-normal">
+                            High-end Swiss minimalist design incorporating a dynamic sunlight & shadow casting simulator that shifts canvas illumination relative to coordinates and hour trackers.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-neutral-800">
+                        <div class="space-y-2 mb-6">
+                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">DAYLIGHT PATHWAY SHADOW CAST</span>
+                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">3D AZIMUTH BLUEPRINT SELECTOR</span>
+                            <span class="block px-2 py-1 border border-neutral-700 text-[9px] font-mono text-neutral-400 uppercase tracking-wider text-center">FINANCIAL ASSET INVESTMENT LEDGER</span>
+                        </div>
+
+                        <a href="https://iodroid-rob.github.io/something-/" target="_blank" rel="noopener noreferrer" class="block w-full py-3 bg-brutal-orange hover:bg-white hover:text-brutal-black text-brutal-black font-display font-bold uppercase tracking-widest text-center text-xs border-[2px] border-white brutal-shadow-white transition-colors">
+                            PREVIEW LIVE SITE <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="w-full border-t-[2px] border-white bg-brutal-black py-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-mono uppercase tracking-widest font-bold">
+            <span class="text-neutral-400">&copy; 2026 NEXUS AGENCY // ALL RIGHTS RESERVED</span>
+            <div class="flex gap-6 text-brutal-orange">
+                <a href="#" class="hover:text-white transition-colors">PRIVACY POLICY</a>
+                <a href="#" class="hover:text-white transition-colors">TERMS OF SERVICE</a>
             </div>
         </div>
     </footer>
 
+    <!-- Safe UI Message Box replacing Window Alerts -->
+    <div id="proposal-toast" class="fixed bottom-6 right-6 p-4 border-[2px] border-white bg-brutal-black brutal-shadow-orange text-xs font-mono font-bold uppercase tracking-wider hidden z-50">
+        <div class="flex items-center gap-3">
+            <i class="fa-solid fa-circle-check text-brutal-green"></i>
+            <span id="toast-text">PROPOSAL SUCCESSFULLY INGESTED.</span>
+        </div>
+    </div>
+
     <script>
-        // --- Theme Toggling Logic ---
-        const themeToggleDesktop = document.getElementById('theme-toggle-desktop');
-        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
-        const themeIconDesktop = document.getElementById('theme-icon-desktop');
-        const themeIconMobile = document.getElementById('theme-icon-mobile');
-        
-        function updateThemeUI() {
-            const isDark = document.documentElement.classList.contains('dark');
-            if (themeIconDesktop) themeIconDesktop.className = isDark ? "fa-solid fa-sun text-sm" : "fa-solid fa-moon text-sm";
-            if (themeIconMobile) themeIconMobile.className = isDark ? "fa-solid fa-sun text-sm" : "fa-solid fa-moon text-sm";
-        }
-        
-        updateThemeUI();
+        // 3-State Theme Matrix Switcher
+        let currentThemeIndex = 0; // 0: Dark, 1: Light, 2: Eye Comfort
+        const themes = ['dark', 'light', 'comfort'];
+        const themeLabels = {
+            'dark': 'DARK',
+            'light': 'LIGHT',
+            'comfort': 'EYE COMFORT'
+        };
+        const themeIcons = {
+            'dark': 'fa-moon',
+            'light': 'fa-sun',
+            'comfort': 'fa-eye'
+        };
 
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-            updateThemeUI();
-        }
-
-        if(themeToggleDesktop) themeToggleDesktop.addEventListener('click', toggleTheme);
-        if(themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
-
-        // --- Tab Switching Logic ---
-        function switchTab(tab) {
-            const viewHome = document.getElementById('view-home');
-            const viewPortfolio = document.getElementById('view-portfolio');
-            const btnHome = document.getElementById('btn-home');
-            const btnPortfolio = document.getElementById('btn-portfolio');
-
-            // Reset buttons to inactive style
-            const inactiveClass = "flex-1 sm:flex-none bg-brutal-white dark:bg-brutal-black text-brutal-black dark:text-brutal-white hover:bg-brutal-lightgray dark:hover:bg-[#222] border-2 border-brutal-black dark:border-brutal-white px-4 py-2 font-bold uppercase text-xs sm:text-sm tracking-widest shadow-[2px_2px_0px_0px_#0A0A0A] dark:shadow-[2px_2px_0px_0px_#FAFAFA] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_#0A0A0A] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer";
-            btnHome.className = inactiveClass;
-            btnPortfolio.className = inactiveClass;
-
-            const activeClass = "flex-1 sm:flex-none bg-brutal-orange text-black border-2 border-brutal-black dark:border-brutal-white px-4 py-2 font-bold uppercase text-xs sm:text-sm tracking-widest shadow-[2px_2px_0px_0px_#0A0A0A] dark:shadow-[2px_2px_0px_0px_#FAFAFA] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_#0A0A0A] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer";
-
-            if (tab === 'home') {
-                viewHome.classList.remove('hidden');
-                viewHome.classList.add('flex');
-                viewPortfolio.classList.add('hidden');
-                viewPortfolio.classList.remove('flex');
-                btnHome.className = activeClass;
-            } else if (tab === 'portfolio') {
-                viewPortfolio.classList.remove('hidden');
-                viewPortfolio.classList.add('flex');
-                viewHome.classList.add('hidden');
-                viewHome.classList.remove('flex');
-                btnPortfolio.className = activeClass;
+        function toggleThemeVisual() {
+            const body = document.body;
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            const selectedTheme = themes[currentThemeIndex];
+            
+            // Wipe clean old classes
+            body.classList.remove('theme-light', 'theme-comfort');
+            
+            // Bind active class overrides
+            if (selectedTheme === 'light') {
+                body.classList.add('theme-light');
+            } else if (selectedTheme === 'comfort') {
+                body.classList.add('theme-comfort');
             }
+            
+            // Sync toggle text labels dynamically
+            const themeLabel = document.getElementById('theme-label');
+            const themeIcon = document.getElementById('theme-icon');
+            if (themeLabel) themeLabel.innerText = themeLabels[selectedTheme];
+            if (themeIcon) {
+                themeIcon.className = `fa-solid ${themeIcons[selectedTheme]}`;
+            }
+            
+            // Deliver non-intrusive safe status logs
+            showUINotification(`THEME SWITCHED TO ${themeLabels[selectedTheme]} MODE.`);
         }
 
-        // --- Form Handling Logic ---
-        const form = document.getElementById('lead-form');
-        const formState = document.getElementById('form-state');
-        const successState = document.getElementById('success-state');
-        const submitBtn = document.getElementById('submit-btn');
-        const btnText = document.getElementById('btn-text');
-        const btnIcon = document.getElementById('btn-icon');
-        const btnSpinner = document.getElementById('btn-spinner');
-        const formWrapper = document.getElementById('form-wrapper');
-
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            
-            // Disable inputs during submission
-            const inputs = form.querySelectorAll('input, select, textarea');
-            inputs.forEach(input => input.setAttribute('disabled', 'true'));
-            
-            btnText.textContent = "Sending...";
-            btnIcon.classList.add('hidden');
-            btnSpinner.classList.remove('hidden');
-
-            // Simulate network delay (1500ms) for realistic UX
+        // Custom Safe Toast notifications
+        function showUINotification(message) {
+            const toast = document.getElementById('proposal-toast');
+            document.getElementById('toast-text').innerText = message;
+            toast.classList.remove('hidden');
             setTimeout(() => {
-                formState.classList.add('hidden');
-                successState.classList.remove('hidden');
-                successState.classList.add('flex');
-                
-                // Temporary success highlight on the container border
-                formWrapper.classList.remove('border-brutal-black', 'dark:border-brutal-white');
-                formWrapper.style.borderColor = "#FF3B00"; 
-                
-                setTimeout(() => {
-                    formWrapper.style.borderColor = "";
-                    formWrapper.classList.add('border-brutal-black', 'dark:border-brutal-white');
-                }, 600);
-
-            }, 1500);
+                toast.classList.add('hidden');
+            }, 3000);
         }
 
-        // --- Reset Logic ---
-        function resetForm() {
-            form.reset();
-            const inputs = form.querySelectorAll('input, select, textarea');
-            inputs.forEach(input => input.removeAttribute('disabled'));
-            
-            btnText.textContent = "Get a Proposal";
-            btnIcon.classList.remove('hidden');
-            btnSpinner.classList.add('hidden');
-            
-            successState.classList.add('hidden');
-            successState.classList.remove('flex');
-            formState.classList.remove('hidden');
+        // Project Form Submission simulation
+        function submitProjectProposal(event) {
+            event.preventDefault();
+            const name = document.getElementById('form-name').value;
+            const company = document.getElementById('form-company').value;
+            showUINotification(`SALUTATIONS, ${name.toUpperCase()} FROM ${company.toUpperCase()}. DETAILS CAPTURED.`);
+            document.getElementById('project-form').reset();
         }
     </script>
 </body>
